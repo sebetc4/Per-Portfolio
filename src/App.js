@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Bienvenue sur le futur portfolio de Sébastien ETCHETO
+          Bienvenue sur le futur portfolio de Sébastien ETCHETO et Croquette!
         </p>
         <a
           className="App-link"
