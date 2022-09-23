@@ -9,6 +9,8 @@ function App() {
         <p>
           Bienvenue sur le futur portfolio de Sébastien ETCHETO
         </p>
+        <p>Ce site est en construction, si vous souhaitez me contacter:</p>
+        <a href='mailto:sebastien-etcheto@gmail.com'>sebastien-etcheto@gmail.com</a>
       </header>
     </div>
   );
