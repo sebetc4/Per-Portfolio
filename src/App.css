@@ -38,6 +38,10 @@ a:hover {
 
 iframe {
   margin: 20px 0;
+  width: 100vw;
+  max-width: 560px;
+  height: 56vw;
+  max-height: 315px;
 }
 
 @keyframes App-logo-spin {

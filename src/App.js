@@ -15,8 +15,6 @@ function App() {
           présentation de l'un de mes projets:
         </p>
         <iframe
-          width="560"
-          height="315"
           src="https://www.youtube.com/embed/8wfDbHOJofE"
           title="YouTube video player"
           frameborder="0"
