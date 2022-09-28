@@ -15,8 +15,8 @@
 
 .App-header {
   box-sizing: border-box;
-  padding: 40px;
-  background-color: #282c34;
+  padding: 40px 20px;
+  background-color: #3B3838;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -25,14 +25,27 @@
   color: white;
 }
 
+.title-link {
+  margin-top: -0;
+  transition: .3s;
+}
+
+.title-link:hover {
+  transform: scale(1.1);
+}
+
+h2 {
+  margin-top: 0;
+}
+
 a {
-  color: #61dafb;
+  color: #629460;
   text-decoration: none;
   transition: .3s;
 }
 
 a:hover {
-  color: hsl(193, 95%, 80%);
+  color: hsl(118, 21%, 58%);
   transform: scale(1.1);
 }
 

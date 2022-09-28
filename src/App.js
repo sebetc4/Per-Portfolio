@@ -8,7 +8,12 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>Bienvenue sur le futur portfolio de Sébastien ETCHETO </h1>
+        <h1>Bienvenue sur le futur portfolio de</h1>
+        <h1 class="title-link">
+          <a href="./CV-Sebastien-ETCHETO.pdf">
+            Sébastien ETCHETO
+          </a>
+        </h1>
         <h2>Développeur web full stack</h2>
         <p>
           Ce site est en construction, pour patienter vous pouvez visionner la
@@ -19,9 +24,9 @@ function App() {
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
+          allowfullscreen="true"
         ></iframe>{" "}
-        <p>Sinon pour me contacter voici mon mail:</p>
+        <p>Si vous souhaitez me contacter voici mon mail:</p>
         <a href="mailto:sebastien.etcheto@gmail.com">
           sebastien.etcheto@gmail.com
         </a>
