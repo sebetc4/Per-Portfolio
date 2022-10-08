@@ -63,7 +63,7 @@ body {
 
     &__image-container {
         flex: 2;
-        z-index: -1;
+        z-index: -99;
 
         img {
             width: 100%;
@@ -199,7 +199,6 @@ body {
             }
 
             &:hover {
-
                 &::after {
                     height: 0px;
                 }
@@ -215,11 +214,8 @@ body {
 .project-phone,
 .project-laptop {
     position: relative;
-
-    img {
-        width: 100%;
-        height: auto;
-    }
+    width: 100%;
+    max-width: 600px;
 
     &__screen {
         position: absolute;
@@ -241,6 +237,11 @@ body {
     width: 300px;
     height: 600px;
 
+    img {
+        width: 100%;
+        height: auto;
+    }
+
     &__screen {
         width: 264px;
         height: 567px;
@@ -257,14 +258,16 @@ body {
 }
 
 .project-laptop {
-    width: 600px;
-    height: 379px;
+    img {
+        width: 100%;
+        height: auto;
+    }
 
     &__screen {
-        width: 451px;
-        height: 283px;
-        top: 18px;
-        left: 68px;
+        top: 4.6%;
+        bottom: 21.8%;
+        left: 11.3%;
+        right: 13.3%;
     }
 }
 
@@ -298,7 +301,10 @@ body {
     display: flex;
     justify-content: space-between;
     color: #555;
+
+    span {
     font-size: 12px;
+    }
 }
 
 .github-chart-box-container {
@@ -326,21 +332,71 @@ body {
 }
 
 @media screen and (max-width: 1024px) {
-    .project {
-        flex-direction: column;
-        height: max-content;
-
-        &:nth-child(even) {
-            flex-direction: column;
+    .intro-speech {
+        &__image-container {
+            display: none;
         }
     }
 
-    .github-chart {
-        display: none;
+    .project {
+        flex-direction: column-reverse;
+        height: auto;
+
+        &.reverse {
+            flex-direction: column-reverse;
+        }
+
+        &__detail {
+            h3 {
+                font-size: 6vw;
+            }
+        }
     }
 
-    .project-phone,
-    .project-laptop {
-        transform: none !important;
+    #groupomania-project {
+        padding-top: 200px;
+    }
+
+    .github-chart-box-container {
+        gap: 3px;
+
+        &__box {
+            width: 12px;
+            height: 12px;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .intro-speech {
+        padding: 0 50px;
+    }
+
+    .project {
+        padding: 100px 50px;
+    }
+
+    .github-chart-box-container {
+        gap: 0.1px;
+
+        &__box {
+            width: 10px;
+            height: 8px;
+        }
+    }
+
+    .github-chart-dates {
+
+        font-size: 6px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .intro-speech {
+        padding: 0 30px;
+    }
+
+    .project {
+        padding: 100px 30px;
     }
 }

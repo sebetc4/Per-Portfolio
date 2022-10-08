@@ -4,7 +4,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-
 const boxContainer = document.querySelector(".github-chart-box-container");
 
 const coloredBoxList = [
@@ -24,7 +23,6 @@ for (let i = 0; i < 365; i++) {
     el.classList = `github-chart-box-container__box ${coloredBoxList.includes(i) ? "active" : ""}`;
     boxContainer.appendChild(el);
 }
-
 
 // Intro Speech Animations
 const introSpeech = document.querySelector(".intro-speech");
@@ -81,11 +79,9 @@ gsap.fromTo(
     }
 );
 
-
 // Intro Job Animations
 const introJob = document.querySelector(".intro-job");
 const introJobTitle = introJob.querySelector(".intro-job h2");
-
 
 gsap.to(introJob, {
     backgroundPositionY: -50,
@@ -114,13 +110,13 @@ gsap.fromTo(
 );
 
 // Title Project Animation
-const projects = document.querySelector(".projects")
+const projects = document.querySelector(".projects");
 const projectsTitle = projects.querySelector(".projects h2");
 
 gsap.fromTo(
     projectsTitle,
     {
-        y: '25%'
+        y: "25%",
     },
     {
         y: "-50%",
@@ -135,35 +131,35 @@ gsap.fromTo(
 );
 
 // Kine Project
-const kineProject = document.querySelector('#kine-project')
-const kineProjectDevice = kineProject.querySelector('.project__device-container')
-const kineProjectDetail = kineProject.querySelector('.project__detail')
-const kineProjectPhoneImage = kineProject.querySelector("#kine-project-phone-image")
-const kineProjectScreenImage = kineProject.querySelector('#kine-project-screen-image')
+const kineProject = document.querySelector("#kine-project");
+const kineProjectDevice = kineProject.querySelector(".project__device-container");
+const kineProjectDetail = kineProject.querySelector(".project__detail");
+const kineProjectPhoneImage = kineProject.querySelector("#kine-project-phone-image");
+const kineProjectScreenImage = kineProject.querySelector("#kine-project-screen-image");
 
 gsap.from(kineProjectDevice, {
-    x: '100%',
+    x: "100%",
     autoAlpha: 1,
     scrollTrigger: {
-        trigger: kineProject,
+        trigger: kineProjectDevice,
         start: "top bottom",
         end: "center center",
         toggleActions: "play none reverse none",
         scrub: 1,
-    }
-})
+    },
+});
 
 gsap.from(kineProjectDetail, {
-    x: '-100%',
+    x: "-100%",
     autoAlpha: 1,
     scrollTrigger: {
-        trigger: kineProject,
+        trigger: kineProjectDetail,
         start: "top bottom",
         end: "center center",
         toggleActions: "play none reverse none",
         scrub: 1,
-    }
-})
+    },
+});
 
 gsap.to(kineProjectScreenImage, {
     y: -1597,
@@ -176,39 +172,59 @@ gsap.to(kineProjectScreenImage, {
     },
 });
 
-ScrollTrigger.create({
+const getStartKineProjectScrollTrigger = () =>
+    kineProject.getBoundingClientRect().bottom -
+    kineProjectDevice.getBoundingClientRect().bottom +
+    kineProjectDevice.offsetHeight / 2;
+
+const kineProjectScrollTrigger = ScrollTrigger.create({
     trigger: kineProject,
     pin: true,
-    end: `top+=900`,
+    start: () =>
+        window.innerWidth < 1024
+            ? `bottom-=${getStartKineProjectScrollTrigger()} center`
+            : "center center",
+    end: () =>
+        window.innerWidth < 1024
+            ? `bottom-=${getStartKineProjectScrollTrigger() - 900} center`
+            : `top+=900`,
     scrub: 1,
 });
 
 // Groupomania Project Animation
-const groupomaniaProject = document.querySelector('#groupomania-project')
-const groupomaniaProjectDevice = groupomaniaProject.querySelector('.project__device-container')
-const groupomaniaProjectDetail = groupomaniaProject.querySelector('.project__detail')
+const groupomaniaProject = document.querySelector("#groupomania-project");
+const groupomaniaProjectDevice = groupomaniaProject.querySelector(".project__device-container");
+const groupomaniaProjectDetail = groupomaniaProject.querySelector(".project__detail");
 
 gsap.from(groupomaniaProjectDevice, {
-    x: '-100%',
+    x: "-100%",
     autoAlpha: 1,
     scrollTrigger: {
-        trigger: groupomaniaProject,
+        trigger: groupomaniaProjectDevice,
         start: "top bottom",
         end: "center center",
         toggleActions: "play none reverse none",
         scrub: 1,
-    }
-})
+    },
+});
 
 gsap.from(groupomaniaProjectDetail, {
-    x: '100%',
+    x: "100%",
     autoAlpha: 1,
     scrollTrigger: {
-        trigger: groupomaniaProject,
+        trigger: groupomaniaProjectDetail,
         start: "top bottom",
         end: "center center",
         toggleActions: "play none reverse none",
         scrub: 1,
-    }
-})
+    },
+});
 
+window.addEventListener(
+    "resize",
+    function (event) {
+        console.log("resize");
+        kineProjectScrollTrigger.refresh();
+    },
+    true
+);
