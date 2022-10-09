@@ -1,7 +1,7 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: "Open Sans", sans-serif;
+    font-family: 'Open Sans', sans-serif;
     box-sizing: border-box;
     font-size: 20px;
 }
@@ -9,7 +9,7 @@
 h1,
 h2,
 h3 {
-    font-family: "Kanit", sans-serif;
+    font-family: 'Kanit', sans-serif;
 }
 
 h1,
@@ -92,7 +92,6 @@ body {
 
 .intro-job {
     height: 100vh;
-    font-size: 7vw;
     line-height: 100vh;
     color: #333;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
@@ -185,7 +184,7 @@ body {
                 background: #111;
                 z-index: -1;
                 transition: 1s;
-                content: "";
+                content: '';
             }
 
             &::before {
@@ -285,25 +284,124 @@ body {
     }
 }
 
+$line-size: 1px;
+$delay1: .5s;
+$delay2: .9s;
+$distance: -1px;
+
 .github-chart {
-    :hover {
+    padding: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a {
+        text-decoration: none;
+    }
+
+    // Inspired by: https://codepen.io/pineappleSyrup/pen/gNdERJ
+    &__decoration {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border: solid rgba(255, 255, 255, 0.1) 1px;
+        background-color: #111;
+        cursor: pointer;
+        transition: all 1s;
+        z-index: -1;
+    
+        .line {
+            background: white;
+            position: absolute;
+            transition: none;
+            transform: scale(0);
+            opacity: 1;
+        }
+    
+        .line:nth-child(1) {
+            transform-origin: 100% 100%;
+            height: $line-size;
+            width: 20%;
+            bottom: 0;
+        }
+    
+        .line:nth-child(4) {
+            transform-origin: 0 100%;
+            height: $line-size;
+            width: 20%;
+            top: $distance;
+            right: 0;
+        }
+    
+        .line:nth-child(2) {
+            transform-origin: 100% 100%;
+            height: 100%;
+            width: $line-size;
+            bottom: 0;
+            left: $distance;
+        }
+    
+        .line:nth-child(5) {
+            transform-origin: 100% 0;
+            height: 100%;
+            width: $line-size;
+            bottom: 0;
+            right: $distance;
+        }
+    
+        .line:nth-child(3) {
+            transform-origin: 0 100%;
+            height: $line-size;
+            width: 100%;
+            top: $distance;
+            left: $distance;
+        }
+    
+        .line:nth-child(6) {
+            transform-origin: 100% 0;
+            height: $line-size;
+            width: 100%;
+            bottom: 0;
+            right: $distance;
+        }
+    }
+
+    &:hover {
         .active:nth-child(2n + 1) {
             background-color: green;
         }
         .active:nth-child(2n) {
             background-color: rgb(0, 99, 0);
         }
+
+        .line {
+            transform: scale(1);
+            opacity: 0;
+            transition: all 1s;
+        }
+    
+        .line:nth-child(2),
+        .line:nth-child(5) {
+            transition-delay: $delay1;
+        }
+    
+        .line:nth-child(3),
+        .line:nth-child(6) {
+            transition-delay: $delay2;
+        }
+            background: rgba(255, 255, 255, 0.01);
     }
 }
 
 .github-chart-dates {
-    padding: 10px;
+    padding: 0 10px 10px 10px;
     display: flex;
     justify-content: space-between;
     color: #555;
 
     span {
-    font-size: 12px;
+        font-size: 16px;
     }
 }
 
@@ -317,7 +415,7 @@ body {
         height: 15px;
         background-color: #171c25;
         border-radius: 2px;
-        transition: all 3s ease;
+        transition: background-color 3s ease;
 
         &.active:nth-child(4n) {
             background-color: green;
@@ -357,8 +455,13 @@ body {
         padding-top: 200px;
     }
 
+    .github-chart-dates span {
+        font-size: 14px;
+    }
+
     .github-chart-box-container {
-        gap: 3px;
+        grid-template-columns: repeat(41, 12px);
+        gap: 4px;
 
         &__box {
             width: 12px;
@@ -370,6 +473,33 @@ body {
 @media screen and (max-width: 768px) {
     .intro-speech {
         padding: 0 50px;
+
+        h2 {
+            margin-bottom: 30px;
+            font-size: 15vw;
+        }
+
+        p {
+            margin-left: 5px;
+        }
+    }
+
+    .intro-name {
+        h1 {
+            font-size: 10vw;
+        }
+    }
+
+    .intro-job {
+        h2 {
+            font-size: 11vw;
+        }
+    }
+
+    .projects {
+        h2 {
+            font-size: 12vw;
+        }
     }
 
     .project {
@@ -377,26 +507,36 @@ body {
     }
 
     .github-chart-box-container {
-        gap: 0.1px;
+        grid-template-columns: repeat(27, 15px);
+        gap: 5px;
 
         &__box {
-            width: 10px;
-            height: 8px;
+            width: 15px;
+            height: 15px;
         }
-    }
-
-    .github-chart-dates {
-
-        font-size: 6px;
     }
 }
 
 @media screen and (max-width: 640px) {
+    * {
+        font-size: 18px;
+    }
+
     .intro-speech {
         padding: 0 30px;
     }
 
     .project {
         padding: 100px 30px;
+    }
+
+    .github-chart-box-container {
+        grid-template-columns: repeat(27, 10px);
+        gap: 2px;
+
+        &__box {
+            width: 10px;
+            height: 10px;
+        }
     }
 }
