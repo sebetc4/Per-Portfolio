@@ -285,8 +285,8 @@ body {
 }
 
 $line-size: 1px;
-$delay1: .5s;
-$delay2: .9s;
+$delay1: 0.5s;
+$delay2: 0.9s;
 $distance: -1px;
 
 .github-chart {
@@ -310,7 +310,7 @@ $distance: -1px;
         cursor: pointer;
         transition: all 1s;
         z-index: -1;
-    
+
         .line {
             background: white;
             position: absolute;
@@ -318,14 +318,14 @@ $distance: -1px;
             transform: scale(0);
             opacity: 1;
         }
-    
+
         .line:nth-child(1) {
             transform-origin: 100% 100%;
             height: $line-size;
             width: 20%;
             bottom: 0;
         }
-    
+
         .line:nth-child(4) {
             transform-origin: 0 100%;
             height: $line-size;
@@ -333,7 +333,7 @@ $distance: -1px;
             top: $distance;
             right: 0;
         }
-    
+
         .line:nth-child(2) {
             transform-origin: 100% 100%;
             height: 100%;
@@ -341,7 +341,7 @@ $distance: -1px;
             bottom: 0;
             left: $distance;
         }
-    
+
         .line:nth-child(5) {
             transform-origin: 100% 0;
             height: 100%;
@@ -349,7 +349,7 @@ $distance: -1px;
             bottom: 0;
             right: $distance;
         }
-    
+
         .line:nth-child(3) {
             transform-origin: 0 100%;
             height: $line-size;
@@ -357,7 +357,7 @@ $distance: -1px;
             top: $distance;
             left: $distance;
         }
-    
+
         .line:nth-child(6) {
             transform-origin: 100% 0;
             height: $line-size;
@@ -380,19 +380,20 @@ $distance: -1px;
             opacity: 0;
             transition: all 1s;
         }
-    
+
         .line:nth-child(2),
         .line:nth-child(5) {
             transition-delay: $delay1;
         }
-    
+
         .line:nth-child(3),
         .line:nth-child(6) {
             transition-delay: $delay2;
         }
-            background: rgba(255, 255, 255, 0.01);
+        background: rgba(255, 255, 255, 0.01);
     }
 }
+
 
 .github-chart-dates {
     padding: 0 10px 10px 10px;
@@ -506,6 +507,34 @@ $distance: -1px;
         padding: 100px 50px;
     }
 
+    @keyframes lineAnimation {
+        50% {
+            transform: scale(1);
+            opacity: 0;
+        }
+        51% {
+            transform: scale(0);
+            opacity: 1;
+        }
+    }
+
+    .github-chart {
+        .line {
+            animation: lineAnimation 2s ease infinite;
+        }
+
+        .line:nth-child(2),
+        .line:nth-child(5) {
+            animation: lineAnimation 2s ease $delay1 infinite;
+        }
+
+        .line:nth-child(3),
+        .line:nth-child(6) {
+            animation: lineAnimation 2s ease $delay2 infinite;
+        }
+        background: rgba(255, 255, 255, 0.01);
+    }
+
     .github-chart-box-container {
         grid-template-columns: repeat(27, 15px);
         gap: 5px;
@@ -531,12 +560,36 @@ $distance: -1px;
     }
 
     .github-chart-box-container {
+        grid-template-columns: repeat(27, 12px);
+        gap: 4px;
+
+        &__box {
+            width: 12px;
+            height: 12px;
+        }
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .github-chart-box-container {
         grid-template-columns: repeat(27, 10px);
-        gap: 2px;
+        gap: 3px;
 
         &__box {
             width: 10px;
             height: 10px;
+        }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .github-chart-box-container {
+        grid-template-columns: repeat(27, 8px);
+        gap: 2px;
+
+        &__box {
+            width: 8px;
+            height: 8px;
         }
     }
 }
