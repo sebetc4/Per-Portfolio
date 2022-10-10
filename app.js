@@ -1,4 +1,5 @@
 import './style.scss';
+import autosize from 'autosize';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
@@ -284,4 +285,146 @@ class Display {
     }
 }
 
+class Input {
+    constructor(form, htmlElement, regExp) {
+        this.htmlElement = htmlElement;
+        this.regExp = regExp;
+        this.validValue = false;
+        form.allInputs.push(this);
+    }
+}
+
+class Formulary {
+    constructor() {
+        this.form = document.querySelector('.contact-formulary');
+        this.allInputsContainer = Array.from(this.form.querySelectorAll(`.contact-furmulary-input-container`));
+        this.submitDiv = this.form.querySelector('.contact-furmulary-submit');
+        this.allInputs = [];
+        this.init();
+    }
+
+    init() {
+        // Init input
+        new Input(
+            this,
+            this.form.firstname,
+            /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹ '-]{2,}$/u
+        );
+        new Input(
+            this,
+            this.form.lastname,
+            /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹ '-]{2,}$/u
+        );
+        new Input(this, this.form.email, /^[a-zA-Z0-9_.-]+[@]{1}[a-zA-Z0-9_.-]+[.]{1}[a-z]{2,10}$/);
+        new Input(this, this.form.message, /(?!^$)([^\s])/);
+
+        autosize(this.form.message);
+
+        this.allInputs.forEach((input) => {
+            input.htmlElement.value && this.checkValidInput(input);
+            input.htmlElement.addEventListener('input', () => this.checkValidInput(input));
+        });
+
+        // Focused input
+        this.form.addEventListener(
+            'focus',
+            (event) => {
+                event.target !== this.submitButton &&
+                    event.target.parentNode.classList.add('contact-furmulary-input-container--focused');
+            },
+            true
+        );
+
+        this.form.addEventListener(
+            'blur',
+            (event) => {
+                event.target !== this.submitButton &&
+                    event.target.parentNode.classList.remove('contact-furmulary-input-container--focused');
+            },
+            true
+        );
+
+        // Submit
+
+        this.form.addEventListener('submit', (e) => {
+            console.log('subb');
+            e.preventDefault();
+            this.submitDiv.classList.remove('submit--success');
+            this.submitDiv.classList.remove('submit--error');
+            this.checkAllInputValid() && new Request(this.form, this.submitDiv);
+        });
+    }
+
+    checkValidInput(input) {
+        const { regExp, htmlElement } = input;
+        if (regExp.test(htmlElement.value)) {
+            htmlElement.parentNode.classList.remove('contact-furmulary-input-container--invalid');
+            htmlElement.parentNode.classList.add('contact-furmulary-input-container--valid');
+            input.validValue = true;
+        } else {
+            htmlElement.parentNode.classList.remove('contact-furmulary-input-container--valid');
+            htmlElement.parentNode.classList.add('contact-furmulary-input-container--invalid');
+            input.validValue = false;
+        }
+    }
+
+    checkAllInputValid() {
+        for (let input of this.allInputs) {
+            if (!input.validValue) {
+                input.htmlElement.parentNode.classList.add('contact-furmulary-input-container--invalid');
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+class Request {
+    constructor(form, submitDiv) {
+        this.form = form;
+        this.submitDiv = submitDiv;
+        this.init();
+    }
+
+    async init() {
+        const apiUrl = import.meta.env.PROD ? '' : 'http://localhost:8080/api/contact';
+        console.log(apiUrl)
+        this.submitDiv.classList.add('submit--submitting');
+        try {
+            const res = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    lastName: this.form.lastname.value,
+                    firstName: this.form.firstname.value,
+                    email: this.form.email.value,
+                    message: this.form.message.value,
+                }),
+            });
+            res.ok ? this.requetSuccess() : this.requetError();
+        } catch(err) {
+            console.log(err)
+            this.requetError();
+        }
+    }
+
+    requetSuccess() {
+        this.submitDiv.classList.remove('contact-furmulary-submit--submitting');
+        this.submitDiv.classList.add('contact-furmulary-submit--success');
+        this.form.lastname.value = '';
+        this.form.firstname.value = '';
+        this.form.email.value = '';
+        this.form.message.value = '';
+    }
+
+    requetError() {
+        this.submitDiv.classList.remove('contact-furmulary-submit--submitting');
+        this.submitDiv.classList.add('contact-furmulary-submit--error');
+    }
+}
+
 new Display();
+new Formulary();

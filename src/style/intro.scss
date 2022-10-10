@@ -1,0 +1,132 @@
+.intro-speech {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    padding: 0 100px;
+    z-index: 2;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, #0a0a0a79 0px 79px 88px;
+    overflow: hidden;
+
+    &__text-container {
+        width: 50%;
+
+        h2 {
+            color: #3f4e4f;
+            font-size: 10vw;
+            margin-bottom: 80px;
+        }
+
+        p {
+            margin-left: 15px;
+            line-height: 2rem;
+            color: #888;
+        }
+    }
+
+    &__image-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -99;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgb(17, 17, 17);
+            background: linear-gradient(
+                90deg,
+                rgba(17, 17, 17, 1) 0%,
+                rgba(17, 17, 17, 0.63) 55%,
+
+                rgba(17, 17, 17, 0) 70%
+            );
+        }
+    }
+}
+
+.intro-name {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    background-image: url('../../public/images/intro2.jpg');
+    background-size: 100% auto;
+
+
+    h1 {
+        position: relative;
+        font-size: 10vw;
+        color: #777;
+        text-align: center;
+        z-index: 2;
+    }
+}
+
+.intro-job {
+    height: 100vh;
+    line-height: 100vh;
+    color: #333;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    background-image: url('../../public/images/intro3.jpg');
+    background-size: 100% auto;
+    background-position: 75%;
+    h2 {
+        color: #777;
+        font-size: 10vw;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .intro-speech {
+        &__image-container {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .intro-speech {
+        padding: 0 50px;
+
+        h2 {
+            margin-bottom: 30px;
+            font-size: 15vw;
+        }
+
+        p {
+            margin-left: 5px;
+        }
+    }
+
+    .intro-name {
+        h1 {
+            font-size: 10vw;
+        }
+    }
+
+    .intro-job {
+        h2 {
+            font-size: 11vw;
+        }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .intro-speech {
+        padding: 0 30px;
+    }
+}

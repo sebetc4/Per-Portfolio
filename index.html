@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Portfolio - Sébastien ETCHETO</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -32,7 +32,7 @@
                         <p>Maintenant que vous savez où vous mettez les pieds, laissez moi me présentez...</p>
                     </div>
                     <div class="intro-speech__image-container">
-                        <img src="./images/hacker.png" alt="" />
+                        <img src="./public/images/intro.jpg" alt="" />
                     </div>
                 </div>
                 <div class="intro-name">
@@ -96,7 +96,7 @@
                     </div>
                 </div>
             </section>
-            <div class="github">
+            <section class="github">
                 <h2>
                     Vous souhaitez voir mes repos? <br />
                     Rejoignez moi sur...
@@ -115,7 +115,43 @@
                         <div class="line"></div>
                     </div>
                 </div>
-            </div>
+            </section>
+            <section class="contact">
+                <form action="" class="contact-formulary">
+                    <h2 class="contact-formulary__title">Vous souhaitez me contacter?</h2>
+                    <div class="contact-furmulary-input-container">
+                        <input id="lastname" type="text" placeholder=" " required />
+                        <label for="lastname">Nom</label>
+                        <p class="contact-furmulary-input-container__error-message">Nom invalide</p>
+                    </div>
+                    <div class="contact-furmulary-input-container">
+                        <input id="firstname" type="text" placeholder=" " required />
+                        <label for="firstname">Prénom</label>
+                        <p class="contact-furmulary-input-container__error-message">Prénom invalide</p>
+                    </div>
+                    <div class="contact-furmulary-input-container">
+                        <input id="email" type="email" placeholder=" " required />
+                        <label for="email">Adresse mail</label>
+                        <p class="contact-furmulary-input-container__error-message">Adresse mail non valide</p>
+                    </div>
+                    <div class="contact-furmulary-textarea-container">
+                        <label for="message">Votre message</label>
+                        <textarea id="message" rows="5"></textarea>
+                        <p class="contact-furmulary-textarea-container__error-message">Votre message est vide</p>
+                    </div>
+                    <div class="contact-furmulary-submit">
+                        <button type="submit" class="contact-furmulary-submit__button">Envoyer</button>
+                        <span class="contact-furmulary-submit__loader"></span>
+                        <p class="contact-furmulary-submit__message--error">
+                            Une erreur est survenue lors de l'envoi de votre message. Merci de réessayer ultérieurement.
+                        </p>
+                        <p class="contact-furmulary-submit__message--success">
+                            Merci, votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais.
+                        </p>
+                    </div>
+                    <div class="bb"></div>
+                </form>
+            </section>
         </main>
     </body>
 </html>
