@@ -1,4 +1,9 @@
 // inspired by: https://codepen.io/soufiane-khalfaoui-hassani/pen/LYpPWda
+@keyframes spin-loader {
+	to {
+		transform: rotate(360deg);
+	}
+}
 
 .contact {
     position: relative;
@@ -254,7 +259,7 @@
             right: 3px;
             border-radius: 50px;
             border: 3px solid transparent;
-            border-top-color: #a27b5c;
+            border-top-color: #869827;
             animation: spin-loader 1s linear infinite;
         }
 
@@ -267,7 +272,7 @@
             right: 9px;
             border-radius: 50px;
             border: 3px solid transparent;
-            border-top-color: #a27b5c;
+            border-top-color: #869827;
             animation: spin-loader 2s linear infinite;
         }
     }
@@ -277,7 +282,7 @@
             display: none;
         }
 
-        .contact-form-submit_loader {
+        .contact-form-submit__loader {
             display: inline-block;
         }
     }
@@ -299,6 +304,7 @@
     &--success {
         .contact-form-submit__message--success {
             display: block;
+            color: #888;
         }
     }
 }

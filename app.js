@@ -348,10 +348,9 @@ class Form {
         // Submit
 
         this.form.addEventListener('submit', (e) => {
-            console.log('subb');
             e.preventDefault();
-            this.submitDiv.classList.remove('submit--success');
-            this.submitDiv.classList.remove('submit--error');
+            this.submitDiv.classList.remove('contact-form-input-container--success');
+            this.submitDiv.classList.remove('contact-form-input-container--error');
             this.checkAllInputValid() && new Request(this.form, this.submitDiv);
         });
     }
@@ -388,9 +387,9 @@ class Request {
     }
 
     async init() {
-        const apiUrl = import.meta.env.PROD ? '' : 'http://localhost:8080/api/contact';
+        const apiUrl = import.meta.env.PROD ? 'http://sebastien-etcheto-contact.alwaysdata.net/api/contact' : 'http://localhost:8080/api/contact';
         console.log(apiUrl)
-        this.submitDiv.classList.add('submit--submitting');
+        this.submitDiv.classList.add('contact-form-submit--submitting');
         try {
             const res = await fetch(apiUrl, {
                 method: 'POST',
