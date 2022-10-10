@@ -35,6 +35,7 @@
 
         img {
             width: 100%;
+            height: 100%;
             object-fit: cover;
         }
 
@@ -49,7 +50,7 @@
             background: linear-gradient(
                 90deg,
                 rgba(17, 17, 17, 1) 0%,
-                rgba(17, 17, 17, 0.63) 55%,
+                rgba(17, 17, 17, 0.63) 50%,
 
                 rgba(17, 17, 17, 0) 70%
             );
@@ -71,7 +72,7 @@
     h1 {
         position: relative;
         font-size: 10vw;
-        color: #777;
+        color: #888;
         text-align: center;
         z-index: 2;
     }
@@ -80,21 +81,30 @@
 .intro-job {
     height: 100vh;
     line-height: 100vh;
-    color: #333;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     background-image: url('../images/intro3.jpg');
     background-size: 100% auto;
     background-position: 75%;
     h2 {
-        color: #777;
+        color: #333;
         font-size: 10vw;
     }
 }
 
 @media screen and (max-width: 1024px) {
     .intro-speech {
-        &__image-container {
-            display: none;
+        &__text-container {
+            width: 60%;
+        }
+
+        &__image-container::after {
+            background: linear-gradient(
+                90deg,
+                rgba(17, 17, 17, 1) 0%,
+                rgba(17, 17, 17, 0.63) 60%,
+
+                rgba(17, 17, 17, 0) 70%
+            );
         }
     }
 }
@@ -111,15 +121,33 @@
         p {
             margin-left: 5px;
         }
+
+        &__text-container {
+            width: 70%;
+        }
+
+        &__image-container::after {
+            background: linear-gradient(
+                90deg,
+                rgba(17, 17, 17, 1) 0%,
+                rgba(17, 17, 17, 0.63) 70%,
+
+                rgba(17, 17, 17, 0) 90%
+            );
+        }
     }
 
     .intro-name {
+        background-size: auto 140%;
+
         h1 {
             font-size: 10vw;
         }
     }
 
     .intro-job {
+        background-size: auto 140%;
+
         h2 {
             font-size: 11vw;
         }
@@ -129,5 +157,19 @@
 @media screen and (max-width: 640px) {
     .intro-speech {
         padding: 0 30px;
+
+        &__text-container {
+            width: 100%;
+        }
+
+        &__image-container::after {
+            background: linear-gradient(
+                90deg,
+                rgba(17, 17, 17, 1) 0%,
+                rgba(17, 17, 17, 0.63) 90%,
+
+                rgba(17, 17, 17, 0) 100%
+            );
+        }
     }
 }

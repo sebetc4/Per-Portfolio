@@ -43,6 +43,7 @@ class Display {
         this.initIntroJobAnimation();
         this.initTitleProjectAnimation();
         this.initKineProjectAnimation();
+        this.initGroupomaniaProjectAnimation()
         this.displayGithubChart(this.largeScreenGithubChart);
         window.addEventListener('resize', () => this.onResize(), true);
     }
