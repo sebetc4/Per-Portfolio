@@ -295,11 +295,11 @@ class Input {
     }
 }
 
-class Formulary {
+class Form {
     constructor() {
-        this.form = document.querySelector('.contact-formulary');
-        this.allInputsContainer = Array.from(this.form.querySelectorAll(`.contact-furmulary-input-container`));
-        this.submitDiv = this.form.querySelector('.contact-furmulary-submit');
+        this.form = document.querySelector('.contact-form');
+        this.allInputsContainer = Array.from(this.form.querySelectorAll(`.contact-form-input-container`));
+        this.submitDiv = this.form.querySelector('.contact-form-submit');
         this.allInputs = [];
         this.init();
     }
@@ -331,7 +331,7 @@ class Formulary {
             'focus',
             (event) => {
                 event.target !== this.submitButton &&
-                    event.target.parentNode.classList.add('contact-furmulary-input-container--focused');
+                    event.target.parentNode.classList.add('contact-form-input-container--focused');
             },
             true
         );
@@ -340,7 +340,7 @@ class Formulary {
             'blur',
             (event) => {
                 event.target !== this.submitButton &&
-                    event.target.parentNode.classList.remove('contact-furmulary-input-container--focused');
+                    event.target.parentNode.classList.remove('contact-form-input-container--focused');
             },
             true
         );
@@ -359,12 +359,12 @@ class Formulary {
     checkValidInput(input) {
         const { regExp, htmlElement } = input;
         if (regExp.test(htmlElement.value)) {
-            htmlElement.parentNode.classList.remove('contact-furmulary-input-container--invalid');
-            htmlElement.parentNode.classList.add('contact-furmulary-input-container--valid');
+            htmlElement.parentNode.classList.remove('contact-form-input-container--invalid');
+            htmlElement.parentNode.classList.add('contact-form-input-container--valid');
             input.validValue = true;
         } else {
-            htmlElement.parentNode.classList.remove('contact-furmulary-input-container--valid');
-            htmlElement.parentNode.classList.add('contact-furmulary-input-container--invalid');
+            htmlElement.parentNode.classList.remove('contact-form-input-container--valid');
+            htmlElement.parentNode.classList.add('contact-form-input-container--invalid');
             input.validValue = false;
         }
     }
@@ -372,7 +372,7 @@ class Formulary {
     checkAllInputValid() {
         for (let input of this.allInputs) {
             if (!input.validValue) {
-                input.htmlElement.parentNode.classList.add('contact-furmulary-input-container--invalid');
+                input.htmlElement.parentNode.classList.add('contact-form-input-container--invalid');
                 return false;
             }
         }
@@ -413,8 +413,8 @@ class Request {
     }
 
     requetSuccess() {
-        this.submitDiv.classList.remove('contact-furmulary-submit--submitting');
-        this.submitDiv.classList.add('contact-furmulary-submit--success');
+        this.submitDiv.classList.remove('contact-form-submit--submitting');
+        this.submitDiv.classList.add('contact-form-submit--success');
         this.form.lastname.value = '';
         this.form.firstname.value = '';
         this.form.email.value = '';
@@ -422,10 +422,10 @@ class Request {
     }
 
     requetError() {
-        this.submitDiv.classList.remove('contact-furmulary-submit--submitting');
-        this.submitDiv.classList.add('contact-furmulary-submit--error');
+        this.submitDiv.classList.remove('contact-form-submit--submitting');
+        this.submitDiv.classList.add('contact-form-submit--error');
     }
 }
 
 new Display();
-new Formulary();
+new Form();
