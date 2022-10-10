@@ -387,7 +387,7 @@ class Request {
     }
 
     async init() {
-        const apiUrl = import.meta.env.PROD ? 'http://sebastien-etcheto-contact.alwaysdata.net/api/contact' : 'http://localhost:8080/api/contact';
+        const apiUrl = import.meta.env.PROD ? 'https://sebastien-etcheto-contact.alwaysdata.net/api/contact' : 'http://localhost:8080/api/contact';
         console.log(apiUrl)
         this.submitDiv.classList.add('contact-form-submit--submitting');
         try {
