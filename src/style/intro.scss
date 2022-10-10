@@ -5,7 +5,8 @@
     height: 100vh;
     padding: 0 100px;
     z-index: 2;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, #0a0a0a79 0px 79px 88px;
+    box-shadow: 0px 50px 34px 12px rgba(1, 12, 22, 0.8);
+    box-shadow: inset 0px -15px 31px 0px rgba(1, 12, 22, 0.8);
     overflow: hidden;
 
     &__text-container {
@@ -62,10 +63,10 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-    background-image: url('../../public/images/intro2.jpg');
+    -webkit-box-shadow: 0px 50px 34px 12px rgba(51, 51, 51, 0.81);
+    box-shadow: 0px 50px 34px 12px rgba(51, 51, 51, 0.81);
+    background-image: url('../images/intro2.jpg');
     background-size: 100% auto;
-
 
     h1 {
         position: relative;
@@ -81,7 +82,7 @@
     line-height: 100vh;
     color: #333;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-    background-image: url('../../public/images/intro3.jpg');
+    background-image: url('../images/intro3.jpg');
     background-size: 100% auto;
     background-position: 75%;
     h2 {
