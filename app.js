@@ -171,7 +171,7 @@ class Display {
             scrollTrigger: {
                 trigger: kineProjectDevice,
                 start: 'top bottom',
-                end: 'center center',
+                end: '25% center',
                 toggleActions: 'play none reverse none',
                 scrub: 1,
             },
@@ -183,7 +183,7 @@ class Display {
             scrollTrigger: {
                 trigger: kineProjectDetail,
                 start: 'top bottom',
-                end: 'center center',
+                end: '25% center',
                 toggleActions: 'play none reverse none',
                 scrub: 1,
             },
@@ -227,7 +227,7 @@ class Display {
             scrollTrigger: {
                 trigger: groupomaniaProjectDevice,
                 start: 'top bottom',
-                end: 'center center',
+                end: '25% center',
                 toggleActions: 'play none reverse none',
                 scrub: 1,
             },
@@ -239,7 +239,7 @@ class Display {
             scrollTrigger: {
                 trigger: groupomaniaProjectDetail,
                 start: 'top bottom',
-                end: 'center center',
+                end: '25% center',
                 toggleActions: 'play none reverse none',
                 scrub: 1,
             },
