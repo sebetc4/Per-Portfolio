@@ -7,7 +7,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 class Display {
     constructor() {
-        this.currentScreenSize = '';
+        this.currentScreenWidthSize = '';
+        this.currentScreenHeightSize = window.innerHeight || document.documentElement.clientHeight;
+        this.introSpeech = document.querySelector('.intro-speech');
+        this.introJob = document.querySelector('.intro-job');
         this.kineProjectScrollTrigger;
         this.githubChartboxContainer = document.querySelector('.github-chart-box-container');
         this.githubChartDates = document.querySelector('.github-chart-dates');
@@ -39,7 +42,7 @@ class Display {
     }
 
     init() {
-        this.initMinHeightMobile()
+        this.initMinHeightSizeMobile(this.currentScreenHeightSize);
         this.initIntroSpeechAnimation();
         this.initIntroNameAnimation();
         this.initIntroJobAnimation();
@@ -50,14 +53,15 @@ class Display {
         window.addEventListener('resize', () => this.onResize(), true);
     }
 
-    initMinHeightMobile() {
-
+    setMinHeightSizeSection(size) {
+        [this.introSpeech, this.introJobTitle].forEach(section, () => {
+            section.style.minHeight = `${this.size}px`
+        });
     }
 
     initIntroSpeechAnimation() {
-        const introSpeech = document.querySelector('.intro-speech');
-        const introSpeechTextContainer = introSpeech.querySelector('.intro-speech__text-container');
-        const introSpeechImageContainer = introSpeech.querySelector('.intro-speech__image-container');
+        const introSpeechTextContainer = this.introSpeech.querySelector('.intro-speech__text-container');
+        const introSpeechImageContainer = this.introSpeech.querySelector('.intro-speech__image-container');
 
         gsap.to(introSpeechTextContainer, {
             y: 200,
@@ -112,8 +116,7 @@ class Display {
     }
 
     initIntroJobAnimation() {
-        const introJob = document.querySelector('.intro-job');
-        const introJobTitle = introJob.querySelector('.intro-job h2');
+        const introJobTitle = this.introJob.querySelector('.intro-job h2');
 
         gsap.to(introJob, {
             backgroundPositionY: -50,
@@ -281,21 +284,15 @@ class Display {
     onResize() {
         const newSize =
             window.innerWidth < 768 ? 'smallScreen' : window.innerWidth < 1024 ? 'mediumScreen' : 'largeScreen';
-        if (newSize !== this.currentScreenSize) {
+        if (newSize !== this.currentScreenWidthSize) {
             this.kineProjectScrollTrigger.refresh();
             this.displayGithubChart(
                 newSize === 'smallScreen' ? this.smallScreenGithubChart : this.largeScreenGithubChart
             );
-            this.currentScreenSize = newSize;
+            this.currentScreenWidthSize = newSize;
         } else if (newSize === 'smallScreen') {
             this.kineProjectScrollTrigger.refresh();
         }
-        var win = window,
-            doc = document,
-            docElem = doc.documentElement,
-            body = doc.getElementsByTagName('body')[0];
-        const heightScreenSize = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-        console.log(win.innerHeight || docElem.clientHeight || body.clientHeight);
     }
 }
 
