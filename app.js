@@ -154,7 +154,7 @@ class Display {
                 y: '25%',
             },
             {
-                y: '-50%',
+                y: '-25%',
                 scrollTrigger: {
                     trigger: projectsTitle,
                     start: 'top+=10% bottom',
