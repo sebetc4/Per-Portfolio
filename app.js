@@ -39,6 +39,7 @@ class Display {
     }
 
     init() {
+        this.initMinHeightMobile()
         this.initIntroSpeechAnimation();
         this.initIntroNameAnimation();
         this.initIntroJobAnimation();
@@ -47,6 +48,10 @@ class Display {
         this.initGroupomaniaProjectAnimation();
         this.displayGithubChart(window.innerWidth < 768 ? this.smallScreenGithubChart : this.largeScreenGithubChart);
         window.addEventListener('resize', () => this.onResize(), true);
+    }
+
+    initMinHeightMobile() {
+
     }
 
     initIntroSpeechAnimation() {

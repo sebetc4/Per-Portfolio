@@ -1,0 +1,8 @@
+<manifest ... >
+    <application ... >
+        <activity 
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+    </application>
+</manifest>
