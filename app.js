@@ -10,6 +10,7 @@ class Display {
         this.currentScreenWidthSize = '';
         this.currentScreenHeightSize = window.innerHeight || document.documentElement.clientHeight;
         this.introSpeech = document.querySelector('.intro-speech');
+        this.introName = document.querySelector('.intro-name');
         this.introJob = document.querySelector('.intro-job');
         this.kineProjectScrollTrigger;
         this.githubChartboxContainer = document.querySelector('.github-chart-box-container');
@@ -42,7 +43,7 @@ class Display {
     }
 
     init() {
-        this.initMinHeightSizeMobile(this.currentScreenHeightSize);
+        this.setMinHeightSizeSection(this.currentScreenHeightSize);
         this.initIntroSpeechAnimation();
         this.initIntroNameAnimation();
         this.initIntroJobAnimation();
@@ -54,8 +55,8 @@ class Display {
     }
 
     setMinHeightSizeSection(size) {
-        [this.introSpeech, this.introJobTitle].forEach(section, () => {
-            section.style.minHeight = `${this.size}px`
+        [this.introSpeech, this.introName, this.introJob].forEach((section) => {
+            section.style.minHeight = `${size}px`;
         });
     }
 
@@ -66,7 +67,7 @@ class Display {
         gsap.to(introSpeechTextContainer, {
             y: 200,
             scrollTrigger: {
-                trigger: introSpeech,
+                trigger: this.introSpeech,
                 start: 'center center',
                 toggleActions: 'play none reverse none',
                 scrub: 1,
@@ -76,7 +77,7 @@ class Display {
         gsap.to(introSpeechImageContainer, {
             scale: 3,
             scrollTrigger: {
-                trigger: introSpeech,
+                trigger: this.introSpeech,
                 start: 'center center',
                 toggleActions: 'play none reverse none',
                 scrub: 1,
@@ -85,13 +86,12 @@ class Display {
     }
 
     initIntroNameAnimation() {
-        const introName = document.querySelector('.intro-name');
-        const introNameTitle = introName.querySelector('.intro-name h1');
+        const introNameTitle = this.introName.querySelector('.intro-name h1');
 
-        gsap.to(introName, {
+        gsap.to(this.introName, {
             backgroundPositionY: 50,
             scrollTrigger: {
-                trigger: introName,
+                trigger: this.introName,
                 start: 'top bottom',
                 end: 'bottom top',
                 toggleActions: 'play none reverse none',
@@ -105,7 +105,7 @@ class Display {
             {
                 x: '8%',
                 scrollTrigger: {
-                    trigger: introName,
+                    trigger: this.introName,
                     start: 'top bottom',
                     end: 'bottom top',
                     toggleActions: 'play none reverse none',
@@ -118,10 +118,10 @@ class Display {
     initIntroJobAnimation() {
         const introJobTitle = this.introJob.querySelector('.intro-job h2');
 
-        gsap.to(introJob, {
+        gsap.to(this.introJob, {
             backgroundPositionY: -50,
             scrollTrigger: {
-                trigger: introJob,
+                trigger: this.introJob,
                 start: 'top bottom',
                 end: 'bottom top',
                 toggleActions: 'play none reverse none',
@@ -135,7 +135,7 @@ class Display {
             {
                 x: '-5%',
                 scrollTrigger: {
-                    trigger: introJob,
+                    trigger: this.introJob,
                     start: 'top bottom',
                     end: 'bottom top',
                     toggleActions: 'play none reverse none',
