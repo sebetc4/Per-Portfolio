@@ -65,7 +65,7 @@ class Display {
         const introSpeechImageContainer = this.introSpeech.querySelector('.intro-speech__image-container');
 
         gsap.to(introSpeechTextContainer, {
-            y: 200,
+            y: 100,
             scrollTrigger: {
                 trigger: this.introSpeech,
                 start: 'center center',
@@ -75,7 +75,7 @@ class Display {
         });
 
         gsap.to(introSpeechImageContainer, {
-            scale: 3,
+            scale: 1.5,
             scrollTrigger: {
                 trigger: this.introSpeech,
                 start: 'center center',
@@ -198,7 +198,7 @@ class Display {
         });
 
         gsap.to(kineProjectScreenImage, {
-            y: -1597,
+            y: -1720,
             autoAlpha: 1,
             scrollTrigger: {
                 trigger: kineProjectPhoneImage,
