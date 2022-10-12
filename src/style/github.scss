@@ -1,3 +1,9 @@
+@keyframes spin-loader {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
 .github {
     height: 100vh;
     display: flex;
@@ -6,7 +12,7 @@
     justify-content: space-around;
 
     h2 {
-        color: #555;
+        color: #777;
         font-size: 6vw;
         text-align: center;
     }
@@ -159,6 +165,15 @@ $distance: -1px;
 }
 
 @media screen and (max-width: 1024px) {
+    .github {
+        height: auto;
+        padding: 100px 0;
+    }
+
+    .github-chart {
+        margin-top: 100px;
+    }
+
     .github-chart-dates span {
         font-size: 14px;
     }
@@ -175,10 +190,6 @@ $distance: -1px;
 }
 
 @media screen and (max-width: 768px) {
-    .github {
-        height: auto;
-    }
-
     .github-chart {
         .line {
             animation: lineAnimation 2s ease infinite;
