@@ -175,6 +175,10 @@ $distance: -1px;
 }
 
 @media screen and (max-width: 768px) {
+    .github {
+        height: auto;
+    }
+
     .github-chart {
         .line {
             animation: lineAnimation 2s ease infinite;

@@ -190,8 +190,11 @@
 }
 
 @media screen and (max-width: 768px) {
-    .projects {
+    .projects__title-container {
+        height: auto;
+
         h2 {
+            padding: 200px 0;
             font-size: 12vw;
         }
     }

@@ -12,7 +12,6 @@ class Display {
         this.introSpeech = document.querySelector('.intro-speech');
         this.introName = document.querySelector('.intro-name');
         this.introJob = document.querySelector('.intro-job');
-        this.projectsTitle = document.querySelector('.projects h2');
         this.kineProjectScrollTrigger;
         this.githubChartboxContainer = document.querySelector('.github-chart-box-container');
         this.githubChartDates = document.querySelector('.github-chart-dates');
@@ -56,7 +55,7 @@ class Display {
     }
 
     setMinHeightSizeSection(size) {
-        [this.introSpeech, this.introName, this.introJob, this.projectsTitle].forEach((section) => {
+        [this.introSpeech, this.introName, this.introJob].forEach((section) => {
             section.style.minHeight = `${size}px`;
         });
     }
@@ -147,15 +146,17 @@ class Display {
     }
 
     initTitleProjectAnimation() {
+        const projectsTitle = document.querySelector('.projects h2');
+
         gsap.fromTo(
-            this.projectsTitle,
+            projectsTitle,
             {
                 y: '25%',
             },
             {
                 y: '-50%',
                 scrollTrigger: {
-                    trigger: this.projectsTitle,
+                    trigger: projectsTitle,
                     start: 'top+=10% bottom',
                     end: 'bottom top',
                     toggleActions: 'play none reverse none',
@@ -276,8 +277,6 @@ class Display {
             child = parent.lastElementChild;
         }
     }
-
-    resizeSection(newHeihtScreenSize) {}
 
     onResize() {
         const newSize =
