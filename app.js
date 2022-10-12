@@ -43,8 +43,8 @@ class Display {
         this.initIntroJobAnimation();
         this.initTitleProjectAnimation();
         this.initKineProjectAnimation();
-        this.initGroupomaniaProjectAnimation()
-        this.displayGithubChart(this.largeScreenGithubChart);
+        this.initGroupomaniaProjectAnimation();
+        this.displayGithubChart(window.innerWidth < 768 ? this.smallScreenGithubChart : this.largeScreenGithubChart);
         window.addEventListener('resize', () => this.onResize(), true);
     }
 
@@ -270,6 +270,8 @@ class Display {
         }
     }
 
+    resizeSection(newHeihtScreenSize) {}
+
     onResize() {
         const newSize =
             window.innerWidth < 768 ? 'smallScreen' : window.innerWidth < 1024 ? 'mediumScreen' : 'largeScreen';
@@ -282,7 +284,12 @@ class Display {
         } else if (newSize === 'smallScreen') {
             this.kineProjectScrollTrigger.refresh();
         }
-        console.log(newSize);
+        var win = window,
+            doc = document,
+            docElem = doc.documentElement,
+            body = doc.getElementsByTagName('body')[0];
+        const heightScreenSize = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+        console.log(win.innerHeight || docElem.clientHeight || body.clientHeight);
     }
 }
 
@@ -387,8 +394,10 @@ class Request {
     }
 
     async init() {
-        const apiUrl = import.meta.env.PROD ? 'https://sebastien-etcheto-contact.alwaysdata.net/api/contact' : 'http://localhost:8080/api/contact';
-        console.log(apiUrl)
+        const apiUrl = import.meta.env.PROD
+            ? 'https://sebastien-etcheto-contact.alwaysdata.net/api/contact'
+            : 'http://localhost:8080/api/contact';
+        console.log(apiUrl);
         this.submitDiv.classList.add('contact-form-submit--submitting');
         try {
             const res = await fetch(apiUrl, {
@@ -405,8 +414,8 @@ class Request {
                 }),
             });
             res.ok ? this.requetSuccess() : this.requetError();
-        } catch(err) {
-            console.log(err)
+        } catch (err) {
+            console.log(err);
             this.requetError();
         }
     }
