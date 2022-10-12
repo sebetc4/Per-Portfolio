@@ -207,5 +207,9 @@
 @media screen and (max-width: 640px) {
     .project {
         padding: 100px 30px;
+
+        &__detail h3 {
+            font-size: 9vw;
+        }
     }
 }
