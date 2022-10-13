@@ -1,5 +1,13 @@
-@import './src/style/base';
-@import './src/style/intro';
-@import './src/style/projects';
-@import './src/style/github';
-@import './src//style/contact'
+// Base
+@import './src/styles/base/reset';
+@import './src/styles/base/settings';
+@import './src/styles/base/typography';
+
+// Vendors
+@import './src/styles/vendors/splitting';
+
+// Layout
+@import './src/styles/layout/intro';
+@import './src/styles/layout/projects';
+@import './src/styles/layout/github';
+@import './src//styles/layout/contact'

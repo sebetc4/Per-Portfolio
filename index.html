@@ -2,11 +2,24 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            http-equiv="X-UA-Compatible"
+            content="IE=edge"
+        />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
         <title>Portfolio - Sébastien ETCHETO</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            rel="preconnect"
+            href="https://fonts.googleapis.com"
+        />
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin
+        />
         <link
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
             rel="stylesheet"
@@ -15,7 +28,11 @@
             href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800;900&display=swap"
             rel="stylesheet"
         />
-        <script type="module" src="./app.js" defer></script>
+        <script
+            type="module"
+            src="./app.js"
+            defer
+        ></script>
     </head>
     <body>
         <main class="main">
@@ -23,13 +40,18 @@
                 <div class="intro-speech">
                     <div class="intro-speech__text-container">
                         <h2>Bonjour,</h2>
-                        <p>Le contenu de ce site est temporaire.</p>
-                        <p>Il n'a pas vocation à être mon portfolio définitif.</p>
-                        <p>
+                        <p
+                            class="splitting"
+                            data-splitting
+                        >
+                            Le contenu de ce site est temporaire.<br />
+                            Il n'a pas vocation à être mon portfolio définitif.<br />
+
                             Il est simplement là pour vous donner un petit aperçu de mon travail en attendant
-                            l'élaboration de son grand frère.
+                            l'élaboration de son grand frère.<br />
+
+                            Maintenant que vous savez où vous mettez les pieds, laissez moi me présentez...
                         </p>
-                        <p>Maintenant que vous savez où vous mettez les pieds, laissez moi me présentez...</p>
                     </div>
                     <div class="intro-speech__image-container">
                         <picture>
@@ -65,7 +87,10 @@
                 <div class="projects__title-container">
                     <h2>Voici mes réalisations</h2>
                 </div>
-                <div class="project reverse" id="kine-project">
+                <div
+                    class="project reverse"
+                    id="kine-project"
+                >
                     <div class="project__device-container">
                         <div class="project-phone">
                             <img
@@ -98,10 +123,16 @@
                         </button>
                     </div>
                 </div>
-                <div class="project" id="groupomania-project">
+                <div
+                    class="project"
+                    id="groupomania-project"
+                >
                     <div class="project__device-container">
                         <div class="project-laptop">
-                            <img src="./public/images/laptop.webp" alt="coutour d'un ordinateur portable" />
+                            <img
+                                src="./public/images/laptop.webp"
+                                alt="coutour d'un ordinateur portable"
+                            />
                             <div class="project-laptop__screen">
                                 <iframe
                                     src="https://www.youtube.com/embed/8wfDbHOJofE"
@@ -154,39 +185,74 @@
                 </div>
             </section>
             <section class="contact">
-                <h2 class="contact__title">Vous souhaitez me contacter?</h2>
-                <form action="" class="contact-form">
-                    <div class="contact-form-input-container">
-                        <input id="lastname" type="text" placeholder=" " required />
-                        <label for="lastname">Nom</label>
-                        <p class="contact-form-input-container__error-message">Nom invalide</p>
+                <div class="contact__left">
+                    
+                </div>
+                <div class="contact__right">
+                    <h2>Vous souhaitez me contacter?</h2>
+                    <div class="contact-form-container">
+                        <form
+                            action=""
+                            class="contact-form"
+                        >
+                            <div class="contact-form-input-container">
+                                <input
+                                    id="lastname"
+                                    type="text"
+                                    placeholder=" "
+                                    required
+                                />
+                                <label for="lastname">Nom</label>
+                                <p class="contact-form-input-container__error-message">Nom invalide</p>
+                            </div>
+                            <div class="contact-form-input-container">
+                                <input
+                                    id="firstname"
+                                    type="text"
+                                    placeholder=" "
+                                    required
+                                />
+                                <label for="firstname">Prénom</label>
+                                <p class="contact-form-input-container__error-message">Prénom invalide</p>
+                            </div>
+                            <div class="contact-form-input-container">
+                                <input
+                                    id="email"
+                                    type="email"
+                                    placeholder=" "
+                                    required
+                                />
+                                <label for="email">Adresse mail</label>
+                                <p class="contact-form-input-container__error-message">Adresse mail non valide</p>
+                            </div>
+                            <div class="contact-form-textarea-container">
+                                <label for="message">Votre message</label>
+                                <textarea
+                                    id="message"
+                                    rows="5"
+                                ></textarea>
+                                <p class="contact-form-textarea-container__error-message">Votre message est vide</p>
+                            </div>
+                            <div class="contact-form-submit">
+                                <button
+                                    type="submit"
+                                    class="contact-form-submit__button"
+                                >
+                                    Envoyer
+                                </button>
+                                <span class="contact-form-submit__loader"></span>
+                                <p class="contact-form-submit__message--error">
+                                    Une erreur est survenue lors de l'envoi de votre message. Merci de réessayer
+                                    ultérieurement.
+                                </p>
+                                <p class="contact-form-submit__message--success">
+                                    Merci, votre message a bien été envoyé. Je vous répondrai dans les plus brefs
+                                    délais.
+                                </p>
+                            </div>
+                        </form>
                     </div>
-                    <div class="contact-form-input-container">
-                        <input id="firstname" type="text" placeholder=" " required />
-                        <label for="firstname">Prénom</label>
-                        <p class="contact-form-input-container__error-message">Prénom invalide</p>
-                    </div>
-                    <div class="contact-form-input-container">
-                        <input id="email" type="email" placeholder=" " required />
-                        <label for="email">Adresse mail</label>
-                        <p class="contact-form-input-container__error-message">Adresse mail non valide</p>
-                    </div>
-                    <div class="contact-form-textarea-container">
-                        <label for="message">Votre message</label>
-                        <textarea id="message" rows="5"></textarea>
-                        <p class="contact-form-textarea-container__error-message">Votre message est vide</p>
-                    </div>
-                    <div class="contact-form-submit">
-                        <button type="submit" class="contact-form-submit__button">Envoyer</button>
-                        <span class="contact-form-submit__loader"></span>
-                        <p class="contact-form-submit__message--error">
-                            Une erreur est survenue lors de l'envoi de votre message. Merci de réessayer ultérieurement.
-                        </p>
-                        <p class="contact-form-submit__message--success">
-                            Merci, votre message a bien été envoyé. Je vous répondrai dans les plus brefs délais.
-                        </p>
-                    </div>
-                </form>
+                </div>
             </section>
         </main>
     </body>

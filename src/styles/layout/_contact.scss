@@ -1,26 +1,42 @@
 // inspired by: https://codepen.io/soufiane-khalfaoui-hassani/pen/LYpPWda
 @keyframes spin-loader {
-	to {
-		transform: rotate(360deg);
-	}
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .contact {
-    position: relative;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    overflow: hidden;
-    background-color: #2c3639;
 
-    &__title {
-        margin-top: 50px;
+    h2 {
+        margin-top: 100px;
         font-size: 4vw;
         color: #869827;
         text-align: center;
     }
+
+    &__left {
+        flex: 1;
+        background-color: hsl(194, 13%, 20%);
+    }
+
+    &__right {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: hsl(194, 13%, 10%);
+    }
+}
+
+.contact-form-container {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .contact-form {
@@ -311,7 +327,6 @@
 
 @media screen and (max-width: 1024px) {
     .contact {
-    
         &__title {
             font-size: 5vw;
         }
@@ -320,7 +335,6 @@
 
 @media screen and (max-width: 768px) {
     .contact {
-    
         &__title {
             font-size: 6vw;
         }
@@ -329,7 +343,6 @@
 
 @media screen and (max-width: 640px) {
     .contact {
-    
         &__title {
             font-size: 10vw;
         }

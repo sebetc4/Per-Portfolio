@@ -1,5 +1,7 @@
 import './style.scss';
 
+import 'splitting/dist/splitting.css';
+import Splitting from 'splitting';
 import autosize from 'autosize';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -43,6 +45,7 @@ class Display {
     }
 
     init() {
+        Splitting();
         this.setMinHeightSizeSection(this.currentScreenHeightSize);
         this.initIntroSpeechAnimation();
         this.initIntroNameAnimation();
@@ -75,7 +78,7 @@ class Display {
         });
 
         gsap.to(introSpeechImageContainer, {
-            scale: 1.5,
+            scale: 2,
             scrollTrigger: {
                 trigger: this.introSpeech,
                 start: 'center center',

@@ -1,0 +1,21 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+
+.no-wrap {
+    font-size: inherit;
+    font-weight: inherit;
+    white-space: nowrap;
+    font-family: inherit;
+}
+
+body {
+    background-color: #111;
+}
+
+.main {
+    overflow: hidden;
+}
