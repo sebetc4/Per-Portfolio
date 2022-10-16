@@ -1,5 +1,10 @@
-// Base
+// Reset
 @import './src/styles/base/reset';
+
+// Libs
+@import './src/styles/libs/variables';
+
+// Base
 @import './src/styles/base/settings';
 @import './src/styles/base/typography';
 
