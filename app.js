@@ -5,6 +5,7 @@ import Splitting from 'splitting';
 import autosize from 'autosize';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { CSSRulePlugin } from 'gsap/src/all';
 gsap.registerPlugin(ScrollTrigger);
 
 class Display {
@@ -54,6 +55,7 @@ class Display {
         this.initKineProjectAnimation();
         this.initGroupomaniaProjectAnimation();
         this.displayGithubChart(window.innerWidth < 768 ? this.smallScreenGithubChart : this.largeScreenGithubChart);
+        // this.initContactAnimation();
         window.addEventListener('resize', () => this.onResize(), true);
     }
 
@@ -258,8 +260,15 @@ class Display {
     }
 
     displayGithubChart(githubChart) {
-        this.deleteChilds(this.githubChartboxContainer);
-        this.deleteChilds(this.githubChartDates);
+        const deleteChilds = (parent) => {
+            let child = parent.lastElementChild;
+            while (child) {
+                parent.removeChild(child);
+                child = parent.lastElementChild;
+            }
+        };
+        deleteChilds(this.githubChartboxContainer);
+        deleteChilds(this.githubChartDates);
 
         for (let i = 0; i < githubChart.numberBox; i++) {
             const el = document.createElement('div');
@@ -273,13 +282,11 @@ class Display {
         });
     }
 
-    deleteChilds(parent) {
-        let child = parent.lastElementChild;
-        while (child) {
-            parent.removeChild(child);
-            child = parent.lastElementChild;
-        }
-    }
+    // initContactAnimation() {
+    //     const contactSection = document.querySelector('.contact');
+    //     const contactTitle = contactSection.querySelector('.contact__title');
+    //     const contactLeft = contactSection.querySelector('.contact__left');
+    // }
 
     onResize() {
         const newSize =
