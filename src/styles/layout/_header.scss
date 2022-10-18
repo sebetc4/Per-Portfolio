@@ -17,8 +17,8 @@
 
     img {
         display: block;
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
     }
 
     &__navbar {
@@ -83,8 +83,8 @@
         align-items: center;
 
         img {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
         }
 
         button {
@@ -103,19 +103,19 @@
             font-family: 'Open sans';
             font-size: 16px;
             font-weight: 500;
-            padding: 60px 0;
+            padding: 40px 0;
             color: #eee;
             text-align: center;            
         }
     }
 
     &__navbar {
-        margin-top: 60px;
+        margin-top: 40px;
 
         ul {
             display: flex;
             flex-direction: column;
-            gap: 60px;
+            gap: 40px;
         }
 
         li {
@@ -130,6 +130,11 @@
 }
 
 @media screen and (max-width: 768px) {
+    .header {
+        height: 60px;
+        padding: 0 50px;
+    }
+
     .header-top {
         &__navbar {
             display: none;
@@ -146,6 +151,10 @@
 }
 
 @media screen and (max-width: 640px) {
+    .header {
+        padding: 0 30px;
+    }
+
     .header-mobile-menu {
         padding: 30px;
     }
