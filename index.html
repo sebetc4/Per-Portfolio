@@ -73,6 +73,10 @@
             href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800;900&display=swap"
             rel="stylesheet"
         />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
+            rel="stylesheet"
+        />
 
         <!-- Scripts -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
@@ -85,9 +89,89 @@
     </head>
 
     <body>
+        <header class="header">
+            <div class="header-top">
+                <img
+                    src="./public/images/logo-2.png"
+                    alt="logo de Sébastien ETCHETO"
+                />
+                <nav class="header-top__navbar">
+                    <ul>
+                        <li>
+                            <a href="/#intro">Intro</a>
+                        </li>
+                        <li>
+                            <a href="/#projects">Projets</a>
+                        </li>
+                        <li>
+                            <a href="/#skills">Skills</a>
+                        </li>
+                        <li>
+                            <a href="/#contact">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+                <button class="header-top__open-menu-button">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512"
+                        height="30px"
+                        width="30px"
+                    >
+                        <path
+                            d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+                        />
+                    </svg>
+                </button>
+            </div>
+            <div class="header-mobile-menu-container">
+                <div class="header-mobile-menu">
+                    <div class="header-mobile-menu__top">
+                        <img
+                            src="./public/images/logo-2.png"
+                            alt="Logo de Sébastien ETCHETO"
+                        />
+                        <button>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 320 512"
+                                height="30px"
+                                width="30px"
+                            >
+                                <path
+                                    d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="header-mobile-menu__middle">
+                        <p>Une belle phrase d'accroche</p>
+                    </div>
+                    <nav class="header-mobile-menu__navbar">
+                        <ul>
+                            <li>
+                                <a href="/#intro">Intro</a>
+                            </li>
+                            <li>
+                                <a href="/#projects">Projets</a>
+                            </li>
+                            <li>
+                                <a href="/#skills">Skills</a>
+                            </li>
+                            <li>
+                                <a href="/#contact">Contact</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
         <main class="main">
             <!-- Intro -->
-            <section class="intro">
+            <section
+                class="intro"
+                id="intro"
+            >
                 <div class="intro-speech">
                     <div class="intro-speech__text-container">
                         <h2>Bonjour,</h2>
@@ -136,7 +220,10 @@
             </section>
 
             <!-- Projects -->
-            <section class="projects">
+            <section
+                class="projects"
+                id="projects"
+            >
                 <div class="projects__title-container">
                     <h2>Voici mes réalisations</h2>
                 </div>
@@ -257,7 +344,10 @@
             </section>
 
             <!-- Skills -->
-            <section class="skills">
+            <section
+                class="skills"
+                id="skills"
+            >
                 <div class="skills__title">
                     <h2>Découvrez mes skills</h2>
                 </div>
@@ -385,7 +475,10 @@
             </section>
 
             <!-- Contact -->
-            <section class="contact">
+            <section
+                class="contact"
+                id="contact"
+            >
                 <div class="contact__title">
                     <h2>Vous souhaitez me <span class="no-wrap">contacter ?</span></h2>
                 </div>

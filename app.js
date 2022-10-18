@@ -45,6 +45,7 @@ class Display {
     init() {
         Splitting();
         this.setMinHeightSizeSection(this.currentScreenHeightSize);
+        this.initHeader();
         this.initIntroSpeechAnimation();
         this.initIntroNameAnimation();
         this.initIntroJobAnimation();
@@ -60,6 +61,22 @@ class Display {
         [this.introSpeech, this.introName, this.introJob].forEach((section) => {
             section.style.minHeight = `${size}px`;
         });
+    }
+
+    initHeader() {
+        const headerMobileMenuContainer = document.querySelector('.header-mobile-menu-container');
+        document.querySelector('.header-top__open-menu-button').addEventListener('click', () => {
+            headerMobileMenuContainer.classList.add('visible')
+        });
+        document.querySelector('.header-mobile-menu__top button').addEventListener('click', () => {
+            headerMobileMenuContainer.classList.remove('visible')
+        });
+
+        document.querySelectorAll('.header-mobile-menu__navbar a').forEach(link => {
+            link.addEventListener('click', () => {
+                headerMobileMenuContainer.classList.remove('visible')
+            })
+        })
     }
 
     initIntroSpeechAnimation() {
