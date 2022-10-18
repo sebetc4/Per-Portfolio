@@ -60,6 +60,11 @@
                 margin-bottom: 0;
             }
         }
+    }
+
+    &__buttons {
+        display: flex;
+        gap: 100px;
 
         button {
             $border-width: 2px;
@@ -221,6 +226,10 @@
             p {
                 font-size: 16px;
             }
+        }
+
+        &__buttons {
+            gap: 30px;
         }
     }
 }
