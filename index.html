@@ -1,6 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
     <head>
+        <!-- Google tag (gtag.js) -->
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-WTCBPJNV15"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-WTCBPJNV15');
+        </script>
+
+        <!-- Meta -->
         <meta charset="UTF-8" />
         <meta
             http-equiv="X-UA-Compatible"
@@ -11,6 +27,12 @@
             content="width=device-width, initial-scale=1.0"
         />
         <title>Portfolio - Sébastien ETCHETO</title>
+        <meta
+            name="description"
+            content="Développeur Web Freelance. Voici mon portfolio, vous pourrez y découvrir mes réalisations, mon univers et mon style de code. Disponible pour tout type de projet. Contactez-moi pour en parler."
+        />
+
+        <!-- Font -->
         <link
             rel="preconnect"
             href="https://fonts.googleapis.com"
@@ -28,6 +50,8 @@
             href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800;900&display=swap"
             rel="stylesheet"
         />
+
+        <!-- Script -->
         <script
             type="module"
             src="./app.js"
@@ -318,7 +342,7 @@
                         <p class="contact-informations__name">Sébastien ETCHETO</p>
                         <p class="contact-informations__job">Développeur web Freelance</p>
                         <p class="contact-informations__sentence">
-                            Disponible pour tout type de missions.<br />
+                            Disponible pour tout type de projet.<br />
                             Contactez-moi pour en parler.
                         </p>
                         <ul class="contact-informations__list">
