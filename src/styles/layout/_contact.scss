@@ -473,3 +473,9 @@
         }
     }
 }
+
+@media screen and (max-width: 400px) {
+    .contact-informations__list {
+        gap: 20px;
+    }
+}
