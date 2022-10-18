@@ -3,9 +3,6 @@ import './style.scss';
 import 'splitting/dist/splitting.css';
 import Splitting from 'splitting';
 import autosize from 'autosize';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { CSSRulePlugin } from 'gsap/src/all';
 gsap.registerPlugin(ScrollTrigger);
 
 class Display {
