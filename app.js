@@ -10,7 +10,7 @@ class Display {
         this.introSpeech = document.querySelector('.intro-speech');
         this.introName = document.querySelector('.intro-name');
         this.introJob = document.querySelector('.intro-job');
-        this.skills = document.querySelector('#skills')
+        this.skills = document.querySelector('#skills');
         this.kineProjectScrollTrigger;
         this.githubChartboxContainer = document.querySelector('.github-chart-box-container');
         this.githubChartDates = document.querySelector('.github-chart-dates');
@@ -65,23 +65,29 @@ class Display {
     }
 
     initHeader() {
-        const headerMobileMenuContainer = document.querySelector('.header-mobile-menu-container');
-        document.querySelector('.header-top__open-menu-button').addEventListener('click', () => {
+        const openMenu = () => {
+            document.body.classList.add('fixed');
             headerMobileMenuContainer.classList.add('visible');
-        });
-        document.querySelector('.header-mobile-menu__top button').addEventListener('click', () => {
+        };
+
+        const closeMenu = () => {
+            document.body.classList.remove('fixed');
             headerMobileMenuContainer.classList.remove('visible');
-        });
+        };
+
+        const headerMobileMenuContainer = document.querySelector('.header-mobile-menu-container');
+
+        document.querySelector('.header-top__open-menu-button').addEventListener('click', openMenu);
+
+        document.querySelector('.header-mobile-menu__top button').addEventListener('click', closeMenu);
 
         document.querySelectorAll('.header-mobile-menu__navbar a').forEach((link) => {
-            link.addEventListener('click', () => {
-                headerMobileMenuContainer.classList.remove('visible');
-            });
+            link.addEventListener('click', () => closeMenu);
         });
 
         headerMobileMenuContainer.addEventListener('click', (e) => {
-            e.target === headerMobileMenuContainer && headerMobileMenuContainer.classList.remove('visible');
-        })
+            e.target === headerMobileMenuContainer && closeMenu();
+        });
     }
 
     initKineProjectAnimation() {
