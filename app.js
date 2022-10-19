@@ -10,7 +10,7 @@ class Display {
         this.introSpeech = document.querySelector('.intro-speech');
         this.introName = document.querySelector('.intro-name');
         this.introJob = document.querySelector('.intro-job');
-        this.skillsSection = document.querySelector('#skills')
+        this.skills = document.querySelector('#skills')
         this.kineProjectScrollTrigger;
         this.githubChartboxContainer = document.querySelector('.github-chart-box-container');
         this.githubChartDates = document.querySelector('.github-chart-dates');
@@ -143,20 +143,20 @@ class Display {
     }
 
     initHeaderAnimation() {
-        const headerTop = document.querySelector('.header-top');
+        const header = document.querySelector('.header');
         ScrollTrigger.create({
             trigger: this.introJob,
             start: 'top top',
             end: 'bottom top',
             toggleActions: 'play reverse play reverse',
-            toggleClass: { className: 'light', targets: headerTop },
+            toggleClass: { className: 'light', targets: header },
         });
         ScrollTrigger.create({
-            trigger: this.skillsSection,
+            trigger: this.skills,
             start: 'top top',
             end: 'bottom top',
             toggleActions: 'play reverse play reverse',
-            toggleClass: { className: 'light', targets: headerTop },
+            toggleClass: { className: 'light', targets: header },
         });
     }
 
