@@ -1,6 +1,4 @@
 import './style.scss';
-
-import 'splitting/dist/splitting.css';
 import Splitting from 'splitting';
 import autosize from 'autosize';
 gsap.registerPlugin(ScrollTrigger);
@@ -80,6 +78,10 @@ class Display {
                 headerMobileMenuContainer.classList.remove('visible');
             });
         });
+
+        headerMobileMenuContainer.addEventListener('click', (e) => {
+            e.target === headerMobileMenuContainer && headerMobileMenuContainer.classList.remove('visible');
+        })
     }
 
     initKineProjectAnimation() {
