@@ -1,3 +1,52 @@
+@keyframes border-animation {
+    0%,
+    10% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    90%,
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes green-box-animation {
+    0% {
+        background-color: #171c25;
+    }
+    30% {
+        background-color: #171c25;
+    }
+    50% {
+        background-color: green;
+    }
+    60% {
+        background-color: green;
+    }
+    80% {
+        background-color: #171c25;
+    }
+}
+
+@keyframes dark-green-box-animation {
+    0% {
+        background-color: #171c25;
+    }
+    10% {
+        background-color: #171c25;
+    }
+    30% {
+        background-color: rgb(0, 99, 0);
+    }
+    80% {
+        background-color: rgb(0, 99, 0);
+    }
+    100% {
+        background-color: #171c25;
+    }
+}
+
 .github {
     height: 100vh;
     display: flex;
@@ -46,6 +95,17 @@ $distance: -1px;
             transition: none;
             transform: scale(0);
             opacity: 1;
+            animation: border-animation 5s ease infinite;
+        }
+
+        .line:nth-child(2),
+        .line:nth-child(5) {
+            animation: border-animation 5s ease $delay1 infinite;
+        }
+
+        .line:nth-child(3),
+        .line:nth-child(6) {
+            animation: border-animation 5s ease $delay2 infinite;
         }
 
         .line:nth-child(1) {
@@ -97,29 +157,7 @@ $distance: -1px;
     }
 
     &:hover {
-        .active:nth-child(2n + 1) {
-            background-color: green;
-        }
-        .active:nth-child(2n) {
-            background-color: rgb(0, 99, 0);
-        }
-
-        .line {
-            transform: scale(1);
-            opacity: 0;
-            transition: all 1s;
-        }
-
-        .line:nth-child(2),
-        .line:nth-child(5) {
-            transition-delay: $delay1;
-        }
-
-        .line:nth-child(3),
-        .line:nth-child(6) {
-            transition-delay: $delay2;
-        }
-        background: rgba(255, 255, 255, 0.01);
+        background: rgba(162, 123, 92, 0.05);
     }
 }
 
@@ -144,9 +182,15 @@ $distance: -1px;
         height: 15px;
         background-color: #171c25;
         border-radius: 2px;
-        transition: background-color 3s ease;
 
         &.active:nth-child(4n) {
+            animation: green-box-animation 5s ease infinite;
+        }
+        &.active:nth-child(2n + 1) {
+            animation: dark-green-box-animation 5s ease infinite;
+        }
+
+        &.active:nth-child(4n + 2) {
             background-color: green;
         }
     }
@@ -188,23 +232,6 @@ $distance: -1px;
 }
 
 @media screen and (max-width: 768px) {
-    .github-chart {
-        .line {
-            animation: lineAnimation 2s ease infinite;
-        }
-
-        .line:nth-child(2),
-        .line:nth-child(5) {
-            animation: lineAnimation 2s ease $delay1 infinite;
-        }
-
-        .line:nth-child(3),
-        .line:nth-child(6) {
-            animation: lineAnimation 2s ease $delay2 infinite;
-        }
-        background: rgba(255, 255, 255, 0.01);
-    }
-
     .github-chart-box-container {
         grid-template-columns: repeat(27, 15px);
         gap: 5px;
@@ -218,8 +245,8 @@ $distance: -1px;
 
 @media screen and (max-width: 640px) {
     .github h2 {
-            font-size: 6vw;
-        }
+        font-size: 6vw;
+    }
 
     .github-chart-box-container {
         grid-template-columns: repeat(27, 12px);
