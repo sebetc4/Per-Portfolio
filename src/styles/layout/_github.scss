@@ -232,6 +232,10 @@ $distance: -1px;
 }
 
 @media screen and (max-width: 768px) {
+    .github {
+        padding-top: 0;
+    }
+
     .github-chart-box-container {
         grid-template-columns: repeat(27, 15px);
         gap: 5px;
