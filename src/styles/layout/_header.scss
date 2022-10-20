@@ -236,5 +236,9 @@
 @media screen and (max-width: 400px) {
     .header-mobile-menu {
         width: 75%;
+
+        &__middle h2 {
+            font-size: 24px;
+        }
     }
 }
