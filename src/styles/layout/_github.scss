@@ -73,6 +73,7 @@ $distance: -1px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background-color .3s ease-in-out;
 
     a {
         text-decoration: none;
@@ -84,9 +85,7 @@ $distance: -1px;
         height: 100%;
         position: absolute;
         border: solid rgba($cta-color, 0.1) 1px;
-        background-color: #111;
         cursor: pointer;
-        transition: all 1s;
         z-index: -1;
 
         .line {
