@@ -3,6 +3,8 @@ import Splitting from 'splitting';
 import autosize from 'autosize';
 gsap.registerPlugin(ScrollTrigger);
 
+console.log('test')
+
 class Display {
     constructor() {
         this.currentScreenWidthSize = '';
