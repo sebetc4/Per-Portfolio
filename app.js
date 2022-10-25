@@ -3,7 +3,7 @@ import Splitting from 'splitting';
 import autosize from 'autosize';
 gsap.registerPlugin(ScrollTrigger);
 
-console.log('test')
+console.log('Test Runner')
 
 class Display {
     constructor() {
