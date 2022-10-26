@@ -3,7 +3,7 @@ import Splitting from 'splitting';
 import autosize from 'autosize';
 gsap.registerPlugin(ScrollTrigger);
 
-console.log('Test Runner')
+console.log('Test Runner');
 
 class Display {
     constructor() {
@@ -44,7 +44,7 @@ class Display {
     }
 
     init() {
-        Splitting();
+        this.splitting = Splitting();
         this.setMinHeightSizeSection(this.currentScreenHeightSize);
         // Pin Animation
         this.initKineProjectAnimation();
@@ -55,9 +55,20 @@ class Display {
         this.initIntroJobAnimation();
         this.initTitleProjectAnimation();
         this.initGroupomaniaProjectAnimation();
+        this.initDesignToolsAnimation();
         this.displayGithubChart(window.innerWidth < 768 ? this.smallScreenGithubChart : this.largeScreenGithubChart);
-        // this.initContactAnimation();
         window.addEventListener('resize', () => this.onResize(), true);
+        window.onload = () => {
+            const loaderContainer = document.querySelector('.loader-container');
+            loaderContainer.classList.add('hidden');
+            document.body.classList.remove('fixed');
+            setTimeout(() => {
+                loaderContainer.style.display = 'none';
+                this.animateSpeechTex()
+            }, '300');
+        };
+
+        console.log(this.splitting);
     }
 
     setMinHeightSizeSection(size) {
@@ -84,11 +95,18 @@ class Display {
         document.querySelector('.header-mobile-menu__top button').addEventListener('click', closeMenu);
 
         document.querySelectorAll('.header-mobile-menu__navbar a').forEach((link) => {
-            link.addEventListener('click', () => closeMenu);
+            link.addEventListener('click', closeMenu);
         });
 
         headerMobileMenuContainer.addEventListener('click', (e) => {
             e.target === headerMobileMenuContainer && closeMenu();
+        });
+    }
+
+    animateSpeechTex() {
+        const tl = gsap.timeline();
+        this.splitting.forEach((p) => {
+            tl.to(p.chars, { opacity: 1, y: 0 , duration: .6,   ease: "back.out(1)", stagger: .03 });
         });
     }
 
@@ -154,15 +172,15 @@ class Display {
         const header = document.querySelector('.header');
         ScrollTrigger.create({
             trigger: this.introJob,
-            start: 'top top',
-            end: 'bottom top',
+            start: 'top top+=30',
+            end: 'bottom top+=30',
             toggleActions: 'play reverse play reverse',
             toggleClass: { className: 'light', targets: header },
         });
         ScrollTrigger.create({
             trigger: this.skills,
-            start: 'top top',
-            end: 'bottom top',
+            start: 'top top+=30',
+            end: 'bottom top+=30',
             toggleActions: 'play reverse play reverse',
             toggleClass: { className: 'light', targets: header },
         });
@@ -296,6 +314,36 @@ class Display {
             autoAlpha: 1,
             scrollTrigger: {
                 trigger: groupomaniaProjectDetail,
+                start: 'top bottom',
+                end: '25% center',
+                toggleActions: 'play none reverse none',
+                scrub: 1,
+            },
+        });
+    }
+
+    initDesignToolsAnimation() {
+        const designToolsProject = document.querySelector('#design-tools-project');
+        const designToolsProjectDevice = designToolsProject.querySelector('.project__device-container');
+        const designToolsProjectDetail = designToolsProject.querySelector('.project__detail');
+
+        gsap.from(designToolsProjectDevice, {
+            x: '100%',
+            autoAlpha: 1,
+            scrollTrigger: {
+                trigger: designToolsProjectDevice,
+                start: 'top bottom',
+                end: '25% center',
+                toggleActions: 'play none reverse none',
+                scrub: 1,
+            },
+        });
+
+        gsap.from(designToolsProjectDetail, {
+            x: '-100%',
+            autoAlpha: 1,
+            scrollTrigger: {
+                trigger: designToolsProjectDetail,
                 start: 'top bottom',
                 end: '25% center',
                 toggleActions: 'play none reverse none',

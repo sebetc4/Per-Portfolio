@@ -88,7 +88,16 @@
         ></script>
     </head>
 
-    <body>
+    <body class="fixed">
+        <div class="loader-container">
+            <div class="loader-spinner">
+                <span class="loader-spinner__circles"></span>
+                <p class="loader-spinner__text">
+                    Chargement<span class="loader-spinner__point1">.</span><span class="loader-spinner__point2">.</span
+                    ><span class="loader-spinner__point3">.</span>
+                </p>
+            </div>
+        </div>
         <header class="header">
             <div class="header-top">
                 <img
@@ -176,16 +185,13 @@
                 <div class="intro-speech">
                     <div class="intro-speech__text-container">
                         <h2>Bonjour,</h2>
-                        <p
-                            class="splitting"
-                            data-splitting
-                        >
-                            Le contenu de ce site est temporaire.<br />
-                            Il n'a pas vocation à être mon portfolio définitif.<br />
-
-                            Il est simplement là pour vous donner un petit aperçu de mon travail en attendant
-                            l'élaboration de son grand frère.<br />
-
+                        <p data-splitting>Le contenu de ce site est temporaire.</p>
+                        <p data-splitting>Il n'a pas vocation à être mon portfolio définitif.</p>
+                        <p data-splitting>
+                            Mon principal objectif avec ce projet est de m'exercer au design et aux animations mais il peut vous permettre de découvrir
+                            mon travail et mon univers.
+                        </p>
+                        <p data-splitting>
                             Maintenant que vous savez où vous mettez les pieds, laissez-moi me présentez...
                         </p>
                     </div>
@@ -278,12 +284,12 @@
                     id="groupomania-project"
                 >
                     <div class="project__device-container">
-                        <div class="project-laptop">
+                        <div class="project-tablet">
                             <img
-                                src="./public/images/laptop.webp"
+                                src="./public/images/tablet.png"
                                 alt="coutour d'un ordinateur portable"
                             />
-                            <div class="project-laptop__screen">
+                            <div class="project-tablet__screen">
                                 <iframe
                                     src="https://www.youtube.com/embed/8wfDbHOJofE"
                                     title="YouTube video player"
@@ -323,6 +329,51 @@
                             </button>
                             <button>
                                 <a href="https://seb-etc-groupomania.alwaysdata.net">Voir le site</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="project reverse"
+                    id="design-tools-project"
+                >
+                    <div class="project__device-container">
+                        <div class="project-laptop">
+                            <img
+                                src="./public/images/laptop.webp"
+                                alt="contour d'un ordinateur portable"
+                            />
+                            <div class="project-laptop__screen">
+                                <img
+                                    src="./public/images/design-tools.png"
+                                    alt="Capture application Design tools"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project__detail">
+                        <h3>Design Tools</h3>
+                        <div>
+                            <p>
+                                Cette application web est en cours de réalisation. Elle utilise la librairie
+                                <strong>React</strong> et <strong>Redux</strong> pour la gérer son état dans le but de
+                                la rendre scalable.
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et culpa accusamus nobis,
+                                dignissimos in labore recusandae enim provident, odit sed neque. Perspiciatis quae
+                                possimus numquam autem porro saepe iste! Placeat, dolor nam. Dolores, quo repudiandae
+                                animi ratione accusantium, dicta, ipsa quaerat non harum veniam aut. Praesentium
+                                corrupti facere totam sit.
+                            </p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, asperiores.</p>
+                        </div>
+                        <div class="project__buttons">
+                            <button>
+                                <a href="https://github.com/sebetc4/Per-design-tools">Voir le code</a>
+                            </button>
+                            <button>
+                                <a href="https://design-tools.sebastien-etcheto.com/">Voir le site</a>
                             </button>
                         </div>
                     </div>
