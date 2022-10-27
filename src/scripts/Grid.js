@@ -1,7 +1,6 @@
 export default class Grid {
-    constructor() {
-        this.githubGridBoxContainer = document.querySelector('.github-grid-box-container');
-        this.githubGridDates = document.querySelector('.github-grid-dates');
+    constructor(display) {
+        this.display = display
         this.largeScreenGithubGrid = {
             numberBox: 365,
             coloredBoxList: [
@@ -28,22 +27,22 @@ export default class Grid {
         };
     }
 
-    display(screenSize) {
-        const githubGrid = screenSize === 'large-screen' ? this.largeScreenGithubGrid : this.smallScreenGithubGrid;
+    displayGrid(screenSize) {
+        const githubGrid = screenSize === 'smallScreen' ? this.smallScreenGithubGrid : this.largeScreenGithubGrid;
 
-        this.deleteChilds(this.githubGridBoxContainer);
-        this.deleteChilds(this.githubGridDates);
+        this.deleteChilds(this.display.githubGridBoxContainer);
+        this.deleteChilds(this.display.githubGridDates);
 
         for (let i = 0; i < githubGrid.numberBox; i++) {
             const el = document.createElement('div');
             el.classList = `github-grid-box-container__box ${githubGrid.coloredBoxList.includes(i) ? 'active' : ''}`;
-            this.githubGridBoxContainer.appendChild(el);
+            this.display.githubGridBoxContainer.appendChild(el);
         }
 
         githubGrid.monthList.forEach((month) => {
             const el = document.createElement('span');
             el.appendChild(document.createTextNode(month));
-            this.githubGridDates.appendChild(el);
+            this.display.githubGridDates.appendChild(el);
         });
     }
 

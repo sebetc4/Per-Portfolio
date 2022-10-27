@@ -2,26 +2,61 @@ import './style.scss';
 
 import Splitting from 'splitting';
 
-import { Animations, Form, Grid }  from './src/scripts';
-
+import { Animations, Form, Grid } from './src/scripts';
 
 class Display {
     constructor() {
+        // Header
+        this.header = document.querySelector('.header');
+        //  Intro Speech
+        this.introSpeech = document.querySelector('.intro-speech');
+        this.introSpeechTextContainer = this.introSpeech.querySelector('.intro-speech__text-container');
+        this.introSpeechImageContainer = this.introSpeech.querySelector('.intro-speech__image-container');
+        // Intro Name
+        this.introName = document.querySelector('.intro-name');
+        this.introNameTitle = this.introName.querySelector('.intro-name h1');
+        //  Intro Job
+        this.introJob = document.querySelector('.intro-job');
+        this.introJobTitle = this.introJob.querySelector('.intro-job h2');
+        // Pojects
+        this.projectsTitleContainer = document.querySelector('.projects-title-container');
+        this.projectsTitleWrapper = this.projectsTitleContainer.querySelector('.projects-title-wrapper');
+        //  Kiné Project
+        this.kineProject = document.querySelector('#kine-project');
+        this.kineProjectDevice = this.kineProject.querySelector('.project__device-container');
+        this.kineProjectDetail = this.kineProject.querySelector('.project__detail');
+        this.kineProjectPhoneImage = this.kineProject.querySelector('#kine-project-phone-image');
+        this.kineProjectScreenImage = this.kineProject.querySelector('#kine-project-screen-image');
+        // Groupomania
+        this.groupomaniaProject = document.querySelector('#groupomania-project');
+        this.groupomaniaProjectDevice = this.groupomaniaProject.querySelector('.project__device-container');
+        this.groupomaniaProjectDetail = this.groupomaniaProject.querySelector('.project__detail');
+        // Design Tools
+        this.designToolsProject = document.querySelector('#design-tools-project');
+        this.designToolsProjectDevice = this.designToolsProject.querySelector('.project__device-container');
+        this.designToolsProjectDetail = this.designToolsProject.querySelector('.project__detail');
+        // Github
+        this.githubWrapper = document.querySelector('.github-wrapper');
+        this.githubSection = this.githubWrapper.querySelector('.github');
+        this.githubGridBoxContainer = this.githubWrapper.querySelector('.github-grid-box-container');
+        this.githubGridDates = this.githubWrapper.querySelector('.github-grid-dates');
+        // Skills
+        this.skillsWrapper = document.querySelector('.skills-wrapper');
+        this.skillsSection = this.skillsWrapper.querySelector('.skills');
+        // Contact
+        this.contactSection = document.querySelector('.contact')
+        this.contactLeft = this.contactSection.querySelector('.contact__left')
+        this.contactRight = this.contactSection.querySelector('.contact__right')
+        this.contactTitle = this.contactSection.querySelector('.contact__title')
 
+        
         this.currentScreenWidthSize = '';
         this.currentScreenHeightSize = window.innerHeight || document.documentElement.clientHeight;
 
-        this.introSpeech = document.querySelector('.intro-speech');
-        this.introName = document.querySelector('.intro-name');
-        this.introJob = document.querySelector('.intro-job');
-        this.kineProject = document.querySelector('#kine-project');
-        this.kineProjectDevice = this.kineProject.querySelector('.project__device-container');
-        this.skillsWrapper = document.querySelector('.skills-wrapper');
-
         this.splitting = Splitting();
-        this.form = new Form()
-        this.githubGrid = new Grid()
-        this.animations = new Animations(this)
+        this.form = new Form();
+        this.githubGrid = new Grid(this);
+        this.animations = new Animations(this);
 
         this.init();
     }
@@ -29,10 +64,9 @@ class Display {
     init() {
         this.setMinHeightSizeSection(this.currentScreenHeightSize);
         this.initHeader();
-        this.animations.init()
-        this.githubGrid.display(window.innerWidth < 768 ? 'small-screen' : 'large-screen');
+        this.animations.init();
+        this.githubGrid.displayGrid(window.innerWidth < 768 ? 'smallScreen' : 'largeScreen');
         window.addEventListener('resize', () => this.onResize(), true);
-
     }
 
     setMinHeightSizeSection(size) {
@@ -72,9 +106,7 @@ class Display {
             window.innerWidth < 768 ? 'smallScreen' : window.innerWidth < 1024 ? 'mediumScreen' : 'largeScreen';
         if (newSize !== this.currentScreenWidthSize) {
             this.animations.kineProjectScrollTrigger.refresh();
-            this.displayGithubChart(
-                newSize === 'smallScreen' ? 'small-screen' : 'large-screen'
-            );
+            this.githubGrid.displayGrid(newSize);
             this.currentScreenWidthSize = newSize;
         } else if (newSize === 'smallScreen') {
             this.animations.kineProjectScrollTrigger.refresh();

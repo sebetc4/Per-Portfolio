@@ -5,6 +5,7 @@ export default class Animations {
     constructor(display) {
         this.display = display;
         this.kineProjectScrollTrigger;
+        this.scrub = 1
     }
 
     init() {
@@ -53,9 +54,9 @@ export default class Animations {
 
     addPinAnim() {
         const getStartKineProjectScrollTrigger = () =>
-            kineProject.getBoundingClientRect().bottom -
-            kineProjectDevice.getBoundingClientRect().bottom +
-            kineProjectDevice.offsetHeight / 2;
+            this.display.kineProject.getBoundingClientRect().bottom -
+            this.display.kineProjectDevice.getBoundingClientRect().bottom +
+            this.display.kineProjectDevice.offsetHeight / 2;
 
         this.kineProjectScrollTrigger = ScrollTrigger.create({
             trigger: this.display.kineProject,
@@ -64,56 +65,50 @@ export default class Animations {
                 window.innerWidth < 1024 ? `bottom-=${getStartKineProjectScrollTrigger()} center` : 'center center',
             end: () =>
                 window.innerWidth < 1024 ? `bottom-=${getStartKineProjectScrollTrigger() - 900} center` : `top+=900`,
-            scrub: 1,
+            scrub: this.scrub,
         });
     }
 
     addHeaderAnim() {
-        const header = document.querySelector('.header');
         ScrollTrigger.create({
             trigger: this.display.introJob,
             start: 'top top+=30',
             end: 'bottom top+=30',
             toggleActions: 'play reverse play reverse',
-            toggleClass: { className: 'light', targets: header },
+            toggleClass: { className: 'light', targets: this.display.header },
         });
         ScrollTrigger.create({
             trigger: this.display.skillsWrapper,
             start: 'top top+=30',
             end: 'bottom top+=30',
             toggleActions: 'play reverse play reverse',
-            toggleClass: { className: 'light', targets: header },
+            toggleClass: { className: 'light', targets: this.display.header },
         });
     }
 
     addIntroSpeechAnim() {
-        const introSpeechTextContainer = this.display.introSpeech.querySelector('.intro-speech__text-container');
-        const introSpeechImageContainer = this.display.introSpeech.querySelector('.intro-speech__image-container');
-
-        gsap.to(introSpeechTextContainer, {
+        gsap.to(this.display.introSpeechTextContainer, {
             y: 100,
             scrollTrigger: {
                 trigger: this.display.introSpeech,
                 start: 'center center',
                 toggleActions: 'play none reverse none',
-                scrub: 1,
+                scrub: this.scrub,
             },
         });
 
-        gsap.to(introSpeechImageContainer, {
+        gsap.to(this.display.introSpeechImageContainer, {
             scale: 2,
             scrollTrigger: {
                 trigger: this.display.introSpeech,
                 start: 'center center',
                 toggleActions: 'play none reverse none',
-                scrub: 1,
+                scrub: this.scrub,
             },
         });
     }
 
     addIntroNameAnim() {
-        const introNameTitle = this.display.introName.querySelector('.intro-name h1');
-
         gsap.to(this.display.introName, {
             backgroundPositionY: 50,
             scrollTrigger: {
@@ -121,12 +116,12 @@ export default class Animations {
                 start: 'top bottom',
                 end: 'bottom top',
                 toggleActions: 'play none reverse none',
-                scrub: 1,
+                scrub: this.scrub,
             },
         });
 
         gsap.fromTo(
-            introNameTitle,
+            this.display.introNameTitle,
             { x: '-20%' },
             {
                 x: '8%',
@@ -135,15 +130,13 @@ export default class Animations {
                     start: 'top bottom',
                     end: 'bottom top',
                     toggleActions: 'play none reverse none',
-                    scrub: 1,
+                    scrub: this.scrub,
                 },
             }
         );
     }
 
     addIntroJobAnim() {
-        const introJobTitle = this.display.introJob.querySelector('.intro-job h2');
-
         gsap.to(this.display.introJob, {
             backgroundPositionY: -50,
             scrollTrigger: {
@@ -151,12 +144,12 @@ export default class Animations {
                 start: 'top bottom',
                 end: 'bottom top',
                 toggleActions: 'play none reverse none',
-                scrub: 1,
+                scrub: this.scrub,
             },
         });
 
         gsap.fromTo(
-            introJobTitle,
+            this.display.introJobTitle,
             { x: '20%' },
             {
                 x: '-5%',
@@ -165,29 +158,24 @@ export default class Animations {
                     start: 'top bottom',
                     end: 'bottom top',
                     toggleActions: 'play none reverse none',
-                    scrub: 1,
+                    scrub: this.scrub,
                 },
             }
         );
     }
 
     addTitleProjectAnim() {
-        const projectsTitleContainer = document.querySelector('.projects-title-container');
-        const projectsTitleWrapper = projectsTitleContainer.querySelector('.projects-title-wrapper');
 
         ScrollTrigger.create({
-            trigger: projectsTitleContainer,
+            trigger: this.display.projectsTitleContainer,
             start: 'bottom bottom',
             end: 'bottom top',
             toggleActions: 'play reverse play reverse',
-            toggleClass: { className: 'fixed', targets: projectsTitleWrapper },
+            toggleClass: { className: 'fixed', targets: this.display.projectsTitleWrapper },
         });
     }
 
     addKineProjectAnim() {
-        const kineProjectDetail = this.display.kineProject.querySelector('.project__detail');
-        const kineProjectPhoneImage = this.display.kineProject.querySelector('#kine-project-phone-image');
-        const kineProjectScreenImage = this.display.kineProject.querySelector('#kine-project-screen-image');
 
         gsap.from(this.display.kineProjectDevice, {
             x: '100%',
@@ -196,152 +184,136 @@ export default class Animations {
                 start: 'top bottom',
                 end: '25% center',
                 toggleActions: 'play none reverse none',
-                scrub: 1,
+                scrub: this.scrub,
             },
         });
 
-        gsap.from(kineProjectDetail, {
+        gsap.from(this.display.kineProjectDetail, {
             x: '-100%',
             scrollTrigger: {
-                trigger: kineProjectDetail,
+                trigger: this.display.kineProjectDetail,
                 start: 'top bottom',
                 end: '25% center',
                 toggleActions: 'play none reverse none',
-                scrub: 1,
+                scrub: this.scrub,
             },
         });
 
-        gsap.to(kineProjectScreenImage, {
+        gsap.to(this.display.kineProjectScreenImage, {
             y: -1720,
             scrollTrigger: {
-                trigger: kineProjectPhoneImage,
+                trigger: this.display.kineProjectPhoneImage,
                 start: '70% center',
                 toggleActions: 'play none reverse none',
-                scrub: 1,
+                scrub: this.scrub,
             },
         });
     }
 
     addGroupomaniaProjectAnim() {
-        const groupomaniaProject = document.querySelector('#groupomania-project');
-        const groupomaniaProjectDevice = groupomaniaProject.querySelector('.project__device-container');
-        const groupomaniaProjectDetail = groupomaniaProject.querySelector('.project__detail');
 
-        gsap.from(groupomaniaProjectDevice, {
+        gsap.from(this.display.groupomaniaProjectDevice, {
             x: '-100%',
             autoAlpha: 1,
             scrollTrigger: {
-                trigger: groupomaniaProjectDevice,
+                trigger: this.display.groupomaniaProjectDevice,
                 start: 'top bottom',
                 end: '25% center',
                 toggleActions: 'play none reverse none',
-                scrub: 1,
+                scrub: this.scrub,
             },
         });
 
-        gsap.from(groupomaniaProjectDetail, {
+        gsap.from(this.display.groupomaniaProjectDetail, {
             x: '100%',
             scrollTrigger: {
-                trigger: groupomaniaProjectDetail,
+                trigger: this.display.groupomaniaProjectDetail,
                 start: 'top bottom',
                 end: '25% center',
                 toggleActions: 'play none reverse none',
-                scrub: 1,
+                scrub: this.scrub,
             },
         });
     }
 
     addDesignToolsAnim() {
-        const designToolsProject = document.querySelector('#design-tools-project');
-        const designToolsProjectDevice = designToolsProject.querySelector('.project__device-container');
-        const designToolsProjectDetail = designToolsProject.querySelector('.project__detail');
-
-        gsap.from(designToolsProjectDevice, {
+        gsap.from(this.display.designToolsProjectDevice, {
             x: '100%',
             scrollTrigger: {
-                trigger: designToolsProjectDevice,
+                trigger: this.display.designToolsProjectDevice,
                 start: 'top bottom',
                 end: '25% center',
                 toggleActions: 'play none reverse none',
-                scrub: 1,
+                scrub: this.scrub,
             },
         });
 
-        gsap.from(designToolsProjectDetail, {
+        gsap.from(this.display.designToolsProjectDetail, {
             x: '-100%',
             scrollTrigger: {
-                trigger: designToolsProjectDetail,
+                trigger: this.display.designToolsProjectDetail,
                 start: 'top bottom',
                 end: '25% center',
                 toggleActions: 'play none reverse none',
-                scrub: 1,
+                scrub: this.scrub,
             },
         });
     }
 
     addGithubAnim() {
-        const githubWrapper = document.querySelector('.github-wrapper');
-        const githubSection = githubWrapper.querySelector('.github');
-
         ScrollTrigger.create({
-            trigger: githubWrapper,
+            trigger: this.display.githubWrapper,
             start: 'bottom bottom',
             end: 'bottom top',
             toggleActions: 'play reverse play reverse',
-            toggleClass: { className: 'fixed', targets: githubSection },
+            toggleClass: { className: 'fixed', targets: this.display.githubSection },
         });
     }
 
     addSkillsAnim() {
-        const skillsSection = document.querySelector('.skills');
-
         ScrollTrigger.create({
             trigger: this.display.skillsWrapper,
             start: 'bottom bottom',
             end: 'bottom top',
-            onEnter: () => this.animateEnterFixedSection(this.display.skillsWrapper, skillsSection),
-            onLeave: () => this.animateLeaveFixedSection(this.display.skillsWrapper, skillsSection),
-            onEnterBack: () => this.animateEnterFixedSection(this.display.skillsWrapper, skillsSection),
-            onLeaveBack: () => this.animateLeaveFixedSection(this.display.skillsWrapper, skillsSection),
+            onEnter: () => this.animateEnterFixedSection(this.display.skillsWrapper, this.display.skillsSection),
+            onLeave: () => this.animateLeaveFixedSection(this.display.skillsWrapper, this.display.skillsSection),
+            onEnterBack: () => this.animateEnterFixedSection(this.display.skillsWrapper, this.display.skillsSection),
+            onLeaveBack: () => this.animateLeaveFixedSection(this.display.skillsWrapper, this.display.skillsSection),
         });
     }
 
     addContactAnim() {
-        const contactSection = document.querySelector('.contact')
-        const contactLeft = contactSection.querySelector('.contact__left')
-        const contactRight = contactSection.querySelector('.contact__right')
-        const contactTitle = contactSection.querySelector('.contact__title')
 
-        gsap.from(contactLeft, {
+        gsap.from(this.display.contactLeft, {
             x: '-100%',
             scrollTrigger: {
-                trigger: contactSection,
+                trigger: this.display.contactSection,
                 start: 'top bottom',
                 end: 'center center',
                 toggleActions: 'play none reverse none',
-                scrub: 1,
+                scrub: this.scrub,
             },
         });
         
-        gsap.from(contactRight, {
+        gsap.from(this.display.contactRight, {
             x: '100%',
             scrollTrigger: {
-                trigger: contactSection,
+                trigger: this.display.contactSection,
                 start: 'top bottom',
                 end: 'center center',
                 toggleActions: 'play none reverse none',
-                scrub: 1,
+                scrub: this.scrub,
             },
         });
 
-        gsap.from(contactTitle, {
+        gsap.from(this.display.contactTitle, {
             x: '100%',
             scrollTrigger: {
-                trigger: contactSection,
+                trigger: this.display.contactSection,
                 start: 'top bottom',
                 end: 'center center',
                 toggleActions: 'play none reverse none',
-                scrub: 1,
+                scrub: this.scrub,
             },
         });
     }
