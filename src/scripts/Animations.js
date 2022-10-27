@@ -315,7 +315,6 @@ export default class Animations {
         gsap.from(contactLeft, {
             x: '-100%',
             scrollTrigger: {
-                markers: true,
                 trigger: contactSection,
                 start: 'top bottom',
                 end: 'center center',
