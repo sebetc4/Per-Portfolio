@@ -1,58 +1,19 @@
-@keyframes border-animation {
-    0%,
-    10% {
-        transform: scale(0);
-        opacity: 1;
-    }
-    90%,
-    100% {
-        transform: scale(1);
-        opacity: 0;
-    }
-}
-
-@keyframes green-box-animation {
-    0% {
-        background-color: #171c25;
-    }
-    30% {
-        background-color: #171c25;
-    }
-    50% {
-        background-color: green;
-    }
-    60% {
-        background-color: green;
-    }
-    80% {
-        background-color: #171c25;
-    }
-}
-
-@keyframes dark-green-box-animation {
-    0% {
-        background-color: #171c25;
-    }
-    10% {
-        background-color: #171c25;
-    }
-    30% {
-        background-color: rgb(0, 99, 0);
-    }
-    80% {
-        background-color: rgb(0, 99, 0);
-    }
-    100% {
-        background-color: #171c25;
-    }
+.github-wrapper {
+    height: 100vh;
 }
 
 .github {
     height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    &.fixed {
+        position: fixed;
+        bottom: 0;
+    }
 
     h2 {
         color: #888;
@@ -66,7 +27,7 @@ $delay1: 0.5s;
 $delay2: 0.9s;
 $distance: -1px;
 
-.github-chart {
+.github-grid {
     margin-top: 100px;
     padding: 20px;
     position: relative;
@@ -160,7 +121,7 @@ $distance: -1px;
     }
 }
 
-.github-chart-dates {
+.github-grid-dates {
     padding: 0 10px 10px 10px;
     display: flex;
     justify-content: space-between;
@@ -171,7 +132,7 @@ $distance: -1px;
     }
 }
 
-.github-chart-box-container {
+.github-grid-box-container {
     display: grid;
     grid-template-columns: repeat(41, 15px);
     gap: 5px;
@@ -211,15 +172,15 @@ $distance: -1px;
         }
     }
 
-    .github-chart {
+    .github-grid {
         margin-top: 100px;
     }
 
-    .github-chart-dates span {
+    .github-grid-dates span {
         font-size: 14px;
     }
 
-    .github-chart-box-container {
+    .github-grid-box-container {
         grid-template-columns: repeat(41, 12px);
         gap: 4px;
 
@@ -235,7 +196,7 @@ $distance: -1px;
         padding-top: 0;
     }
 
-    .github-chart-box-container {
+    .github-grid-box-container {
         grid-template-columns: repeat(27, 15px);
         gap: 5px;
 
@@ -251,7 +212,7 @@ $distance: -1px;
         font-size: 6vw;
     }
 
-    .github-chart-box-container {
+    .github-grid-box-container {
         grid-template-columns: repeat(27, 12px);
         gap: 4px;
 
@@ -263,7 +224,7 @@ $distance: -1px;
 }
 
 @media screen and (max-width: 550px) {
-    .github-chart-box-container {
+    .github-grid-box-container {
         grid-template-columns: repeat(27, 10px);
         gap: 3px;
 
@@ -275,7 +236,7 @@ $distance: -1px;
 }
 
 @media screen and (max-width: 450px) {
-    .github-chart-box-container {
+    .github-grid-box-container {
         grid-template-columns: repeat(27, 8px);
         gap: 2px;
 

@@ -188,8 +188,8 @@
                         <p data-splitting>Le contenu de ce site est temporaire.</p>
                         <p data-splitting>Il n'a pas vocation à être mon portfolio définitif.</p>
                         <p data-splitting>
-                            Mon principal objectif avec ce projet est de m'exercer au design et aux animations mais il peut vous permettre de découvrir
-                            mon travail et mon univers.
+                            Mon principal objectif avec ce projet est de m'exercer au design et aux animations mais il
+                            peut vous permettre de découvrir mon travail et mon univers.
                         </p>
                         <p data-splitting>
                             Maintenant que vous savez où vous mettez les pieds, laissez-moi me présentez...
@@ -231,8 +231,10 @@
                 class="projects"
                 id="projects"
             >
-                <div class="projects__title-container">
-                    <h2>Voici mes réalisations</h2>
+                <div class="projects-title-container">
+                    <div class="projects-title-wrapper">
+                        <h2>Voici mes réalisations</h2>
+                    </div>
                 </div>
                 <div
                     class="project reverse"
@@ -381,157 +383,161 @@
             </section>
 
             <!-- Github -->
-            <section class="github">
-                <h2>
-                    Pour retrouvez tous mes projets,<br />
-                    Rejoignez moi sur...
-                </h2>
-                <div class="github-chart">
-                    <a href="https://github.com/sebetc4?tab=repositories">
-                        <div class="github-chart-dates"></div>
-                        <div class="github-chart-box-container"></div>
-                    </a>
-                    <div class="github-chart__decoration">
-                        <div class="line"></div>
-                        <div class="line"></div>
-                        <div class="line"></div>
-                        <div class="line"></div>
-                        <div class="line"></div>
-                        <div class="line"></div>
+            <div class="github-wrapper">
+                <section class="github">
+                    <h2>
+                        Pour retrouvez tous mes projets,<br />
+                        Rejoignez moi sur...
+                    </h2>
+                    <div class="github-grid">
+                        <a href="https://github.com/sebetc4?tab=repositories">
+                            <div class="github-grid-dates"></div>
+                            <div class="github-grid-box-container"></div>
+                        </a>
+                        <div class="github-grid__decoration">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
 
             <!-- Skills -->
-            <section
-                class="skills"
-                id="skills"
-            >
-                <div class="skills__title">
-                    <h2>Découvrez mes skills</h2>
-                </div>
-                <div class="skills__grid-container">
-                    <div class="skills-grid">
-                        <article class="skills-article">
-                            <img
-                                src="./public/skills/html.png"
-                                alt="logo HTML"
-                                width="75"
-                                height="75"
-                            />
-                            <h3>HTML</h3>
-                        </article>
-                        <article class="skills-article">
-                            <img
-                                src="./public/skills/css.png"
-                                alt="logo CSS"
-                                width="75"
-                                height="75"
-                            />
-                            <h3>CSS</h3>
-                        </article>
-                        <article class="skills-article">
-                            <img
-                                src="./public/skills/js.png"
-                                alt="logo JavaScript"
-                                width="75"
-                                height="75"
-                            />
-                            <h3>JavaScript</h3>
-                        </article>
-                        <article class="skills-article">
-                            <img
-                                src="./public/skills/react.png"
-                                alt="logo React"
-                                width="75"
-                                height="75"
-                            />
-                            <h3>React</h3>
-                        </article>
-                        <article class="skills-article">
-                            <img
-                                src="./public/skills/next.png"
-                                alt="logo Next js"
-                                width="75"
-                                height="75"
-                            />
-                            <h3>Next js</h3>
-                        </article>
-                        <article class="skills-article">
-                            <img
-                                src="./public/skills/gsap.png"
-                                alt="logo GSAP"
-                                width="75"
-                                height="75"
-                            />
-                            <h3>GSAP</h3>
-                        </article>
-                        <article class="skills-article">
-                            <img
-                                src="./public/skills/node.png"
-                                alt="logo Node"
-                                width="75"
-                                height="75"
-                            />
-                            <h3>Node js</h3>
-                        </article>
-                        <article class="skills-article">
-                            <img
-                                src="./public/skills/python.png"
-                                alt="logo Python"
-                                width="75"
-                                height="75"
-                            />
-                            <h3>Python</h3>
-                        </article>
-                        <article class="skills-article">
-                            <img
-                                src="./public/skills/mysql.png"
-                                alt="logo Mysql"
-                                width="75"
-                                height="75"
-                            />
-                            <h3>MySQL</h3>
-                        </article>
-                        <article class="skills-article">
-                            <img
-                                src="./public/skills/mongodb.png"
-                                alt="logo MongoDB"
-                                width="75"
-                                height="75"
-                            />
-                            <h3>MongoDB</h3>
-                        </article>
-                        <article class="skills-article">
-                            <img
-                                src="./public/skills/github.png"
-                                alt="logo Github"
-                                width="75"
-                                height="75"
-                            />
-                            <h3>Github</h3>
-                        </article>
-                        <article class="skills-article">
-                            <img
-                                src="./public/skills/figma.png"
-                                alt="logo Figma"
-                                width="75"
-                                height="75"
-                            />
-                            <h3>Figma</h3>
-                        </article>
-                        <article class="skills-article">
-                            <img
-                                src="./public/skills/linux.png"
-                                alt="logo Linux"
-                                width="75"
-                                height="75"
-                            />
-                            <h3>Linux</h3>
-                        </article>
+            <div class="skills-wrapper">
+                <section
+                    class="skills"
+                    id="skills"
+                >
+                    <div class="skills__title">
+                        <h2>Découvrez mes skills</h2>
                     </div>
-                </div>
-            </section>
+                    <div class="skills__grid-container">
+                        <div class="skills-grid">
+                            <article class="skills-article">
+                                <img
+                                    src="./public/skills/html.png"
+                                    alt="logo HTML"
+                                    width="75"
+                                    height="75"
+                                />
+                                <h3>HTML</h3>
+                            </article>
+                            <article class="skills-article">
+                                <img
+                                    src="./public/skills/css.png"
+                                    alt="logo CSS"
+                                    width="75"
+                                    height="75"
+                                />
+                                <h3>CSS</h3>
+                            </article>
+                            <article class="skills-article">
+                                <img
+                                    src="./public/skills/js.png"
+                                    alt="logo JavaScript"
+                                    width="75"
+                                    height="75"
+                                />
+                                <h3>JavaScript</h3>
+                            </article>
+                            <article class="skills-article">
+                                <img
+                                    src="./public/skills/react.png"
+                                    alt="logo React"
+                                    width="75"
+                                    height="75"
+                                />
+                                <h3>React</h3>
+                            </article>
+                            <article class="skills-article">
+                                <img
+                                    src="./public/skills/next.png"
+                                    alt="logo Next js"
+                                    width="75"
+                                    height="75"
+                                />
+                                <h3>Next js</h3>
+                            </article>
+                            <article class="skills-article">
+                                <img
+                                    src="./public/skills/gsap.png"
+                                    alt="logo GSAP"
+                                    width="75"
+                                    height="75"
+                                />
+                                <h3>GSAP</h3>
+                            </article>
+                            <article class="skills-article">
+                                <img
+                                    src="./public/skills/node.png"
+                                    alt="logo Node"
+                                    width="75"
+                                    height="75"
+                                />
+                                <h3>Node js</h3>
+                            </article>
+                            <article class="skills-article">
+                                <img
+                                    src="./public/skills/python.png"
+                                    alt="logo Python"
+                                    width="75"
+                                    height="75"
+                                />
+                                <h3>Python</h3>
+                            </article>
+                            <article class="skills-article">
+                                <img
+                                    src="./public/skills/mysql.png"
+                                    alt="logo Mysql"
+                                    width="75"
+                                    height="75"
+                                />
+                                <h3>MySQL</h3>
+                            </article>
+                            <article class="skills-article">
+                                <img
+                                    src="./public/skills/mongodb.png"
+                                    alt="logo MongoDB"
+                                    width="75"
+                                    height="75"
+                                />
+                                <h3>MongoDB</h3>
+                            </article>
+                            <article class="skills-article">
+                                <img
+                                    src="./public/skills/github.png"
+                                    alt="logo Github"
+                                    width="75"
+                                    height="75"
+                                />
+                                <h3>Github</h3>
+                            </article>
+                            <article class="skills-article">
+                                <img
+                                    src="./public/skills/figma.png"
+                                    alt="logo Figma"
+                                    width="75"
+                                    height="75"
+                                />
+                                <h3>Figma</h3>
+                            </article>
+                            <article class="skills-article">
+                                <img
+                                    src="./public/skills/linux.png"
+                                    alt="logo Linux"
+                                    width="75"
+                                    height="75"
+                                />
+                                <h3>Linux</h3>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+            </div>
 
             <!-- Contact -->
             <section
