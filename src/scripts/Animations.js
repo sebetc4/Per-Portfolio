@@ -19,6 +19,7 @@ export default class Animations {
         this.addDesignToolsAnim();
         this.addGithubAnim();
         this.addSkillsAnim();
+        this.addContactAnim()
 
         window.onload = () => {
             const loaderContainer = document.querySelector('.loader-container');
@@ -190,7 +191,6 @@ export default class Animations {
 
         gsap.from(this.display.kineProjectDevice, {
             x: '100%',
-            autoAlpha: 1,
             scrollTrigger: {
                 trigger: this.display.kineProjectDevice,
                 start: 'top bottom',
@@ -202,7 +202,6 @@ export default class Animations {
 
         gsap.from(kineProjectDetail, {
             x: '-100%',
-            autoAlpha: 1,
             scrollTrigger: {
                 trigger: kineProjectDetail,
                 start: 'top bottom',
@@ -214,7 +213,6 @@ export default class Animations {
 
         gsap.to(kineProjectScreenImage, {
             y: -1720,
-            autoAlpha: 1,
             scrollTrigger: {
                 trigger: kineProjectPhoneImage,
                 start: '70% center',
@@ -243,7 +241,6 @@ export default class Animations {
 
         gsap.from(groupomaniaProjectDetail, {
             x: '100%',
-            autoAlpha: 1,
             scrollTrigger: {
                 trigger: groupomaniaProjectDetail,
                 start: 'top bottom',
@@ -261,7 +258,6 @@ export default class Animations {
 
         gsap.from(designToolsProjectDevice, {
             x: '100%',
-            autoAlpha: 1,
             scrollTrigger: {
                 trigger: designToolsProjectDevice,
                 start: 'top bottom',
@@ -273,7 +269,6 @@ export default class Animations {
 
         gsap.from(designToolsProjectDetail, {
             x: '-100%',
-            autoAlpha: 1,
             scrollTrigger: {
                 trigger: designToolsProjectDetail,
                 start: 'top bottom',
@@ -308,6 +303,47 @@ export default class Animations {
             onLeave: () => this.animateLeaveFixedSection(this.display.skillsWrapper, skillsSection),
             onEnterBack: () => this.animateEnterFixedSection(this.display.skillsWrapper, skillsSection),
             onLeaveBack: () => this.animateLeaveFixedSection(this.display.skillsWrapper, skillsSection),
+        });
+    }
+
+    addContactAnim() {
+        const contactSection = document.querySelector('.contact')
+        const contactLeft = contactSection.querySelector('.contact__left')
+        const contactRight = contactSection.querySelector('.contact__right')
+        const contactTitle = contactSection.querySelector('.contact__title')
+
+        gsap.from(contactLeft, {
+            x: '-100%',
+            scrollTrigger: {
+                markers: true,
+                trigger: contactSection,
+                start: 'top bottom',
+                end: 'center center',
+                toggleActions: 'play none reverse none',
+                scrub: 1,
+            },
+        });
+        
+        gsap.from(contactRight, {
+            x: '100%',
+            scrollTrigger: {
+                trigger: contactSection,
+                start: 'top bottom',
+                end: 'center center',
+                toggleActions: 'play none reverse none',
+                scrub: 1,
+            },
+        });
+
+        gsap.from(contactTitle, {
+            x: '100%',
+            scrollTrigger: {
+                trigger: contactSection,
+                start: 'top bottom',
+                end: 'center center',
+                toggleActions: 'play none reverse none',
+                scrub: 1,
+            },
         });
     }
 }
