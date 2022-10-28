@@ -222,6 +222,7 @@ export default class Animations {
         gsap.to(this.display.kineProjectScreenImage, {
             y: -1720,
             scrollTrigger: {
+                markers: true,
                 trigger: this.display.kineProjectPhoneImage,
                 start: '70% center',
                 toggleActions: 'play none reverse none',

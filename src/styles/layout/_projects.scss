@@ -197,6 +197,7 @@
 }
 
 @media screen and (max-width: 768px) {
+
     .projects__title-container {
         height: auto;
 
@@ -213,6 +214,11 @@
 }
 
 @media screen and (max-width: 640px) {
+
+    .projects-title-wrapper {
+        padding: 100px 0 0 0;
+    }
+
     .project {
         padding: 100px 30px;
 
