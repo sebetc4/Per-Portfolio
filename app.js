@@ -3,8 +3,6 @@ import Splitting from 'splitting';
 import autosize from 'autosize';
 gsap.registerPlugin(ScrollTrigger);
 
-console.log('Test Runner');
-
 class Display {
     constructor() {
         this.currentScreenWidthSize = '';
@@ -374,6 +372,12 @@ class Display {
             this.githubChartDates.appendChild(el);
         });
     }
+
+    // initContactAnimation() {
+    //     const contactSection = document.querySelector('.contact');
+    //     const contactTitle = contactSection.querySelector('.contact__title');
+    //     const contactLeft = contactSection.querySelector('.contact__left');
+    // }
 
     onResize() {
         const newSize =
