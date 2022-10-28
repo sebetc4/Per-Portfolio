@@ -375,12 +375,6 @@ class Display {
         });
     }
 
-    // initContactAnimation() {
-    //     const contactSection = document.querySelector('.contact');
-    //     const contactTitle = contactSection.querySelector('.contact__title');
-    //     const contactLeft = contactSection.querySelector('.contact__left');
-    // }
-
     onResize() {
         const newSize =
             window.innerWidth < 768 ? 'smallScreen' : window.innerWidth < 1024 ? 'mediumScreen' : 'largeScreen';
