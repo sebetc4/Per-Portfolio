@@ -193,27 +193,31 @@ export default class Animations {
     }
 
     addKineProjectAnim() {
-        gsap.from(this.display.kineProjectDevice, {
-            x: '100%',
-            scrollTrigger: {
-                trigger: this.display.kineProjectDevice,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: this.scrub,
-            },
-        });
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.display.kineProjectDevice, {
+                x: '100%',
+                scrollTrigger: {
+                    trigger: this.display.kineProject,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: this.scrub,
+                },
+            })
+        );
 
-        gsap.from(this.display.kineProjectDetail, {
-            x: '-100%',
-            scrollTrigger: {
-                trigger: this.display.kineProjectDetail,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: this.scrub,
-            },
-        });
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.display.kineProjectDetail, {
+                x: '-100%',
+                scrollTrigger: {
+                    trigger: this.display.kineProject,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: this.scrub,
+                },
+            })
+        );
 
         gsap.to(this.display.kineProjectScreenImage, {
             y: -1720,
@@ -227,52 +231,60 @@ export default class Animations {
     }
 
     addGroupomaniaProjectAnim() {
-        gsap.from(this.display.groupomaniaProjectDevice, {
-            x: '-100%',
-            autoAlpha: 1,
-            scrollTrigger: {
-                trigger: this.display.groupomaniaProjectDevice,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: this.scrub,
-            },
-        });
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.display.groupomaniaProjectDevice, {
+                x: '-100%',
+                autoAlpha: 1,
+                scrollTrigger: {
+                    trigger: this.display.groupomaniaProject,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: this.scrub,
+                },
+            })
+        );
 
-        gsap.from(this.display.groupomaniaProjectDetail, {
-            x: '100%',
-            scrollTrigger: {
-                trigger: this.display.groupomaniaProjectDetail,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: this.scrub,
-            },
-        });
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.display.groupomaniaProjectDetail, {
+                x: '100%',
+                scrollTrigger: {
+                    trigger: this.display.groupomaniaProject,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: this.scrub,
+                },
+            })
+        );
     }
 
     addDesignToolsAnim() {
-        gsap.from(this.display.designToolsProjectDevice, {
-            x: '100%',
-            scrollTrigger: {
-                trigger: this.display.designToolsProjectDevice,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: this.scrub,
-            },
-        });
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.display.designToolsProjectDevice, {
+                x: '100%',
+                scrollTrigger: {
+                    trigger: this.display.designToolsProjectDevice,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: this.scrub,
+                },
+            })
+        );
 
-        gsap.from(this.display.designToolsProjectDetail, {
-            x: '-100%',
-            scrollTrigger: {
-                trigger: this.display.designToolsProjectDetail,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: this.scrub,
-            },
-        });
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.display.designToolsProjectDetail, {
+                x: '-100%',
+                scrollTrigger: {
+                    trigger: this.display.designToolsProject,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: this.scrub,
+                },
+            })
+        );
     }
 
     addGithubAnim() {
