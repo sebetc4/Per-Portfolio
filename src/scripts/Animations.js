@@ -289,13 +289,13 @@ export default class Animations {
     }
 
     addGithubAnim() {
-        ScrollTrigger.create({
-            trigger: this.display.githubWrapper,
-            start: 'bottom bottom',
-            end: 'bottom top',
-            toggleActions: 'play reverse play reverse',
-            toggleClass: { className: 'fixed', targets: this.display.githubSection },
-        });
+        // ScrollTrigger.create({
+        //     trigger: this.display.githubWrapper,
+        //     start: 'bottom bottom',
+        //     end: 'bottom top',
+        //     toggleActions: 'play reverse play reverse',
+        //     toggleClass: { className: 'fixed', targets: this.display.githubSection },
+        // });
     }
 
     addSkillsAnim() {
