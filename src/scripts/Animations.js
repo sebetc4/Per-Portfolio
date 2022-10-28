@@ -163,33 +163,33 @@ export default class Animations {
     }
 
     addTitleProjectAnim() {
-        this.matchMedia.add('(min-width: 1024px)', () =>
-            ScrollTrigger.create({
-                trigger: this.display.projectsTitleContainer,
-                start: 'bottom bottom',
-                end: 'bottom top',
-                onEnter: () =>
-                    this.animateEnterFixedSection(
-                        this.display.projectsTitleContainer,
-                        this.display.projectsTitleWrapper
-                    ),
-                onLeave: () =>
-                    this.animateLeaveFixedSection(
-                        this.display.projectsTitleContainer,
-                        this.display.projectsTitleWrapper
-                    ),
-                onEnterBack: () =>
-                    this.animateEnterFixedSection(
-                        this.display.projectsTitleContainer,
-                        this.display.projectsTitleWrapper
-                    ),
-                onLeaveBack: () =>
-                    this.animateLeaveFixedSection(
-                        this.display.projectsTitleContainer,
-                        this.display.projectsTitleWrapper
-                    ),
-            })
-        );
+        // this.matchMedia.add('(min-width: 1024px)', () =>
+        //     ScrollTrigger.create({
+        //         trigger: this.display.projectsTitleContainer,
+        //         start: 'bottom bottom',
+        //         end: 'bottom top',
+        //         onEnter: () =>
+        //             this.animateEnterFixedSection(
+        //                 this.display.projectsTitleContainer,
+        //                 this.display.projectsTitleWrapper
+        //             ),
+        //         onLeave: () =>
+        //             this.animateLeaveFixedSection(
+        //                 this.display.projectsTitleContainer,
+        //                 this.display.projectsTitleWrapper
+        //             ),
+        //         onEnterBack: () =>
+        //             this.animateEnterFixedSection(
+        //                 this.display.projectsTitleContainer,
+        //                 this.display.projectsTitleWrapper
+        //             ),
+        //         onLeaveBack: () =>
+        //             this.animateLeaveFixedSection(
+        //                 this.display.projectsTitleContainer,
+        //                 this.display.projectsTitleWrapper
+        //             ),
+        //     })
+        // );
     }
 
     addKineProjectAnim() {
@@ -299,15 +299,15 @@ export default class Animations {
     }
 
     addSkillsAnim() {
-        ScrollTrigger.create({
-            trigger: this.display.skillsWrapper,
-            start: 'bottom bottom',
-            end: 'bottom top',
-            onEnter: () => this.animateEnterFixedSection(this.display.skillsWrapper, this.display.skillsSection),
-            onLeave: () => this.animateLeaveFixedSection(this.display.skillsWrapper, this.display.skillsSection),
-            onEnterBack: () => this.animateEnterFixedSection(this.display.skillsWrapper, this.display.skillsSection),
-            onLeaveBack: () => this.animateLeaveFixedSection(this.display.skillsWrapper, this.display.skillsSection),
-        });
+        // ScrollTrigger.create({
+        //     trigger: this.display.skillsWrapper,
+        //     start: 'bottom bottom',
+        //     end: 'bottom top',
+        //     onEnter: () => this.animateEnterFixedSection(this.display.skillsWrapper, this.display.skillsSection),
+        //     onLeave: () => this.animateLeaveFixedSection(this.display.skillsWrapper, this.display.skillsSection),
+        //     onEnterBack: () => this.animateEnterFixedSection(this.display.skillsWrapper, this.display.skillsSection),
+        //     onLeaveBack: () => this.animateLeaveFixedSection(this.display.skillsWrapper, this.display.skillsSection),
+        // });
     }
 
     addContactAnim() {
