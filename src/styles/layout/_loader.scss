@@ -5,9 +5,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 99999;
+    z-index: 999999999;
     background-color: #111;
-    transition: opacity .3s ease;
+    transition: opacity .5s ease;
 
     &.hidden {
         opacity: 0;

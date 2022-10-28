@@ -29,26 +29,24 @@ export default class Animations {
             setTimeout(() => {
                 loaderContainer.style.display = 'none';
                 this.animateSpeechText();
-            }, '300');
+            }, '500');
         };
     }
 
     animateEnterFixedSection = (wrapper, section) => {
         wrapper.style.height = `${section.offsetHeight}px`;
-        section.style.top = `-${section.offsetHeight - window.innerHeight}px`;
         section.classList.add('fixed');
     };
 
     animateLeaveFixedSection = (wrapper, section) => {
         wrapper.style.height = `auto`;
-        section.style.top = `0px`;
         section.classList.remove('fixed');
     };
 
     animateSpeechText() {
         const tl = gsap.timeline();
         this.display.splitting.forEach((p) => {
-            tl.to(p.chars, { opacity: 1, y: 0, duration: 0.6, ease: 'back.out(1)', stagger: 0.03 });
+            tl.to(p.chars, { opacity: 1, y: 0, duration: 0.6, ease: 'back.out(1)', stagger: 0.02 });
         });
     }
 
@@ -284,8 +282,8 @@ export default class Animations {
 
     addContactAnim() {
 
-        gsap.from(this.display.contactLeft, {
-            x: '-100%',
+        gsap.to(this.display.contactLeft, {
+            x: 0,
             scrollTrigger: {
                 trigger: this.display.contactSection,
                 start: 'top bottom',
@@ -295,8 +293,8 @@ export default class Animations {
             },
         });
         
-        gsap.from(this.display.contactRight, {
-            x: '100%',
+        gsap.to(this.display.contactRight, {
+            x: 0,
             scrollTrigger: {
                 trigger: this.display.contactSection,
                 start: 'top bottom',
@@ -306,8 +304,8 @@ export default class Animations {
             },
         });
 
-        gsap.from(this.display.contactTitle, {
-            x: '100%',
+        gsap.to(this.display.contactTitle, {
+            x: 0,
             scrollTrigger: {
                 trigger: this.display.contactSection,
                 start: 'top bottom',
