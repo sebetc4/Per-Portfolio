@@ -13,7 +13,6 @@
         right: 0;
         font-size: 4vw;
         text-align: center;
-        transform: translateX(100%);
         background-color: #111;
     }
 
@@ -25,7 +24,6 @@
         width: 33.33vw;
         display: flex;
         align-items: center;
-        transform: translateX(-100%);
         background-color: hsl(194, 13%, 10%);
         border-right: 1px solid #999;
         z-index: 99;
@@ -34,12 +32,11 @@
     &__right {
         position: fixed;
         width: 66.66vw;
-        height: calc(100vh - 240px);
+        min-height: calc(100vh - 240px);
         bottom: 0;
         right: 0;
         z-index: 99;
         display: flex;
-        transform: translateX(100%);
         background-color: #111;
     }
 }
@@ -50,7 +47,6 @@
     &__name {
         font-size: 40px;
         font-weight: bold;
-        line-height: 120%;
         color: $text-color;
     }
 
@@ -63,7 +59,6 @@
     &__sentence {
         margin: 40px 0;
         color: $text-color;
-        line-height: 150%;
     }
 
     &__list {
@@ -389,7 +384,6 @@
             position: relative;
             width: 100%;
             font-size: 5vw;
-            transform: translateX(0);
         }
 
         &__left {
@@ -401,13 +395,12 @@
             border-top: 1px solid #999;
             border-bottom: 1px solid #999;
             border-right: none;
-            transform: translateX(0);
         }
 
         &__right {
             position: relative;
             width: 100%;
-            transform: translateX(0);
+            min-height: auto;
         }
     }
 
@@ -440,7 +433,7 @@
     }
 
     .contact-form-container {
-        margin-top: 50px;
+        margin: 50px 0;
     }
 }
 

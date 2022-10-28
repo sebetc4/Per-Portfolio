@@ -299,8 +299,8 @@ export default class Animations {
 
     addContactAnim() {
         this.matchMedia.add('(min-width: 1024px)', () =>
-            gsap.to(this.display.contactLeft, {
-                x: 0,
+            gsap.from(this.display.contactLeft, {
+                x: '-100%',
                 scrollTrigger: {
                     trigger: this.display.contactSection,
                     start: 'top bottom',
@@ -312,8 +312,8 @@ export default class Animations {
         );
 
         this.matchMedia.add('(min-width: 1024px)', () =>
-            gsap.to(this.display.contactRight, {
-                x: 0,
+            gsap.from(this.display.contactRight, {
+                x: '100%',
                 scrollTrigger: {
                     trigger: this.display.contactSection,
                     start: 'top bottom',
@@ -325,8 +325,8 @@ export default class Animations {
         );
 
         this.matchMedia.add('(min-width: 1024px)', () =>
-            gsap.to(this.display.contactTitle, {
-                x: 0,
+            gsap.from(this.display.contactTitle, {
+                x: '100%',
                 scrollTrigger: {
                     trigger: this.display.contactSection,
                     start: 'top bottom',
