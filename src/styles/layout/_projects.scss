@@ -1,10 +1,7 @@
-.projects-title-container {
-    height: 100vh;
-}
-
 .projects-title-wrapper {
     z-index: -9;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 200px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -162,9 +159,17 @@
 }
 
 @media screen and (max-width: 1024px) {
+    .projects-title-wrapper {
+        min-height: auto;
+        background-color: #111;
+    }
     .project {
         flex-direction: column-reverse;
         height: auto;
+
+        &:first-child {
+            box-shadow: none;
+        }
 
         &.reverse {
             flex-direction: column-reverse;

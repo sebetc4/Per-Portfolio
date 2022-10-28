@@ -50,7 +50,7 @@ class Display {
         this.contactTitle = this.contactSection.querySelector('.contact__title')
 
         
-        this.currentScreenWidthSize = '';
+        this.currentScreenWidthSize =  window.innerWidth < 768 ? 'smallScreen' : window.innerWidth < 1024 ? 'mediumScreen' : 'largeScreen';
         this.currentScreenHeightSize = window.innerHeight || document.documentElement.clientHeight;
 
         this.splitting = Splitting();

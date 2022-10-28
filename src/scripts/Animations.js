@@ -1,11 +1,11 @@
-import gsap from 'gsap';
 gsap.registerPlugin(ScrollTrigger);
 
 export default class Animations {
     constructor(display) {
         this.display = display;
         this.kineProjectScrollTrigger;
-        this.scrub = 1
+        this.matchMedia = gsap.matchMedia();
+        this.scrub = 1;
     }
 
     init() {
@@ -20,7 +20,7 @@ export default class Animations {
         this.addDesignToolsAnim();
         this.addGithubAnim();
         this.addSkillsAnim();
-        this.addContactAnim()
+        this.addContactAnim();
 
         window.onload = () => {
             const loaderContainer = document.querySelector('.loader-container');
@@ -163,18 +163,36 @@ export default class Animations {
     }
 
     addTitleProjectAnim() {
-
-        ScrollTrigger.create({
-            trigger: this.display.projectsTitleContainer,
-            start: 'bottom bottom',
-            end: 'bottom top',
-            toggleActions: 'play reverse play reverse',
-            toggleClass: { className: 'fixed', targets: this.display.projectsTitleWrapper },
-        });
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            ScrollTrigger.create({
+                trigger: this.display.projectsTitleContainer,
+                start: 'bottom bottom',
+                end: 'bottom top',
+                onEnter: () =>
+                    this.animateEnterFixedSection(
+                        this.display.projectsTitleContainer,
+                        this.display.projectsTitleWrapper
+                    ),
+                onLeave: () =>
+                    this.animateLeaveFixedSection(
+                        this.display.projectsTitleContainer,
+                        this.display.projectsTitleWrapper
+                    ),
+                onEnterBack: () =>
+                    this.animateEnterFixedSection(
+                        this.display.projectsTitleContainer,
+                        this.display.projectsTitleWrapper
+                    ),
+                onLeaveBack: () =>
+                    this.animateLeaveFixedSection(
+                        this.display.projectsTitleContainer,
+                        this.display.projectsTitleWrapper
+                    ),
+            })
+        );
     }
 
     addKineProjectAnim() {
-
         gsap.from(this.display.kineProjectDevice, {
             x: '100%',
             scrollTrigger: {
@@ -209,7 +227,6 @@ export default class Animations {
     }
 
     addGroupomaniaProjectAnim() {
-
         gsap.from(this.display.groupomaniaProjectDevice, {
             x: '-100%',
             autoAlpha: 1,
@@ -281,38 +298,43 @@ export default class Animations {
     }
 
     addContactAnim() {
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.to(this.display.contactLeft, {
+                x: 0,
+                scrollTrigger: {
+                    trigger: this.display.contactSection,
+                    start: 'top bottom',
+                    end: 'center center',
+                    toggleActions: 'play none reverse none',
+                    scrub: this.scrub,
+                },
+            })
+        );
 
-        gsap.to(this.display.contactLeft, {
-            x: 0,
-            scrollTrigger: {
-                trigger: this.display.contactSection,
-                start: 'top bottom',
-                end: 'center center',
-                toggleActions: 'play none reverse none',
-                scrub: this.scrub,
-            },
-        });
-        
-        gsap.to(this.display.contactRight, {
-            x: 0,
-            scrollTrigger: {
-                trigger: this.display.contactSection,
-                start: 'top bottom',
-                end: 'center center',
-                toggleActions: 'play none reverse none',
-                scrub: this.scrub,
-            },
-        });
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.to(this.display.contactRight, {
+                x: 0,
+                scrollTrigger: {
+                    trigger: this.display.contactSection,
+                    start: 'top bottom',
+                    end: 'center center',
+                    toggleActions: 'play none reverse none',
+                    scrub: this.scrub,
+                },
+            })
+        );
 
-        gsap.to(this.display.contactTitle, {
-            x: 0,
-            scrollTrigger: {
-                trigger: this.display.contactSection,
-                start: 'top bottom',
-                end: 'center center',
-                toggleActions: 'play none reverse none',
-                scrub: this.scrub,
-            },
-        });
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.to(this.display.contactTitle, {
+                x: 0,
+                scrollTrigger: {
+                    trigger: this.display.contactSection,
+                    start: 'top bottom',
+                    end: 'center center',
+                    toggleActions: 'play none reverse none',
+                    scrub: this.scrub,
+                },
+            })
+        );
     }
 }

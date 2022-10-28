@@ -381,6 +381,8 @@
 
 @media screen and (max-width: 1024px) {
     .contact {
+        z-index: 99;
+        box-shadow: 1px -2px 16px 9px #111;
         background-color: #111;
 
         &__title {
