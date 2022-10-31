@@ -1,20 +1,136 @@
 import './style.scss';
 import Splitting from 'splitting';
-import autosize from 'autosize';
+import { Form } from './src/scripts';
 gsap.registerPlugin(ScrollTrigger);
 
 class Display {
     constructor() {
-        this.currentScreenWidthSize = '';
-        this.currentScreenHeightSize = window.innerHeight || document.documentElement.clientHeight;
+        // Loader
+        this.loaderContainer = document.querySelector('.loader-container');
+        // Header
+        this.header = document.querySelector('.header');
+        this.headerMobileMenuContainer = this.header.querySelector('.header-mobile-menu-container');
+        // Intro
         this.introSpeech = document.querySelector('.intro-speech');
+        this.introSpeechTextContainer = this.introSpeech.querySelector('.intro-speech__text-container');
+        this.introSpeechImageContainer = this.introSpeech.querySelector('.intro-speech__image-container');
         this.introName = document.querySelector('.intro-name');
+        this.introNameTitle = this.introName.querySelector('.intro-name h1');
         this.introJob = document.querySelector('.intro-job');
+        this.introJobTitle = this.introJob.querySelector('.intro-job h2');
+        // Projects
+        this.projectsTitle = document.querySelector('.projects h2');
+        // Kiné Project
+        this.kineProject = document.querySelector('#kine-project');
+        this.kineProjectDevice = this.kineProject.querySelector('.project__device-container');
+        this.kineProjectDetail = this.kineProject.querySelector('.project__detail');
+        this.kineProjectPhoneImage = this.kineProject.querySelector('#kine-project-phone-image');
+        this.kineProjectScreenImage = this.kineProject.querySelector('#kine-project-screen-image');
+        // Groupomania Project
+        this.groupomaniaProject = document.querySelector('#groupomania-project');
+        this.groupomaniaProjectDevice = this.groupomaniaProject.querySelector('.project__device-container');
+        this.groupomaniaProjectDetail = this.groupomaniaProject.querySelector('.project__detail');
+        // Design Tools
+        this.designToolsProject = document.querySelector('#design-tools-project');
+        this.designToolsProjectDevice = this.designToolsProject.querySelector('.project__device-container');
+        this.designToolsProjectDetail = this.designToolsProject.querySelector('.project__detail');
+        // Github
+        this.githubGridBoxsContainer = document.querySelector('.github-grid-boxs-container');
+        this.githubGridDates = document.querySelector('.github-grid-dates');
+        // Skills
         this.skills = document.querySelector('#skills');
+
+        this.splitting = Splitting();
+        this.matchMedia = gsap.matchMedia();
+
+        this.currentScreenWidthSize =
+            window.innerWidth < 768 ? 'smallScreen' : window.innerWidth < 1024 ? 'mediumScreen' : 'largeScreen';
+
         this.kineProjectScrollTrigger;
-        this.githubChartboxContainer = document.querySelector('.github-chart-box-container');
-        this.githubChartDates = document.querySelector('.github-chart-dates');
-        this.largeScreenGithubChart = {
+        this.init();
+    }
+
+    init() {
+        this.setMinHeightSizeSection(window.innerHeight || document.documentElement.clientHeight);
+        this.initHeader();
+        // Add Anim
+        this.addPinAnim();
+        this.addHeaderAnim();
+        this.addIntroSpeechAnim();
+        this.addIntroNameAnim();
+        this.addIntroJobAnim();
+        this.addTitleProjectAnim();
+        this.addKineProjectAnim();
+        this.addGroupomaniaProjectAnim();
+        this.addDesignToolsAnim();
+        this.displayGithubGrid(window.innerWidth < 768 ? this.smallScreenGithubChart : this.largeScreenGithubChart);
+        window.addEventListener('resize', () => this.onResize(), true);
+        window.onload = () => {
+            this.loaderContainer.classList.add('hidden');
+            document.body.classList.remove('fixed');
+            setTimeout(() => {
+                this.loaderContainer.style.display = 'none';
+                this.animateSpeechText();
+            }, '300');
+        };
+    }
+
+    /*
+        Init All
+    */
+
+    setMinHeightSizeSection(size) {
+        [this.introSpeech, this.introName, this.introJob].forEach((section) => {
+            section.style.minHeight = `${size}px`;
+        });
+    }
+
+    initHeader() {
+        const openMenu = () => {
+            document.body.classList.add('fixed');
+            this.headerMobileMenuContainer.classList.add('visible');
+        };
+
+        const closeMenu = () => {
+            document.body.classList.remove('fixed');
+            this.headerMobileMenuContainer.classList.remove('visible');
+        };
+
+        this.header.querySelector('.header-top__open-menu-button').addEventListener('click', openMenu);
+
+        this.header.querySelector('.header-mobile-menu__top button').addEventListener('click', closeMenu);
+
+        this.header.querySelectorAll('.header-mobile-menu__navbar a').forEach((link) => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        this.headerMobileMenuContainer.addEventListener('click', (e) => {
+            e.target === this.headerMobileMenuContainer && closeMenu();
+        });
+    }
+
+    /*
+        On Resize
+    */
+
+    onResize() {
+        const newSize =
+            window.innerWidth < 768 ? 'smallScreen' : window.innerWidth < 1024 ? 'mediumScreen' : 'largeScreen';
+        if (newSize !== this.currentScreenWidthSize) {
+            this.kineProjectScrollTrigger.refresh();
+            this.displayGithubGrid(newSize);
+            this.currentScreenWidthSize = newSize;
+        } else if (newSize === 'smallScreen') {
+            this.kineProjectScrollTrigger.refresh();
+        }
+    }
+
+    /*
+        Github Grid
+    */
+
+    displayGithubGrid(screenSize) {
+        const largeGrid = {
             numberBox: 365,
             coloredBoxList: [
                 42, 43, 44, 45, 46, 48, 49, 50, 51, 52, 53, 55, 56, 57, 58, 59, 60, 62, 63, 66, 67, 69, 70, 73, 74, 76,
@@ -29,7 +145,7 @@ class Display {
             ],
             monthList: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jui', 'Jui', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
         };
-        this.smallScreenGithubChart = {
+        const smallGrid = {
             numberBox: 183,
             coloredBoxList: [
                 28, 29, 30, 32, 33, 34, 36, 37, 38, 40, 43, 45, 48, 50, 51, 52, 54, 60, 64, 67, 70, 72, 75, 77, 80, 81,
@@ -38,125 +154,50 @@ class Display {
             ],
             monthList: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jui'],
         };
-        this.init();
-    }
 
-    init() {
-        this.splitting = Splitting();
-        this.setMinHeightSizeSection(this.currentScreenHeightSize);
-        // Pin Animation
-        this.initKineProjectAnimation();
-        this.initHeader();
-        this.initHeaderAnimation();
-        this.initIntroSpeechAnimation();
-        this.initIntroNameAnimation();
-        this.initIntroJobAnimation();
-        this.initTitleProjectAnimation();
-        this.initGroupomaniaProjectAnimation();
-        this.initDesignToolsAnimation();
-        this.displayGithubChart(window.innerWidth < 768 ? this.smallScreenGithubChart : this.largeScreenGithubChart);
-        window.addEventListener('resize', () => this.onResize(), true);
-        window.onload = () => {
-            const loaderContainer = document.querySelector('.loader-container');
-            loaderContainer.classList.add('hidden');
-            document.body.classList.remove('fixed');
-            setTimeout(() => {
-                loaderContainer.style.display = 'none';
-                this.animateSpeechTex()
-            }, '300');
+        const githubGrid = screenSize === 'smallScreen' ? smallGrid : largeGrid;
+
+        const deleteChilds = (parent) => {
+            let child = parent.lastElementChild;
+            while (child) {
+                parent.removeChild(child);
+                child = parent.lastElementChild;
+            }
         };
+        deleteChilds(this.githubGridBoxsContainer);
+        deleteChilds(this.githubGridDates);
 
-        console.log(this.splitting);
-    }
-
-    setMinHeightSizeSection(size) {
-        [this.introSpeech, this.introName, this.introJob].forEach((section) => {
-            section.style.minHeight = `${size}px`;
+        for (let i = 0; i < githubGrid.numberBox; i++) {
+            const el = document.createElement('div');
+            el.classList = `github-grid-boxs-container__box ${githubGrid.coloredBoxList.includes(i) ? 'active' : ''}`;
+            this.githubGridBoxsContainer.appendChild(el);
+        }
+        githubGrid.monthList.forEach((month) => {
+            const el = document.createElement('span');
+            el.appendChild(document.createTextNode(month));
+            this.githubGridDates.appendChild(el);
         });
     }
 
-    initHeader() {
-        const openMenu = () => {
-            document.body.classList.add('fixed');
-            headerMobileMenuContainer.classList.add('visible');
-        };
+    /*
+        Animations
+    */
 
-        const closeMenu = () => {
-            document.body.classList.remove('fixed');
-            headerMobileMenuContainer.classList.remove('visible');
-        };
-
-        const headerMobileMenuContainer = document.querySelector('.header-mobile-menu-container');
-
-        document.querySelector('.header-top__open-menu-button').addEventListener('click', openMenu);
-
-        document.querySelector('.header-mobile-menu__top button').addEventListener('click', closeMenu);
-
-        document.querySelectorAll('.header-mobile-menu__navbar a').forEach((link) => {
-            link.addEventListener('click', closeMenu);
-        });
-
-        headerMobileMenuContainer.addEventListener('click', (e) => {
-            e.target === headerMobileMenuContainer && closeMenu();
-        });
-    }
-
-    animateSpeechTex() {
+    animateSpeechText() {
         const tl = gsap.timeline();
         this.splitting.forEach((p) => {
-            tl.to(p.chars, { opacity: 1, y: 0 , duration: .6,   ease: "back.out(1)", stagger: .03 });
+            tl.to(p.chars, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(1)', stagger: 0.02 });
         });
     }
 
-    initKineProjectAnimation() {
-        const kineProject = document.querySelector('#kine-project');
-        const kineProjectDevice = kineProject.querySelector('.project__device-container');
-        const kineProjectDetail = kineProject.querySelector('.project__detail');
-        const kineProjectPhoneImage = kineProject.querySelector('#kine-project-phone-image');
-        const kineProjectScreenImage = kineProject.querySelector('#kine-project-screen-image');
-
-        gsap.from(kineProjectDevice, {
-            x: '100%',
-            autoAlpha: 1,
-            scrollTrigger: {
-                trigger: kineProjectDevice,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: 1,
-            },
-        });
-
-        gsap.from(kineProjectDetail, {
-            x: '-100%',
-            autoAlpha: 1,
-            scrollTrigger: {
-                trigger: kineProjectDetail,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: 1,
-            },
-        });
-
-        gsap.to(kineProjectScreenImage, {
-            y: -1720,
-            autoAlpha: 1,
-            scrollTrigger: {
-                trigger: kineProjectPhoneImage,
-                start: '70% center',
-                toggleActions: 'play none reverse none',
-                scrub: 1,
-            },
-        });
-
+    addPinAnim() {
         const getStartKineProjectScrollTrigger = () =>
-            kineProject.getBoundingClientRect().bottom -
-            kineProjectDevice.getBoundingClientRect().bottom +
-            kineProjectDevice.offsetHeight / 2;
+            this.kineProject.getBoundingClientRect().bottom -
+            this.kineProjectDevice.getBoundingClientRect().bottom +
+            this.kineProjectDevice.offsetHeight / 2;
 
         this.kineProjectScrollTrigger = ScrollTrigger.create({
-            trigger: kineProject,
+            trigger: this.kineProject,
             pin: true,
             start: () =>
                 window.innerWidth < 1024 ? `bottom-=${getStartKineProjectScrollTrigger()} center` : 'center center',
@@ -166,29 +207,25 @@ class Display {
         });
     }
 
-    initHeaderAnimation() {
-        const header = document.querySelector('.header');
+    addHeaderAnim() {
         ScrollTrigger.create({
             trigger: this.introJob,
             start: 'top top+=30',
             end: 'bottom top+=30',
             toggleActions: 'play reverse play reverse',
-            toggleClass: { className: 'light', targets: header },
+            toggleClass: { className: 'light', targets: this.header },
         });
         ScrollTrigger.create({
             trigger: this.skills,
             start: 'top top+=30',
             end: 'bottom top+=30',
             toggleActions: 'play reverse play reverse',
-            toggleClass: { className: 'light', targets: header },
+            toggleClass: { className: 'light', targets: this.header },
         });
     }
 
-    initIntroSpeechAnimation() {
-        const introSpeechTextContainer = this.introSpeech.querySelector('.intro-speech__text-container');
-        const introSpeechImageContainer = this.introSpeech.querySelector('.intro-speech__image-container');
-
-        gsap.to(introSpeechTextContainer, {
+    addIntroSpeechAnim() {
+        gsap.to(this.introSpeechTextContainer, {
             y: 100,
             scrollTrigger: {
                 trigger: this.introSpeech,
@@ -198,7 +235,7 @@ class Display {
             },
         });
 
-        gsap.to(introSpeechImageContainer, {
+        gsap.to(this.introSpeechImageContainer, {
             scale: 2,
             scrollTrigger: {
                 trigger: this.introSpeech,
@@ -209,9 +246,7 @@ class Display {
         });
     }
 
-    initIntroNameAnimation() {
-        const introNameTitle = this.introName.querySelector('.intro-name h1');
-
+    addIntroNameAnim() {
         gsap.to(this.introName, {
             backgroundPositionY: 50,
             scrollTrigger: {
@@ -224,7 +259,7 @@ class Display {
         });
 
         gsap.fromTo(
-            introNameTitle,
+            this.introNameTitle,
             { x: '-20%' },
             {
                 x: '8%',
@@ -239,9 +274,7 @@ class Display {
         );
     }
 
-    initIntroJobAnimation() {
-        const introJobTitle = this.introJob.querySelector('.intro-job h2');
-
+    addIntroJobAnim() {
         gsap.to(this.introJob, {
             backgroundPositionY: -50,
             scrollTrigger: {
@@ -254,7 +287,7 @@ class Display {
         });
 
         gsap.fromTo(
-            introJobTitle,
+            this.introJobTitle,
             { x: '20%' },
             {
                 x: '-5%',
@@ -269,18 +302,16 @@ class Display {
         );
     }
 
-    initTitleProjectAnimation() {
-        const projectsTitle = document.querySelector('.projects h2');
-
+    addTitleProjectAnim() {
         gsap.fromTo(
-            projectsTitle,
+            this.projectsTitle,
             {
                 y: '25%',
             },
             {
                 y: '-10%',
                 scrollTrigger: {
-                    trigger: projectsTitle,
+                    trigger: this.projectsTitle,
                     start: 'top+=10% bottom',
                     end: 'bottom top',
                     toggleActions: 'play none reverse none',
@@ -290,249 +321,105 @@ class Display {
         );
     }
 
-    initGroupomaniaProjectAnimation() {
-        const groupomaniaProject = document.querySelector('#groupomania-project');
-        const groupomaniaProjectDevice = groupomaniaProject.querySelector('.project__device-container');
-        const groupomaniaProjectDetail = groupomaniaProject.querySelector('.project__detail');
-
-        gsap.from(groupomaniaProjectDevice, {
-            x: '-100%',
-            autoAlpha: 1,
-            scrollTrigger: {
-                trigger: groupomaniaProjectDevice,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: 1,
-            },
-        });
-
-        gsap.from(groupomaniaProjectDetail, {
-            x: '100%',
-            autoAlpha: 1,
-            scrollTrigger: {
-                trigger: groupomaniaProjectDetail,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: 1,
-            },
-        });
-    }
-
-    initDesignToolsAnimation() {
-        const designToolsProject = document.querySelector('#design-tools-project');
-        const designToolsProjectDevice = designToolsProject.querySelector('.project__device-container');
-        const designToolsProjectDetail = designToolsProject.querySelector('.project__detail');
-
-        gsap.from(designToolsProjectDevice, {
-            x: '100%',
-            autoAlpha: 1,
-            scrollTrigger: {
-                trigger: designToolsProjectDevice,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: 1,
-            },
-        });
-
-        gsap.from(designToolsProjectDetail, {
-            x: '-100%',
-            autoAlpha: 1,
-            scrollTrigger: {
-                trigger: designToolsProjectDetail,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: 1,
-            },
-        });
-    }
-
-    displayGithubChart(githubChart) {
-        const deleteChilds = (parent) => {
-            let child = parent.lastElementChild;
-            while (child) {
-                parent.removeChild(child);
-                child = parent.lastElementChild;
-            }
-        };
-        deleteChilds(this.githubChartboxContainer);
-        deleteChilds(this.githubChartDates);
-
-        for (let i = 0; i < githubChart.numberBox; i++) {
-            const el = document.createElement('div');
-            el.classList = `github-chart-box-container__box ${githubChart.coloredBoxList.includes(i) ? 'active' : ''}`;
-            this.githubChartboxContainer.appendChild(el);
-        }
-        githubChart.monthList.forEach((month) => {
-            const el = document.createElement('span');
-            el.appendChild(document.createTextNode(month));
-            this.githubChartDates.appendChild(el);
-        });
-    }
-
-    // initContactAnimation() {
-    //     const contactSection = document.querySelector('.contact');
-    //     const contactTitle = contactSection.querySelector('.contact__title');
-    //     const contactLeft = contactSection.querySelector('.contact__left');
-    // }
-
-    onResize() {
-        const newSize =
-            window.innerWidth < 768 ? 'smallScreen' : window.innerWidth < 1024 ? 'mediumScreen' : 'largeScreen';
-        if (newSize !== this.currentScreenWidthSize) {
-            this.kineProjectScrollTrigger.refresh();
-            this.displayGithubChart(
-                newSize === 'smallScreen' ? this.smallScreenGithubChart : this.largeScreenGithubChart
-            );
-            this.currentScreenWidthSize = newSize;
-        } else if (newSize === 'smallScreen') {
-            this.kineProjectScrollTrigger.refresh();
-        }
-    }
-}
-
-class Input {
-    constructor(form, htmlElement, regExp) {
-        this.htmlElement = htmlElement;
-        this.regExp = regExp;
-        this.validValue = false;
-        form.allInputs.push(this);
-    }
-}
-
-class Form {
-    constructor() {
-        this.form = document.querySelector('.contact-form');
-        this.allInputsContainer = Array.from(this.form.querySelectorAll(`.contact-form-input-container`));
-        this.submitDiv = this.form.querySelector('.contact-form-submit');
-        this.allInputs = [];
-        this.init();
-    }
-
-    init() {
-        // Init input
-        new Input(
-            this,
-            this.form.firstname,
-            /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹ '-]{2,}$/u
-        );
-        new Input(
-            this,
-            this.form.lastname,
-            /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹ '-]{2,}$/u
-        );
-        new Input(this, this.form.email, /^[a-zA-Z0-9_.-]+[@]{1}[a-zA-Z0-9_.-]+[.]{1}[a-z]{2,10}$/);
-        new Input(this, this.form.message, /(?!^$)([^\s])/);
-
-        autosize(this.form.message);
-
-        this.allInputs.forEach((input) => {
-            input.htmlElement.value && this.checkValidInput(input);
-            input.htmlElement.addEventListener('input', () => this.checkValidInput(input));
-        });
-
-        // Focused input
-        this.form.addEventListener(
-            'focus',
-            (event) => {
-                event.target !== this.submitButton &&
-                    event.target.parentNode.classList.add('contact-form-input-container--focused');
-            },
-            true
-        );
-
-        this.form.addEventListener(
-            'blur',
-            (event) => {
-                event.target !== this.submitButton &&
-                    event.target.parentNode.classList.remove('contact-form-input-container--focused');
-            },
-            true
-        );
-
-        // Submit
-
-        this.form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            this.submitDiv.classList.remove('contact-form-input-container--success');
-            this.submitDiv.classList.remove('contact-form-input-container--error');
-            this.checkAllInputValid() && new Request(this.form, this.submitDiv);
-        });
-    }
-
-    checkValidInput(input) {
-        const { regExp, htmlElement } = input;
-        if (regExp.test(htmlElement.value)) {
-            htmlElement.parentNode.classList.remove('contact-form-input-container--invalid');
-            htmlElement.parentNode.classList.add('contact-form-input-container--valid');
-            input.validValue = true;
-        } else {
-            htmlElement.parentNode.classList.remove('contact-form-input-container--valid');
-            htmlElement.parentNode.classList.add('contact-form-input-container--invalid');
-            input.validValue = false;
-        }
-    }
-
-    checkAllInputValid() {
-        for (let input of this.allInputs) {
-            if (!input.validValue) {
-                input.htmlElement.parentNode.classList.add('contact-form-input-container--invalid');
-                return false;
-            }
-        }
-        return true;
-    }
-}
-
-class Request {
-    constructor(form, submitDiv) {
-        this.form = form;
-        this.submitDiv = submitDiv;
-        this.init();
-    }
-
-    async init() {
-        const apiUrl = import.meta.env.PROD
-            ? 'https://sebastien-etcheto-contact.alwaysdata.net/api/contact'
-            : 'http://localhost:8080/api/contact';
-        console.log(apiUrl);
-        this.submitDiv.classList.add('contact-form-submit--submitting');
-        try {
-            const res = await fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
+    addKineProjectAnim() {
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.kineProjectDevice, {
+                x: '100%',
+                autoAlpha: 1,
+                scrollTrigger: {
+                    trigger: this.kineProjectDevice,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: 1,
                 },
-                body: JSON.stringify({
-                    lastName: this.form.lastname.value,
-                    firstName: this.form.firstname.value,
-                    email: this.form.email.value,
-                    message: this.form.message.value,
-                }),
-            });
-            res.ok ? this.requetSuccess() : this.requetError();
-        } catch (err) {
-            console.log(err);
-            this.requetError();
-        }
+            })
+        );
+
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.kineProjectDetail, {
+                x: '-100%',
+                autoAlpha: 1,
+                scrollTrigger: {
+                    trigger: this.kineProjectDetail,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: 1,
+                },
+            })
+        );
+
+        gsap.to(this.kineProjectScreenImage, {
+            y: -1720,
+            autoAlpha: 1,
+            scrollTrigger: {
+                trigger: this.kineProjectPhoneImage,
+                start: '70% center',
+                toggleActions: 'play none reverse none',
+                scrub: 1,
+            },
+        });
     }
 
-    requetSuccess() {
-        this.submitDiv.classList.remove('contact-form-submit--submitting');
-        this.submitDiv.classList.add('contact-form-submit--success');
-        this.form.lastname.value = '';
-        this.form.firstname.value = '';
-        this.form.email.value = '';
-        this.form.message.value = '';
+    addGroupomaniaProjectAnim() {
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.groupomaniaProjectDevice, {
+                x: '-100%',
+                autoAlpha: 1,
+                scrollTrigger: {
+                    trigger: this.groupomaniaProjectDevice,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: 1,
+                },
+            })
+        );
+
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.groupomaniaProjectDetail, {
+                x: '100%',
+                autoAlpha: 1,
+                scrollTrigger: {
+                    trigger: this.groupomaniaProjectDetail,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: 1,
+                },
+            })
+        );
     }
 
-    requetError() {
-        this.submitDiv.classList.remove('contact-form-submit--submitting');
-        this.submitDiv.classList.add('contact-form-submit--error');
+    addDesignToolsAnim() {
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.designToolsProjectDevice, {
+                x: '100%',
+                autoAlpha: 1,
+                scrollTrigger: {
+                    trigger: this.designToolsProjectDevice,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: 1,
+                },
+            })
+        );
+
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.designToolsProjectDetail, {
+                x: '-100%',
+                autoAlpha: 1,
+                scrollTrigger: {
+                    trigger: this.designToolsProjectDetail,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: 1,
+                },
+            })
+        );
     }
 }
 
