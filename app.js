@@ -322,29 +322,33 @@ class Display {
     }
 
     addKineProjectAnim() {
-        gsap.from(this.kineProjectDevice, {
-            x: '100%',
-            autoAlpha: 1,
-            scrollTrigger: {
-                trigger: this.kineProjectDevice,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: 1,
-            },
-        });
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.kineProjectDevice, {
+                x: '100%',
+                autoAlpha: 1,
+                scrollTrigger: {
+                    trigger: this.kineProjectDevice,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: 1,
+                },
+            })
+        );
 
-        gsap.from(this.kineProjectDetail, {
-            x: '-100%',
-            autoAlpha: 1,
-            scrollTrigger: {
-                trigger: this.kineProjectDetail,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: 1,
-            },
-        });
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.kineProjectDetail, {
+                x: '-100%',
+                autoAlpha: 1,
+                scrollTrigger: {
+                    trigger: this.kineProjectDetail,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: 1,
+                },
+            })
+        );
 
         gsap.to(this.kineProjectScreenImage, {
             y: -1720,
@@ -352,62 +356,72 @@ class Display {
             scrollTrigger: {
                 markers: true,
                 trigger: this.kineProjectPhoneImage,
-                start: '70% center',
+                start: 'center center',
+                end: 'bottom top',
+                scrub: .25,
                 toggleActions: 'play none reverse none',
             },
         });
     }
 
     addGroupomaniaProjectAnim() {
-        gsap.from(this.groupomaniaProjectDevice, {
-            x: '-100%',
-            autoAlpha: 1,
-            scrollTrigger: {
-                trigger: this.groupomaniaProjectDevice,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: 1,
-            },
-        });
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.groupomaniaProjectDevice, {
+                x: '-100%',
+                autoAlpha: 1,
+                scrollTrigger: {
+                    trigger: this.groupomaniaProjectDevice,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: 1,
+                },
+            })
+        );
 
-        gsap.from(this.groupomaniaProjectDetail, {
-            x: '100%',
-            autoAlpha: 1,
-            scrollTrigger: {
-                trigger: this.groupomaniaProjectDetail,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: 1,
-            },
-        });
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.groupomaniaProjectDetail, {
+                x: '100%',
+                autoAlpha: 1,
+                scrollTrigger: {
+                    trigger: this.groupomaniaProjectDetail,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: 1,
+                },
+            })
+        );
     }
 
     addDesignToolsAnim() {
-        gsap.from(this.designToolsProjectDevice, {
-            x: '100%',
-            autoAlpha: 1,
-            scrollTrigger: {
-                trigger: this.designToolsProjectDevice,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: 1,
-            },
-        });
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.designToolsProjectDevice, {
+                x: '100%',
+                autoAlpha: 1,
+                scrollTrigger: {
+                    trigger: this.designToolsProjectDevice,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: 1,
+                },
+            })
+        );
 
-        gsap.from(this.designToolsProjectDetail, {
-            x: '-100%',
-            autoAlpha: 1,
-            scrollTrigger: {
-                trigger: this.designToolsProjectDetail,
-                start: 'top bottom',
-                end: '25% center',
-                toggleActions: 'play none reverse none',
-                scrub: 1,
-            },
-        });
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.designToolsProjectDetail, {
+                x: '-100%',
+                autoAlpha: 1,
+                scrollTrigger: {
+                    trigger: this.designToolsProjectDetail,
+                    start: 'top bottom',
+                    end: '25% center',
+                    toggleActions: 'play none reverse none',
+                    scrub: 1,
+                },
+            })
+        );
     }
 }
 
