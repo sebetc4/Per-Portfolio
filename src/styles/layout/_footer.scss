@@ -1,0 +1,28 @@
+// Insipred by: https://codepen.io/gearmobile/pen/RWPEyZ
+.footer {
+    padding: 20px 0;
+
+    p {
+        margin-top: 0.5rem;
+        font-size: 16px;
+        text-align: center;
+
+        strong {
+            font-weight: bold;
+        }
+
+        &:last-child {
+            font-weight: bold;
+            font-size: 14px;
+            color: $primary-color;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .footer {
+        padding: 50px 30px;
+
+        height: auto;
+    }
+}

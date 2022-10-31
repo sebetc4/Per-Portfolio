@@ -3,6 +3,8 @@
 
 // Libs
 @import './src/styles/libs/variables';
+@import './src/styles/libs/animations';
+@import './src/styles/libs/mixins';
 
 // Base
 @import './src/styles/base/settings';
@@ -19,3 +21,4 @@
 @import './src/styles/layout/github';
 @import './src/styles/layout/skills';
 @import './src//styles/layout/contact';
+@import './src/styles/layout/footer'

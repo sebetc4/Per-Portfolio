@@ -4,16 +4,16 @@
 	box-sizing: border-box;
 }
 
-.fixed {
+body.fixed {
     height: 100vw;
     overflow: hidden;
 }
 
 html {
     scroll-behavior: smooth;
-    background-color: #111;
+    background-color: #eee;
 }
 
 .main {
-    overflow: hidden;
+    overflow-x: hidden;
 }

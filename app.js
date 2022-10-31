@@ -19,7 +19,9 @@ class Display {
         this.introJob = document.querySelector('.intro-job');
         this.introJobTitle = this.introJob.querySelector('.intro-job h2');
         // Projects
-        this.projectsTitle = document.querySelector('.projects h2');
+        this.projectsTitleContainer = document.querySelector('.projects-title-container');
+        this.projectsTitleWrapper = this.projectsTitleContainer.querySelector('.projects-title-wrapper');
+        this.projectsTitle = this.projectsTitleWrapper.querySelector('.projects-title-wrapper h2');
         // Kiné Project
         this.kineProject = document.querySelector('#kine-project');
         this.kineProjectDevice = this.kineProject.querySelector('.project__device-container');
@@ -35,10 +37,20 @@ class Display {
         this.designToolsProjectDevice = this.designToolsProject.querySelector('.project__device-container');
         this.designToolsProjectDetail = this.designToolsProject.querySelector('.project__detail');
         // Github
-        this.githubGridBoxsContainer = document.querySelector('.github-grid-boxs-container');
-        this.githubGridDates = document.querySelector('.github-grid-dates');
+        this.githubWrapper = document.querySelector('.github-wrapper');
+        this.githubSection = this.githubWrapper.querySelector('.github');
+        this.githubGridBoxsContainer = this.githubSection.querySelector('.github-grid-boxs-container');
+        this.githubGridDates = this.githubSection.querySelector('.github-grid-dates');
         // Skills
-        this.skills = document.querySelector('#skills');
+        this.skillsWrapper = document.querySelector('.skills-wrapper');
+        this.skillsSection = this.skillsWrapper.querySelector('.skills');
+        // Contact
+        this.contactSection = document.querySelector('.contact');
+        this.contactLeft = this.contactSection.querySelector('.contact__left');
+        this.contactRight = this.contactSection.querySelector('.contact__right');
+        this.contactTitle = this.contactSection.querySelector('.contact__title');
+        // Footer
+        this.footer = document.querySelector('.footer');
 
         this.splitting = Splitting();
         this.matchMedia = gsap.matchMedia();
@@ -53,6 +65,7 @@ class Display {
     init() {
         this.setMinHeightSizeSection(window.innerHeight || document.documentElement.clientHeight);
         this.initHeader();
+        this.displayGithubGrid(this.currentScreenWidthSize);
         // Add Anim
         this.addPinAnim();
         this.addHeaderAnim();
@@ -63,7 +76,10 @@ class Display {
         this.addKineProjectAnim();
         this.addGroupomaniaProjectAnim();
         this.addDesignToolsAnim();
-        this.displayGithubGrid(window.innerWidth < 768 ? this.smallScreenGithubChart : this.largeScreenGithubChart);
+        this.addGithubAnim();
+        this.addSkillsAnim();
+        this.addContactAnim();
+        // Event Listener
         window.addEventListener('resize', () => this.onResize(), true);
         window.onload = () => {
             this.loaderContainer.classList.add('hidden');
@@ -183,6 +199,16 @@ class Display {
         Animations
     */
 
+    animateEnterFixedSection = (parent, children) => {
+        parent.style.height = `${children.offsetHeight}px`;
+        children.classList.add('fixed');
+    };
+
+    animateLeaveFixedSection = (parent, children) => {
+        parent.style.height = `auto`;
+        children.classList.remove('fixed');
+    };
+
     animateSpeechText() {
         const tl = gsap.timeline();
         this.splitting.forEach((p) => {
@@ -192,7 +218,7 @@ class Display {
 
     addPinAnim() {
         this.matchMedia.add(
-            '(min-width: 1024px)',
+            '(min-width: 1025px)',
             () =>
                 (this.kineProjectScrollTrigger = ScrollTrigger.create({
                     trigger: this.kineProject,
@@ -213,7 +239,7 @@ class Display {
             toggleClass: { className: 'light', targets: this.header },
         });
         ScrollTrigger.create({
-            trigger: this.skills,
+            trigger: this.skillsSection,
             start: 'top top+=30',
             end: 'bottom top+=30',
             toggleActions: 'play reverse play reverse',
@@ -300,26 +326,41 @@ class Display {
     }
 
     addTitleProjectAnim() {
-        gsap.fromTo(
-            this.projectsTitle,
-            {
-                y: '25%',
-            },
-            {
-                y: '-10%',
-                scrollTrigger: {
-                    trigger: this.projectsTitle,
-                    start: 'top+=10% bottom',
-                    end: 'bottom top',
-                    toggleActions: 'play none reverse none',
-                    scrub: 1,
+        this.matchMedia.add('(min-width: 1025px)', () =>
+            ScrollTrigger.create({
+                trigger: this.projectsTitleContainer,
+                start: 'bottom bottom',
+                end: 'bottom top',
+                onEnter: () => this.animateEnterFixedSection(this.projectsTitleContainer, this.projectsTitleWrapper),
+                onLeave: () => this.animateLeaveFixedSection(this.projectsTitleContainer, this.projectsTitleWrapper),
+                onEnterBack: () =>
+                    this.animateEnterFixedSection(this.projectsTitleContainer, this.projectsTitleWrapper),
+                onLeaveBack: () =>
+                    this.animateLeaveFixedSection(this.projectsTitleContainer, this.projectsTitleWrapper),
+            })
+        );
+        this.matchMedia.add('(max-width: 1024px)', () =>
+            gsap.fromTo(
+                this.projectsTitle,
+                {
+                    y: '25%',
                 },
-            }
+                {
+                    y: '-10%',
+                    scrollTrigger: {
+                        trigger: this.projectsTitle,
+                        start: 'top+=10% bottom',
+                        end: 'bottom top',
+                        toggleActions: 'play none reverse none',
+                        scrub: 1,
+                    },
+                }
+            )
         );
     }
 
     addKineProjectAnim() {
-        this.matchMedia.add('(min-width: 1024px)', () =>
+        this.matchMedia.add('(min-width: 1025px)', () =>
             gsap.from(this.kineProjectDevice, {
                 x: '100%',
                 autoAlpha: 1,
@@ -333,7 +374,7 @@ class Display {
             })
         );
 
-        this.matchMedia.add('(min-width: 1024px)', () =>
+        this.matchMedia.add('(min-width: 1025px)', () =>
             gsap.from(this.kineProjectDetail, {
                 x: '-100%',
                 autoAlpha: 1,
@@ -347,7 +388,7 @@ class Display {
             })
         );
 
-        this.matchMedia.add('(min-width: 1024px)', () =>
+        this.matchMedia.add('(min-width: 1025px)', () =>
             gsap.to(this.kineProjectScreenImage, {
                 y: -1720,
                 autoAlpha: 1,
@@ -363,7 +404,7 @@ class Display {
     }
 
     addGroupomaniaProjectAnim() {
-        this.matchMedia.add('(min-width: 1024px)', () =>
+        this.matchMedia.add('(min-width: 1025px)', () =>
             gsap.from(this.groupomaniaProjectDevice, {
                 x: '-100%',
                 autoAlpha: 1,
@@ -377,7 +418,7 @@ class Display {
             })
         );
 
-        this.matchMedia.add('(min-width: 1024px)', () =>
+        this.matchMedia.add('(min-width: 1025px)', () =>
             gsap.from(this.groupomaniaProjectDetail, {
                 x: '100%',
                 autoAlpha: 1,
@@ -393,7 +434,7 @@ class Display {
     }
 
     addDesignToolsAnim() {
-        this.matchMedia.add('(min-width: 1024px)', () =>
+        this.matchMedia.add('(min-width: 1025px)', () =>
             gsap.from(this.designToolsProjectDevice, {
                 x: '100%',
                 autoAlpha: 1,
@@ -407,7 +448,7 @@ class Display {
             })
         );
 
-        this.matchMedia.add('(min-width: 1024px)', () =>
+        this.matchMedia.add('(min-width: 1025px)', () =>
             gsap.from(this.designToolsProjectDetail, {
                 x: '-100%',
                 autoAlpha: 1,
@@ -420,6 +461,86 @@ class Display {
                 },
             })
         );
+    }
+
+    addGithubAnim() {
+        ScrollTrigger.create({
+            trigger: this.githubWrapper,
+            start: 'bottom bottom',
+            end: 'bottom top',
+            onEnter: () => this.animateEnterFixedSection(this.githubWrapper, this.githubSection),
+            onLeave: () => this.animateLeaveFixedSection(this.githubWrapper, this.githubSection),
+            onEnterBack: () => this.animateEnterFixedSection(this.githubWrapper, this.githubSection),
+            onLeaveBack: () => this.animateLeaveFixedSection(this.githubWrapper, this.githubSection),
+        });
+    }
+
+    addSkillsAnim() {
+        ScrollTrigger.create({
+            trigger: this.skillsWrapper,
+            start: 'bottom bottom',
+            end: 'bottom top',
+            onEnter: () => this.animateEnterFixedSection(this.skillsWrapper, this.skillsSection),
+            onLeave: () => this.animateLeaveFixedSection(this.skillsWrapper, this.skillsSection),
+            onEnterBack: () => this.animateEnterFixedSection(this.skillsWrapper, this.skillsSection),
+            onLeaveBack: () => this.animateLeaveFixedSection(this.skillsWrapper, this.skillsSection),
+        });
+    }
+
+    addContactAnim() {
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.contactLeft, {
+                x: '-100%',
+                scrollTrigger: {
+                    trigger: this.contactSection,
+                    start: 'top bottom',
+                    end: 'center center',
+                    scrub: 1,
+                },
+            })
+        );
+
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.contactRight, {
+                x: '100%',
+                scrollTrigger: {
+                    trigger: this.contactSection,
+                    start: 'top bottom',
+                    end: 'center center',
+                    scrub: 1,
+                },
+            })
+        );
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            gsap.from(this.contactTitle, {
+                x: '100%',
+                scrollTrigger: {
+                    trigger: this.contactSection,
+                    start: 'top bottom',
+                    end: 'center center',
+                    scrub: 1,
+                },
+            })
+        );
+
+        const onEnter = () => {
+            this.contactSection.style.height = `${this.contactLeft.offsetHeight}px`;
+            [this.contactLeft, this.contactRight, this.contactTitle].forEach((item) => item.classList.add('fixed'));
+        };
+
+        const onLeave = () => {
+            [this.contactLeft, this.contactRight, this.contactTitle].forEach((item) => item.classList.remove('fixed'));
+        };
+
+        ScrollTrigger.create({
+            trigger: this.contactSection,
+            start: 'top bottom',
+            end: 'bottom bottom',
+            onEnter,
+            onLeave,
+            onEnterBack: onEnter,
+            onLeaveBack: onLeave,
+        });
     }
 }
 
