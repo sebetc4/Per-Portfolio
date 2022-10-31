@@ -354,6 +354,7 @@ class Display {
             y: -1720,
             autoAlpha: 1,
             scrollTrigger: {
+                markers: true,
                 trigger: this.kineProjectPhoneImage,
                 start: '70% center',
                 toggleActions: 'play none reverse none',
