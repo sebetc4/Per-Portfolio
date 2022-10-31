@@ -357,7 +357,6 @@ class Display {
                 trigger: this.kineProjectPhoneImage,
                 start: '70% center',
                 toggleActions: 'play none reverse none',
-                scrub: 1,
             },
         });
     }
