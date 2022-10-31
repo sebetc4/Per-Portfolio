@@ -191,11 +191,6 @@ class Display {
     }
 
     addPinAnim() {
-        const getStartKineProjectScrollTrigger = () =>
-            this.kineProject.getBoundingClientRect().bottom -
-            this.kineProjectDevice.getBoundingClientRect().bottom +
-            this.kineProjectDevice.offsetHeight / 2;
-
         this.matchMedia.add(
             '(min-width: 1024px)',
             () =>
