@@ -83,8 +83,14 @@
         />
 
         <!-- Scripts -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+        <script
+            async
+            src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"
+        ></script>
+        <script
+            async
+            src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"
+        ></script>
         <script
             type="module"
             src="./app.js"
@@ -145,7 +151,10 @@
                             </li>
                         </ul>
                     </nav>
-                    <button class="header-top__open-menu-button">
+                    <button
+                        class="header-top__open-menu-button"
+                        aria-label="Ouvrir Menu"
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 448 512"
@@ -165,7 +174,7 @@
                                 src="./public/images/logo.png"
                                 alt="Logo de Sébastien ETCHETO"
                             />
-                            <button>
+                            <button aria-label="Fermer menu">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 320 512"
