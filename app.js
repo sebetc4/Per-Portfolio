@@ -3,8 +3,6 @@ import Splitting from 'splitting';
 import { Form } from './src/scripts';
 gsap.registerPlugin(ScrollTrigger);
 
-console.log(document.querySelector('.loader-logo path:nth-child(3)').getTotalLength());
-
 class Display {
     constructor() {
         // Loader
@@ -530,7 +528,6 @@ class Display {
             this.contactRight.style.height = `${this.contactLeft.offsetHeight - this.contactTitle.offsetHeight}px`;
             this.contactRight.style.top = `${this.contactTitle.offsetHeight}px`;
             [this.contactLeft, this.contactRight, this.contactTitle].forEach((item) => item.classList.add('fixed'));
-            console.log('fuch');
         };
 
         const onLeave = () => {
@@ -540,7 +537,6 @@ class Display {
 
         this.matchMedia.add('(min-width: 1024px)', () =>
             ScrollTrigger.create({
-                markers: true,
                 trigger: this.contactSection,
                 start: 'top bottom',
                 end: () => `top+=${(window.innerHeight || document.documentElement.clientHeight) / 2}px center`,
