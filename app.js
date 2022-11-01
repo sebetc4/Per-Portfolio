@@ -50,7 +50,7 @@ class Display {
         this.contactLeft = this.contactSection.querySelector('.contact__left');
         this.contactRight = this.contactSection.querySelector('.contact__right');
         this.contactTitle = this.contactSection.querySelector('.contact__title');
-        this.refreshedContactAnim = []
+        this.refreshedContactAnim = [];
         // Footer
         this.footerContainer = document.querySelector('.footer-container');
         this.footer = this.footerContainer.querySelector('.footer');
@@ -523,27 +523,15 @@ class Display {
             })
         );
 
-        const onEnter = () => {
-            this.contactSection.style.height = `${this.contactLeft.offsetHeight}px`;
-            this.contactRight.style.height = `${this.contactLeft.offsetHeight - this.contactTitle.offsetHeight}px`;
-            this.contactRight.style.top = `${this.contactTitle.offsetHeight}px`;
-            [this.contactLeft, this.contactRight, this.contactTitle].forEach((item) => item.classList.add('fixed'));
-        };
-
-        const onLeave = () => {
-            [this.contactLeft, this.contactRight, this.contactTitle].forEach((item) => item.classList.remove('fixed'));
-            this.contactSection.style.height = `auto`;
-        };
-
         this.matchMedia.add('(min-width: 1024px)', () =>
             ScrollTrigger.create({
                 trigger: this.contactSection,
                 start: 'top bottom',
                 end: () => `top+=${(window.innerHeight || document.documentElement.clientHeight) / 2}px center`,
-                onEnter,
-                onLeave,
-                onEnterBack: onEnter,
-                onLeaveBack: onLeave,
+                onEnter: () => this.animateEnterFixedSection(this.contactContainer, this.contactSection),
+                onLeave: () => this.animateLeaveFixedSection(this.contactContainer, this.contactSection),
+                onEnterBack: () => this.animateEnterFixedSection(this.contactContainer, this.contactSection),
+                onLeaveBack: () => this.animateLeaveFixedSection(this.contactContainer, this.contactSection),
             })
         );
     }

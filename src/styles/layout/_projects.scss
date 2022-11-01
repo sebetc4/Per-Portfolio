@@ -167,6 +167,10 @@
         padding-bottom: 100px;
         background-color: #111;
 
+        &.fixed {
+            position: static;
+        }
+
         h2 {
             z-index: 9;
         }
@@ -234,5 +238,21 @@
         &__buttons {
             gap: 30px;
         }
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .projects-title-wrapper h2 {
+        font-size: 192px;
+    }
+
+    .project__detail h3 {
+        font-size: 77px;
+    }
+
+    .projects-title-wrapper.fixed {
+        width: 1920px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }

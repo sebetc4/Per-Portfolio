@@ -97,3 +97,17 @@
         }
     }
 }
+
+@media screen and (min-width: 1920px) {
+    .skills {
+        &.fixed {
+            width: 1920px;
+            left: 50%;
+            transform: translateX(-50%);
+        } 
+
+        &__title {
+            font-size: 134px;
+        }
+    }
+}

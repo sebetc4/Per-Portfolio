@@ -186,3 +186,11 @@
         }
     }
 }
+
+@media screen and (min-width: 1920px) {
+    .intro-speech__text-container h2,
+    .intro-name h1,
+    .intro-job h2 {
+        font-size: 192px;
+    }
+}
