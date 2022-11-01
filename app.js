@@ -532,15 +532,17 @@ class Display {
             [this.contactLeft, this.contactRight, this.contactTitle].forEach((item) => item.classList.remove('fixed'));
         };
 
-        ScrollTrigger.create({
-            trigger: this.contactSection,
-            start: 'top bottom',
-            end: 'bottom bottom',
-            onEnter,
-            onLeave,
-            onEnterBack: onEnter,
-            onLeaveBack: onLeave,
-        });
+        this.matchMedia.add('(min-width: 1024px)', () =>
+            ScrollTrigger.create({
+                trigger: this.contactSection,
+                start: 'top bottom',
+                end: 'bottom bottom',
+                onEnter,
+                onLeave,
+                onEnterBack: onEnter,
+                onLeaveBack: onLeave,
+            })
+        );
     }
 }
 

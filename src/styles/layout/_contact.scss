@@ -3,8 +3,6 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: auto 1fr;
-    transition: all .25s ease-in-out;
-	transform-origin: top top;
 
     &__title {
         grid-column: 2;
@@ -390,12 +388,15 @@
 
 @media screen and (max-width: 1024px) {
     .contact {
+        position: relative;
         z-index: 99;
+        display: block;
         box-shadow: 1px -2px 16px 9px #111;
         background-color: #111;
 
         &__title {
             width: 100%;
+            min-height: auto;
             font-size: 5vw;
         }
 

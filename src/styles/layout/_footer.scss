@@ -1,10 +1,9 @@
 // Insipred by: https://codepen.io/gearmobile/pen/RWPEyZ
 .footer {
-    padding: 20px 0;
+    padding: 50px 0;
 
     p {
         margin-top: 0.5rem;
-        font-size: 16px;
         text-align: center;
 
         strong {
@@ -13,7 +12,8 @@
 
         &:last-child {
             font-weight: bold;
-            font-size: 14px;
+            margin-top: 1rem;
+            font-size: 16px;
             color: $primary-color;
         }
     }
@@ -21,8 +21,11 @@
 
 @media screen and (max-width: 1024px) {
     .footer {
-        padding: 50px 30px;
-
-        height: auto;
+        position: relative;
+        z-index: 999;
+        background-color: #eee;
+        p {
+            font-size: 16px;
+        }
     }
 }
