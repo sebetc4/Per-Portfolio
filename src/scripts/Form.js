@@ -23,6 +23,7 @@ class Request {
                     lastName: this.form.lastname.value,
                     firstName: this.form.firstname.value,
                     email: this.form.email.value,
+                    number: this.form.number.value,
                     message: this.form.message.value,
                 }),
             });
@@ -38,6 +39,7 @@ class Request {
         this.form.lastname.value = '';
         this.form.firstname.value = '';
         this.form.email.value = '';
+        this.form.number.value= '';
         this.form.message.value = '';
     }
 
