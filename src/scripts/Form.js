@@ -77,6 +77,7 @@ export default class Form {
             this.form.lastname,
             /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹ '-]{2,}$/u
         );
+        new Input(this, this.form.number, /^\d{10}$/);
         new Input(this, this.form.email, /^[a-zA-Z0-9_.-]+[@]{1}[a-zA-Z0-9_.-]+[.]{1}[a-z]{2,10}$/);
         new Input(this, this.form.message, /(?!^$)([^\s])/);
 
