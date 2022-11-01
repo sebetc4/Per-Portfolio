@@ -3,7 +3,7 @@ import Splitting from 'splitting';
 import { Form } from './src/scripts';
 gsap.registerPlugin(ScrollTrigger);
 
-console.log(document.querySelector('.loader-logo path:nth-child(3)').getTotalLength())
+console.log(document.querySelector('.loader-logo path:nth-child(3)').getTotalLength());
 
 class Display {
     constructor() {
@@ -52,6 +52,7 @@ class Display {
         this.contactLeft = this.contactSection.querySelector('.contact__left');
         this.contactRight = this.contactSection.querySelector('.contact__right');
         this.contactTitle = this.contactSection.querySelector('.contact__title');
+        this.refreshedContactAnim = []
         // Footer
         this.footerContainer = document.querySelector('.footer-container');
         this.footer = this.footerContainer.querySelector('.footer');
@@ -495,8 +496,8 @@ class Display {
                 scrollTrigger: {
                     trigger: this.contactSection,
                     start: 'top bottom',
-                    end: 'center center',
-                    scrub: 0.5,
+                    end: () => `top+=${(window.innerHeight || document.documentElement.clientHeight) / 2}px center`,
+                    scrub: 0.05,
                 },
             })
         );
@@ -507,8 +508,8 @@ class Display {
                 scrollTrigger: {
                     trigger: this.contactSection,
                     start: 'top bottom',
-                    end: 'center center',
-                    scrub: 0.5,
+                    end: () => `top+=${(window.innerHeight || document.documentElement.clientHeight) / 2}px center`,
+                    scrub: 0.05,
                 },
             })
         );
@@ -518,26 +519,31 @@ class Display {
                 scrollTrigger: {
                     trigger: this.contactSection,
                     start: 'top bottom',
-                    end: 'center center',
-                    scrub: 0.5,
+                    end: () => `top+=${(window.innerHeight || document.documentElement.clientHeight) / 2}px center`,
+                    scrub: 0.05,
                 },
             })
         );
 
         const onEnter = () => {
             this.contactSection.style.height = `${this.contactLeft.offsetHeight}px`;
+            this.contactRight.style.height = `${this.contactLeft.offsetHeight - this.contactTitle.offsetHeight}px`;
+            this.contactRight.style.top = `${this.contactTitle.offsetHeight}px`;
             [this.contactLeft, this.contactRight, this.contactTitle].forEach((item) => item.classList.add('fixed'));
+            console.log('fuch');
         };
 
         const onLeave = () => {
             [this.contactLeft, this.contactRight, this.contactTitle].forEach((item) => item.classList.remove('fixed'));
+            this.contactSection.style.height = `auto`;
         };
 
         this.matchMedia.add('(min-width: 1024px)', () =>
             ScrollTrigger.create({
+                markers: true,
                 trigger: this.contactSection,
                 start: 'top bottom',
-                end: 'bottom bottom',
+                end: () => `top+=${(window.innerHeight || document.documentElement.clientHeight) / 2}px center`,
                 onEnter,
                 onLeave,
                 onEnterBack: onEnter,

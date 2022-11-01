@@ -1,23 +1,23 @@
 // inspired by: https://codepen.io/soufiane-khalfaoui-hassani/pen/LYpPWda
 .contact {
     display: grid;
+    min-height: 100vh;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: auto 1fr;
     box-shadow: 0 22px 54px rgba(0, 0, 0, 0.5);
 
     &__title {
+        width: 66.66vw;
         grid-column: 2;
         grid-row: 1;
         padding: 100px 50px;
-        width: 66.66vw;
-        height: 240px;
         font-size: 4vw;
         text-align: center;
         background-color: #111;
 
         &.fixed {
             position: fixed;
-            z-index: 99;
+            z-index: 97;
             top: 0;
             right: 0;
         }
@@ -26,31 +26,30 @@
     &__left {
         grid-column: 1;
         grid-row: 1 / 3;
-        min-height: 100vh;
         width: 33.33vw;
+        padding: 200px 50px;
         display: flex;
         align-items: center;
         background-color: hsl(194, 13%, 10%);
         border-right: 1px solid #999;
         &.fixed {
             position: fixed;
-            bottom: 0;
+            top: 0;
             left: 0;
             z-index: 99;
         }
     }
 
     &__right {
+        width: 66.66vw;
+        padding-bottom: 100px;
         grid-column: 2;
         grid-row: 2;
-        min-height: calc(100vh - 240px);
         display: flex;
         align-items: center;
         background-color: #111;
         &.fixed {
             position: fixed;
-            width: 66.66vw;
-            bottom: 0;
             right: 0;
             z-index: 98;
         }
@@ -58,8 +57,6 @@
 }
 
 .contact-informations {
-    padding: 100px 50px;
-
     &__name {
         font-size: 40px;
         font-weight: bold;
@@ -249,7 +246,7 @@
         background-color: rgb(33, 41, 43);
         border-radius: 5px;
         min-height: 132px;
-        max-height: 300px;
+        max-height: 250px;
         outline: 0;
         color: #fff;
         padding: 10px 6px;
@@ -407,13 +404,11 @@
 
         &__title {
             width: 100%;
-            min-height: auto;
             font-size: 5vw;
         }
 
         &__left {
             width: 100%;
-            min-height: auto;
             padding: 0 50px;
             justify-content: center;
             border-top: 1px solid #999;
@@ -423,7 +418,11 @@
 
         &__right {
             width: 100%;
-            min-height: auto;
+            padding-bottom: 0;
+        }
+
+        &__title.fixed, &__left.fixed, &__right.fixed {
+            position: static;
         }
     }
 

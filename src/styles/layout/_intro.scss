@@ -2,8 +2,8 @@
     position: relative;
     display: flex;
     align-items: center;
-    height: 100vh;
-    padding: 0 100px;
+    min-height: 100vh;
+    padding: 100px;
     z-index: 2;
     box-shadow: 0px 50px 34px 12px rgba(1, 12, 22, 0.8);
     box-shadow: inset 0px -15px 31px 0px rgba(1, 12, 22, 0.8);
@@ -25,8 +25,8 @@
             font-weight: 600;
 
             .char {
-                    opacity: 0;
-                    transform: translateY(30%);
+                opacity: 0;
+                transform: translateY(30%);
             }
         }
     }
@@ -65,7 +65,8 @@
 }
 
 .intro-name {
-    height: 100vh;
+    min-height: 100vh;
+    padding: 200px 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,7 +86,8 @@
 }
 
 .intro-job {
-    height: 100vh;
+    min-height: 100vh;
+    padding: 200px 0;
     display: flex;
     align-items: center;
     justify-content: center;
