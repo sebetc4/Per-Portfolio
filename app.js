@@ -51,7 +51,8 @@ class Display {
         this.contactRight = this.contactSection.querySelector('.contact__right');
         this.contactTitle = this.contactSection.querySelector('.contact__title');
         // Footer
-        this.footer = document.querySelector('.footer');
+        this.footerContainer = document.querySelector('.footer-container')
+        this.footer = this.footerContainer.querySelector('.footer');
 
         this.splitting = Splitting();
         this.matchMedia = gsap.matchMedia();
@@ -80,6 +81,7 @@ class Display {
         this.addGithubAnim();
         this.addSkillsAnim();
         this.addContactAnim();
+        this.addFooterAnim();
         // Event Listener
         window.addEventListener('resize', () => this.onResize(), true);
         window.onload = () => {
@@ -496,7 +498,7 @@ class Display {
                     trigger: this.contactSection,
                     start: 'top bottom',
                     end: 'center center',
-                    scrub: 1,
+                    scrub: 0.5,
                 },
             })
         );
@@ -508,7 +510,7 @@ class Display {
                     trigger: this.contactSection,
                     start: 'top bottom',
                     end: 'center center',
-                    scrub: 1,
+                    scrub: 0.5,
                 },
             })
         );
@@ -519,7 +521,7 @@ class Display {
                     trigger: this.contactSection,
                     start: 'top bottom',
                     end: 'center center',
-                    scrub: 1,
+                    scrub: 0.5,
                 },
             })
         );
@@ -545,7 +547,18 @@ class Display {
             })
         );
     }
-}
 
+    addFooterAnim() {
+        ScrollTrigger.create({
+            trigger: this.footerContainer,
+            start: 'top bottom',
+            end: 'bottom top',
+            onEnter: () => this.animateEnterFixedSection(this.footerContainer, this.footer),
+            onLeave: () => this.animateLeaveFixedSection(this.footerContainer, this.footer),
+            onEnterBack: () => this.animateEnterFixedSection(this.footerContainer, this.footer),
+            onLeaveBack: () => this.animateLeaveFixedSection(this.footerContainer, this.footer),
+        });
+    }
+}
 new Display();
 new Form();

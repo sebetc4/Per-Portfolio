@@ -11,7 +11,6 @@ class Request {
         const apiUrl = import.meta.env.PROD
             ? 'https://sebastien-etcheto-contact.alwaysdata.net/api/contact'
             : 'http://localhost:8080/api/contact';
-        console.log(apiUrl);
         this.submitDiv.classList.add('contact-form-submit--submitting');
         try {
             const res = await fetch(apiUrl, {
@@ -29,7 +28,6 @@ class Request {
             });
             res.ok ? this.requetSuccess() : this.requetError();
         } catch (err) {
-            console.log(err);
             this.requetError();
         }
     }
