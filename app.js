@@ -3,6 +3,8 @@ import Splitting from 'splitting';
 import { Form } from './src/scripts';
 gsap.registerPlugin(ScrollTrigger);
 
+console.log(document.querySelector('.loader-logo path:nth-child(3)').getTotalLength())
+
 class Display {
     constructor() {
         // Loader
@@ -51,7 +53,7 @@ class Display {
         this.contactRight = this.contactSection.querySelector('.contact__right');
         this.contactTitle = this.contactSection.querySelector('.contact__title');
         // Footer
-        this.footerContainer = document.querySelector('.footer-container')
+        this.footerContainer = document.querySelector('.footer-container');
         this.footer = this.footerContainer.querySelector('.footer');
 
         this.splitting = Splitting();
@@ -133,14 +135,10 @@ class Display {
     */
 
     onResize() {
-        const newSize =
-            window.innerWidth < 768 ? 'smallScreen' : window.innerWidth < 1024 ? 'mediumScreen' : 'largeScreen';
+        const newSize = window.innerWidth < 768 ? 'smallScreen' : 'largeScreen';
         if (newSize !== this.currentScreenWidthSize) {
-            this.kineProjectScrollTrigger.refresh();
             this.displayGithubGrid(newSize);
             this.currentScreenWidthSize = newSize;
-        } else if (newSize === 'smallScreen') {
-            this.kineProjectScrollTrigger.refresh();
         }
     }
 

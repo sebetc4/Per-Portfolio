@@ -1,5 +1,7 @@
 .loader-container {
     position: fixed;
+    flex-direction: column;
+    gap: 100px;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -7,10 +9,31 @@
     justify-content: center;
     z-index: 99999;
     background-color: #111;
-    transition: opacity .3s ease;
+    transition: opacity 0.3s ease;
 
     &.hidden {
         opacity: 0;
+    }
+}
+
+.loader-logo {
+    path {
+        stroke-width: 2px;
+        stroke: $primary-color;
+        animation: draw-logo 2s ease forwards;
+    }
+
+    path:nth-child(1) {
+        stroke-dasharray: 1032px;
+        stroke-dashoffset: 1032px;
+    }
+    path:nth-child(2) {
+        stroke-dasharray: 164px;
+        stroke-dashoffset: 164px;
+    }
+    path:nth-child(3) {
+        stroke-dasharray: 199px;
+        stroke-dashoffset: 199px;
     }
 }
 
@@ -79,7 +102,6 @@
 }
 
 @media screen and (max-width: 640px) {
-
     .loader-spinner {
         &__circles {
             width: 65px;

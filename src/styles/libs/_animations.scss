@@ -1,3 +1,9 @@
+@keyframes draw-logo {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
 @keyframes spin-loader {
     to {
         transform: rotate(360deg);
