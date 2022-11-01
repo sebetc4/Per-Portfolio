@@ -106,8 +106,11 @@
                         fill: #eee;
                     }
                 }
-                &__middle p {
-                    color: #111;
+                &__middle {
+                    p,
+                    h2 {
+                        color: #111;
+                    }
                 }
                 &__navbar a {
                     color: #111;
