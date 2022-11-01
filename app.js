@@ -45,6 +45,7 @@ class Display {
         this.skillsWrapper = document.querySelector('.skills-wrapper');
         this.skillsSection = this.skillsWrapper.querySelector('.skills');
         // Contact
+        this.contactContainer = document.querySelector('.contact-container');
         this.contactSection = document.querySelector('.contact');
         this.contactLeft = this.contactSection.querySelector('.contact__left');
         this.contactRight = this.contactSection.querySelector('.contact__right');
