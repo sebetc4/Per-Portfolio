@@ -363,7 +363,6 @@ class Display {
         this.matchMedia.add('(min-width: 1025px)', () =>
             gsap.from(this.kineProjectDevice, {
                 x: '100%',
-                autoAlpha: 1,
                 scrollTrigger: {
                     trigger: this.kineProjectDevice,
                     start: 'top bottom',
@@ -377,7 +376,6 @@ class Display {
         this.matchMedia.add('(min-width: 1025px)', () =>
             gsap.from(this.kineProjectDetail, {
                 x: '-100%',
-                autoAlpha: 1,
                 scrollTrigger: {
                     trigger: this.kineProjectDetail,
                     start: 'top bottom',
@@ -391,7 +389,6 @@ class Display {
         this.matchMedia.add('(min-width: 1025px)', () =>
             gsap.to(this.kineProjectScreenImage, {
                 y: -1720,
-                autoAlpha: 1,
                 scrollTrigger: {
                     trigger: this.kineProjectPhoneImage,
                     start: 'center center',
@@ -407,7 +404,6 @@ class Display {
         this.matchMedia.add('(min-width: 1025px)', () =>
             gsap.from(this.groupomaniaProjectDevice, {
                 x: '-100%',
-                autoAlpha: 1,
                 scrollTrigger: {
                     trigger: this.groupomaniaProjectDevice,
                     start: 'top bottom',
@@ -421,7 +417,6 @@ class Display {
         this.matchMedia.add('(min-width: 1025px)', () =>
             gsap.from(this.groupomaniaProjectDetail, {
                 x: '100%',
-                autoAlpha: 1,
                 scrollTrigger: {
                     trigger: this.groupomaniaProjectDetail,
                     start: 'top bottom',
@@ -437,7 +432,6 @@ class Display {
         this.matchMedia.add('(min-width: 1025px)', () =>
             gsap.from(this.designToolsProjectDevice, {
                 x: '100%',
-                autoAlpha: 1,
                 scrollTrigger: {
                     trigger: this.designToolsProjectDevice,
                     start: 'top bottom',
@@ -451,7 +445,6 @@ class Display {
         this.matchMedia.add('(min-width: 1025px)', () =>
             gsap.from(this.designToolsProjectDetail, {
                 x: '-100%',
-                autoAlpha: 1,
                 scrollTrigger: {
                     trigger: this.designToolsProjectDetail,
                     start: 'top bottom',
