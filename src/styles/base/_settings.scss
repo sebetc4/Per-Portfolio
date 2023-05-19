@@ -1,0 +1,28 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #111;
+
+    &.fixed {
+        height: 100vw;
+        overflow: hidden;
+    }
+
+    .content {
+        max-width: 100vw;
+        overflow: hidden;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.main {
+    max-width: 1920px;
+    margin: 0 auto;
+}

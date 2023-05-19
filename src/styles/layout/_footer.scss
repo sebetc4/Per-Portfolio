@@ -1,0 +1,48 @@
+// Insipred by: https://codepen.io/gearmobile/pen/RWPEyZ
+.footer {
+    width: 100%;
+    padding: 50px;
+    background-color: #2c2a2a;
+    z-index: -99;
+
+    &.fixed {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+    }
+
+    p {
+        font-size: 16px;
+        color: #eee;
+        margin-top: 0.5rem;
+        text-align: center;
+
+        strong {
+            font-weight: bold;
+        }
+
+        &:last-child {
+            font-weight: bold;
+            margin-top: 1rem;
+            color: $primary-color;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .footer {
+        padding: 30px;
+
+        p {
+            font-size: 16px;
+        }
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .footer.fixed {
+        width: 1920px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

@@ -1,0 +1,24 @@
+// Reset
+@import './src/styles/base/reset';
+
+// Libs
+@import './src/styles/libs/variables';
+@import './src/styles/libs/animations';
+@import './src/styles/libs/mixins';
+
+// Base
+@import './src/styles/base/settings';
+@import './src/styles/base/typography';
+
+// Vendors
+@import './src/styles/vendors/splitting';
+
+// Layout
+@import './src/styles/layout/loader';
+@import './src/styles/layout/header';
+@import './src/styles/layout/intro';
+@import './src/styles/layout/projects';
+@import './src/styles/layout/github';
+@import './src/styles/layout/skills';
+@import './src//styles/layout/contact';
+@import './src/styles/layout/footer'

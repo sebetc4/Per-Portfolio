@@ -1,0 +1,41 @@
+html,
+body {
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Kanit', sans-serif;
+    font-weight: bold;
+}
+
+h2 {
+    color: #869827;
+}
+
+h1,
+h2,
+h3,
+p {
+    cursor: default;
+}
+
+a {
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+}
+
+.no-wrap {
+    font-size: inherit;
+    font-weight: inherit;
+    white-space: nowrap;
+    font-family: inherit;
+}
+
+@media screen and (max-width: 640px) {
+    * {
+        font-size: 18px;
+    }
+}
